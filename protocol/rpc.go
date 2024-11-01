@@ -15,6 +15,7 @@ type ClientRequest struct {
 }
 
 type ClientReply struct {
+	ServerId  uint64
 	SessionId uint64
 }
 

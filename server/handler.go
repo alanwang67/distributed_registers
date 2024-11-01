@@ -10,7 +10,10 @@ import (
 func (s *Server) HandleClientRequest(req *protocol.ClientRequest, reply *protocol.ClientReply) error {
 	log.Debugf("server %d handling client request %d", s.Id, req.Id)
 
-	*reply = protocol.ClientReply{SessionId: uint64(rand.Uint32())<<32 + uint64(rand.Uint32())}
+	*reply = protocol.ClientReply{
+		ServerId:  s.Id,
+		SessionId: uint64(rand.Uint32())<<32 + uint64(rand.Uint32()),
+	}
 	log.Debugf("server %d replied to client %d with session %d", s.Id, req.Id, reply.SessionId)
 
 	return nil
