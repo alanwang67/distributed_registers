@@ -1,27 +1,34 @@
-package main
+package client
 
 import (
-	"fmt"
-	"log"
-	"net/rpc"
+	"time"
+
+	"github.com/alanwang67/distributed_registers/protocol"
+	"github.com/charmbracelet/log"
 )
 
-type Args struct {
-	A, B int
+type Client struct {
+	Id      uint64
+	Servers []*protocol.Connection
 }
 
-func main() {
-	client, err := rpc.DialHTTP("tcp", ":1235")
-	if err != nil {
-		log.Fatal("dialing:", err)
+func New(id uint64, servers []*protocol.Connection) *Client {
+	log.Debugf("client %d created", id)
+	return &Client{
+		Id:      id,
+		Servers: servers,
 	}
+}
 
-	// Synchronous call
-	args := Args{7, 8}
-	var reply int64
-	err = client.Call("Server.LamportTimestamp", args, &reply)
-	if err != nil {
-		log.Fatal("arith error:", err)
+func (c *Client) Start() error {
+	log.Debugf("starting client %d", c.Id)
+
+	for {
+		req := &protocol.ClientRequest{Id: c.Id}
+		rep := &protocol.ClientReply{}
+		protocol.Invoke(*c.Servers[0], "Server.HandleClientRequest", req, rep)
+		log.Debugf("client %d sent request", req.Id)
+		log.Debugf("client %d received reply", rep.SessionId)
+		time.Sleep(250 * time.Millisecond)
 	}
-	fmt.Printf("Arith: %d*%d=%d", reply)
 }
