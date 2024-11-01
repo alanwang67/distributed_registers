@@ -12,11 +12,10 @@ type Server struct {
 	id int
 	serverPorts
 	lamportClock int64
-	relevantWrites 
-	relevantReads 
+	relevantWrites
+	relevantReads
 	data int
 }
-
 
 type Args struct {
 	A, B int
@@ -31,7 +30,7 @@ func (s *Server) LamportTimeStamp(args *Args, reply *int64) error {
 func (s *Server) server() {
 	rpc.Register(s)
 	rpc.HandleHTTP()
-	
+
 	l, err := net.Listen("tcp", ":1235")
 	if err != nil {
 		log.Fatal("listen error:", err)
@@ -40,11 +39,11 @@ func (s *Server) server() {
 
 }
 
-func (s *Server)generateTimeStamp() {
+func (s *Server) generateTimeStamp() {
 }
 
 func Make(serverNumber int) *Server {
-	s := Server { id: serverNumber, lamportClock: (time.Now().Unix() * 10) + int64(serverNumber) }
+	s := Server{id: serverNumber, lamportClock: (time.Now().Unix() * 10) + int64(serverNumber)}
 	s.server()
 	return &s
 }

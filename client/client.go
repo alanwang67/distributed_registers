@@ -1,10 +1,10 @@
 package main
+
 import (
-	"log"
 	"fmt"
+	"log"
 	"net/rpc"
 )
-
 
 type Args struct {
 	A, B int
@@ -17,7 +17,7 @@ func main() {
 	}
 
 	// Synchronous call
-	args := Args{7,8}
+	args := Args{7, 8}
 	var reply int64
 	err = client.Call("Server.LamportTimestamp", args, &reply)
 	if err != nil {
