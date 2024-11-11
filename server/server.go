@@ -1,60 +1,98 @@
 package server
 
 import (
-	"time"
-
 	"github.com/alanwang67/distributed_registers/protocol"
 )
 
 func New(id uint64, self *protocol.Connection, peers []*protocol.Connection) *Server {
 	return &Server{
-		Id:    id,
-		Self:  self,
-		Peers: peers,
+		Id:          id,
+		Self:        self,
+		Peers:       peers,
+		VectorClock: make([]uint64, len(peers)),
 	}
 }
 
-func CompareLamportTS(ts1 LamportTS, ts2 LamportTS) bool {
-	if ts1.Time > ts2.Time {
-		return true
-	} else if ts1.Time < ts2.Time {
-		return false
-	} else if ts1.TieBreaker > ts2.TieBreaker { // tie breaker case
-		return true
-	} else if ts1.TieBreaker < ts2.TieBreaker {
-		return false
-	} else {
-		panic("No two timestamps should be equal")
-	}
+func generateVersionVector(serverData Server) []uint64 {
+	serverData.VectorClock[serverData.Id] += 1
+	return serverData.VectorClock
 }
 
-// Whenever you use a TS within a code block you need to remember to use this value and not from server struct
-// and also to assign this value to server when you return and also when you generate a new LamportTS
-// you have to create a create a new server struct with this new ts
-func GenerateLamportTS(serverData Server) LamportTS {
-	generated_ts := LamportTS{Time: uint64(time.Now().Unix()), TieBreaker: serverData.Id}
-	if CompareLamportTS(generated_ts, serverData.LatestSeenLamportTS) { // our TS is greater
-		return generated_ts
-	} else {
-		return LamportTS{Time: serverData.LatestSeenLamportTS.Time + 1, TieBreaker: serverData.Id}
+// this means v1 is greater than v2
+func compareVersionVector(v1 []uint64, v2 []uint64) bool {
+	for i := uint64(0); i < uint64(len(v1)); i++ {
+		if v1[i] < v2[i] {
+			return false
+		}
 	}
+	return true
 }
 
 func GetOperationsPerformed(serverData Server) []Operation {
 	return serverData.OperationsPerformed
 }
 
-func ProcessClientRequest(serverData Server, request ClientRequest) (Server, ClientReply) {
-	if request.OperationType == 0 { // reads
-		ts := GenerateLamportTS(serverData)
-
-		return Server{Id: serverData.Id, Self: serverData.Self, Peers: serverData.Peers, LatestSeenLamportTS: ts,
-			OperationsPerformed: serverData.OperationsPerformed, Data: request.Data}, ClientReply{OperationType: 0, TimeStamp: ts, Data: serverData.Data}
-	} else { //writes
-		ts := GenerateLamportTS(serverData)
-
-		operations := append(serverData.OperationsPerformed, Operation{OperationType: 1, TimeStamp: ts, SessionId: request.SessionId, Data: request.Data})
-		return Server{Id: serverData.Id, Self: serverData.Self, Peers: serverData.Peers, LatestSeenLamportTS: ts,
-			OperationsPerformed: operations, Data: request.Data}, ClientReply{OperationType: 1, TimeStamp: ts}
+func DependencyCheck(serverData Server, request ClientRequest) bool {
+	if request.SessionType == 0 {
+		return compareVersionVector(serverData.VectorClock, request.ReadVector)
+	} else if request.SessionType == 1 {
+		return compareVersionVector(serverData.VectorClock, request.WriteVector)
+	} else if request.SessionType == 2 {
+		return compareVersionVector(serverData.VectorClock, request.ReadVector)
+	} else if request.SessionType == 3 {
+		return compareVersionVector(serverData.VectorClock, request.WriteVector)
 	}
+}
+
+func getMaxVersionVector(log []Operation) []uint64 {
+	mx := log[0].VersionVector
+	for i := 0; i < len(log); i++ {
+		if compareVersionVector(log[i].VersionVector, mx) {
+			mx = log[i].VersionVector
+		}
+	}
+	return mx
+}
+
+func ProcessClientRequest(serverData Server, request ClientRequest) (Server, ClientReply) {
+	if !(DependencyCheck(serverData, request)) {
+		return serverData, ClientReply{Succeeded: false}
+	}
+
+	if request.OperationType == 0 { // reads
+		lastElem := len(serverData.OperationsPerformed) - 1
+		ReadVector := serverData.OperationsPerformed[lastElem].VersionVector
+		if compareVersionVector(request.ReadVector, serverData.OperationsPerformed[lastElem].VersionVector) {
+			ReadVector = request.ReadVector
+		}
+
+		return Server{Id: serverData.Id, Self: serverData.Self, Peers: serverData.Peers, VectorClock: serverData.VectorClock,
+				OperationsPerformed: serverData.OperationsPerformed, Data: serverData.Data}, ClientReply{Succeeded: true, OperationType: 0, Data: serverData.Data,
+				ReadVector: ReadVector, WriteVector: request.WriteVector}
+	} else { //writes
+		vs := generateVersionVector(serverData)
+
+		operations := append(serverData.OperationsPerformed, Operation{OperationType: 1, VersionVector: vs, Data: request.Data})
+
+		return Server{Id: serverData.Id, Self: serverData.Self, Peers: serverData.Peers, VectorClock: vs,
+				OperationsPerformed: operations, Data: request.Data}, ClientReply{Succeeded: true, OperationType: 1, Data: request.Data,
+				ReadVector: request.ReadVector, WriteVector: vs}
+	}
+}
+
+func RecieveGossip(serverData Server, gossipData ServerGossipRequest) Server {
+	i := 0
+	intermediateList := serverData.OperationsPerformed
+
+	for j := 0; i < len(gossipData.Operations); i++ {
+		if compareVersionVector(gossipData.Operations[j].VersionVector, intermediateList[i].VersionVector) {
+			intermediateList = append(intermediateList[:i+1], intermediateList[i:]...)
+			intermediateList[i] = gossipData.Operations[j]
+		}
+	}
+
+	data := intermediateList[len(intermediateList)-1].Data
+
+	return Server{Id: serverData.Id, Self: serverData.Self, Peers: serverData.Peers, VectorClock: getMaxVersionVector(serverData.OperationsPerformed),
+		OperationsPerformed: intermediateList, Data: data}
 }

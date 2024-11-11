@@ -8,29 +8,31 @@ import (
 	"github.com/charmbracelet/log"
 )
 
-type LamportTS struct {
-	Time       uint64
-	TieBreaker uint64
-}
-
 type Operation struct {
 	OperationType uint64 // 0 for read, 1 for write
-	TimeStamp     LamportTS
-	SessionId     uint64
+	VersionVector []uint64
 	Data          uint64
 }
 
 type ClientRequest struct {
 	OperationType uint64 // 0 for read, 1 for write
-	SessionId     uint64
+	SessionType   uint64 // 0 for RYW, 1 for monotonic reads, 2 for WFR, 3 for monotonic writes
 	Data          uint64 // only for write operations
+	ReadVector    []uint64
+	WriteVector   []uint64
 }
 
-// we can add more if we need for the session comparisons
 type ClientReply struct {
+	Succeeded     bool
 	OperationType uint64
-	TimeStamp     LamportTS
-	Data          uint64 // only for read operations
+	Data          uint64
+	ReadVector    []uint64
+	WriteVector   []uint64
+}
+
+type ServerGossipRequest struct {
+	ServerId   uint64
+	Operations []Operation
 }
 
 type Server struct {
@@ -38,7 +40,7 @@ type Server struct {
 	Self  *protocol.Connection
 	Peers []*protocol.Connection
 
-	LatestSeenLamportTS LamportTS
+	VectorClock         []uint64
 	OperationsPerformed []Operation
 	Data                uint64
 }
