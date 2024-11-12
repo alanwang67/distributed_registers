@@ -28,6 +28,15 @@ func compareVersionVector(v1 []uint64, v2 []uint64) bool {
 	return true
 }
 
+func sameOperation(v1 []uint64, v2 []uint64) bool {
+	for i := uint64(0); i < uint64(len(v1)); i++ {
+		if v1[i] != v2[i] {
+			return false
+		}
+	}
+	return true
+}
+
 func GetOperationsPerformed(serverData Server) []Operation {
 	return serverData.OperationsPerformed
 }
@@ -41,7 +50,10 @@ func DependencyCheck(serverData Server, request ClientRequest) bool {
 		return compareVersionVector(serverData.VectorClock, request.ReadVector)
 	} else if request.SessionType == 3 {
 		return compareVersionVector(serverData.VectorClock, request.WriteVector)
+	} else if request.SessionType == 4 {
+		return compareVersionVector(serverData.VectorClock, request.WriteVector) && compareVersionVector(serverData.VectorClock, request.ReadVector)
 	}
+	panic("Unspecified session type")
 }
 
 func getMaxVersionVector(log []Operation) []uint64 {
@@ -69,7 +81,7 @@ func ProcessClientRequest(serverData Server, request ClientRequest) (Server, Cli
 		return Server{Id: serverData.Id, Self: serverData.Self, Peers: serverData.Peers, VectorClock: serverData.VectorClock,
 				OperationsPerformed: serverData.OperationsPerformed, Data: serverData.Data}, ClientReply{Succeeded: true, OperationType: 0, Data: serverData.Data,
 				ReadVector: ReadVector, WriteVector: request.WriteVector}
-	} else { //writes
+	} else { // writes
 		vs := generateVersionVector(serverData)
 
 		operations := append(serverData.OperationsPerformed, Operation{OperationType: 1, VersionVector: vs, Data: request.Data})
@@ -81,18 +93,28 @@ func ProcessClientRequest(serverData Server, request ClientRequest) (Server, Cli
 }
 
 func RecieveGossip(serverData Server, gossipData ServerGossipRequest) Server {
-	i := 0
 	intermediateList := serverData.OperationsPerformed
+	j := 0
 
-	for j := 0; i < len(gossipData.Operations); i++ {
+	for i := 0; i < len(intermediateList); i++ {
+		for sameOperation(gossipData.Operations[j].VersionVector, intermediateList[i].VersionVector) {
+			j += 1
+		}
 		if compareVersionVector(gossipData.Operations[j].VersionVector, intermediateList[i].VersionVector) {
 			intermediateList = append(intermediateList[:i+1], intermediateList[i:]...)
 			intermediateList[i] = gossipData.Operations[j]
+			j += 1
 		}
 	}
+
+	intermediateList = append(intermediateList, gossipData.Operations[j:]...)
 
 	data := intermediateList[len(intermediateList)-1].Data
 
 	return Server{Id: serverData.Id, Self: serverData.Self, Peers: serverData.Peers, VectorClock: getMaxVersionVector(serverData.OperationsPerformed),
 		OperationsPerformed: intermediateList, Data: data}
+}
+
+func (s *Server) handleNetworkCalls(req *ClientRequest, reply *ClientReply) {
+
 }
