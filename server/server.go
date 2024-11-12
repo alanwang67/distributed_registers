@@ -59,8 +59,10 @@ func DependencyCheck(serverData Server, request ClientRequest) bool {
 func getMaxVersionVector(log []Operation) []uint64 {
 	mx := log[0].VersionVector
 	for i := 0; i < len(log); i++ {
-		if compareVersionVector(log[i].VersionVector, mx) {
-			mx = log[i].VersionVector
+		for j := 0; j < len(log[i].VersionVector); j++ {
+			if log[i].VersionVector[j] > mx[j] {
+				mx[j] = log[i].VersionVector[j]
+			}
 		}
 	}
 	return mx
@@ -92,6 +94,7 @@ func ProcessClientRequest(serverData Server, request ClientRequest) (Server, Cli
 	}
 }
 
+// there might be an issue with this
 func RecieveGossip(serverData Server, gossipData ServerGossipRequest) Server {
 	intermediateList := serverData.OperationsPerformed
 	j := 0
@@ -111,7 +114,7 @@ func RecieveGossip(serverData Server, gossipData ServerGossipRequest) Server {
 
 	data := intermediateList[len(intermediateList)-1].Data
 
-	return Server{Id: serverData.Id, Self: serverData.Self, Peers: serverData.Peers, VectorClock: getMaxVersionVector(serverData.OperationsPerformed),
+	return Server{Id: serverData.Id, Self: serverData.Self, Peers: serverData.Peers, VectorClock: getMaxVersionVector(intermediateList),
 		OperationsPerformed: intermediateList, Data: data}
 }
 
