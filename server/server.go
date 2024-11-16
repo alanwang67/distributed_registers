@@ -42,18 +42,20 @@ func GetOperationsPerformed(serverData Server) []Operation {
 }
 
 func DependencyCheck(serverData Server, request ClientRequest) bool {
-	if request.SessionType == 0 {
-		return compareVersionVector(serverData.VectorClock, request.ReadVector)
-	} else if request.SessionType == 1 {
+	switch request.SessionType {
+	case MonotonicReads:
 		return compareVersionVector(serverData.VectorClock, request.WriteVector)
-	} else if request.SessionType == 2 {
-		return compareVersionVector(serverData.VectorClock, request.ReadVector)
-	} else if request.SessionType == 3 {
+	case MonotonicWrites:
 		return compareVersionVector(serverData.VectorClock, request.WriteVector)
-	} else if request.SessionType == 4 {
-		return compareVersionVector(serverData.VectorClock, request.WriteVector) && compareVersionVector(serverData.VectorClock, request.ReadVector)
+	case ReadYourWrites:
+		return compareVersionVector(serverData.VectorClock, request.ReadVector)
+	case WritesFollowReads:
+		return compareVersionVector(serverData.VectorClock, request.ReadVector)
+		// case 4 undefined
+		// return compareVersionVector(serverData.VectorClock, request.WriteVector) && compareVersionVector(serverData.VectorClock, request.ReadVector)
+	default:
+		panic("Unspecified session type")
 	}
-	panic("Unspecified session type")
 }
 
 func getMaxVersionVector(log []Operation) []uint64 {
@@ -73,29 +75,63 @@ func ProcessClientRequest(serverData Server, request ClientRequest) (Server, Cli
 		return serverData, ClientReply{Succeeded: false}
 	}
 
-	if request.OperationType == 0 { // reads
+	if request.OperationType == Read {
 		lastElem := len(serverData.OperationsPerformed) - 1
 		ReadVector := serverData.OperationsPerformed[lastElem].VersionVector
-		if compareVersionVector(request.ReadVector, serverData.OperationsPerformed[lastElem].VersionVector) {
+		if compareVersionVector(
+			request.ReadVector,
+			serverData.OperationsPerformed[lastElem].VersionVector,
+		) {
 			ReadVector = request.ReadVector
 		}
 
-		return Server{Id: serverData.Id, Self: serverData.Self, Peers: serverData.Peers, VectorClock: serverData.VectorClock,
-				OperationsPerformed: serverData.OperationsPerformed, Data: serverData.Data}, ClientReply{Succeeded: true, OperationType: 0, Data: serverData.Data,
-				ReadVector: ReadVector, WriteVector: request.WriteVector}
+		return Server{
+				Id:                  serverData.Id,
+				Self:                serverData.Self,
+				Peers:               serverData.Peers,
+				VectorClock:         serverData.VectorClock,
+				OperationsPerformed: serverData.OperationsPerformed,
+				Data:                serverData.Data,
+			},
+			ClientReply{
+				Succeeded:     true,
+				OperationType: Read,
+				Data:          serverData.Data,
+				ReadVector:    ReadVector,
+				WriteVector:   request.WriteVector,
+			}
 	} else { // writes
 		vs := generateVersionVector(serverData)
 
-		operations := append(serverData.OperationsPerformed, Operation{OperationType: 1, VersionVector: vs, Data: request.Data})
+		operations := append(
+			serverData.OperationsPerformed,
+			Operation{
+				OperationType: Write,
+				VersionVector: vs,
+				Data:          request.Data,
+			},
+		)
 
-		return Server{Id: serverData.Id, Self: serverData.Self, Peers: serverData.Peers, VectorClock: vs,
-				OperationsPerformed: operations, Data: request.Data}, ClientReply{Succeeded: true, OperationType: 1, Data: request.Data,
-				ReadVector: request.ReadVector, WriteVector: vs}
+		return Server{
+				Id:                  serverData.Id,
+				Self:                serverData.Self,
+				Peers:               serverData.Peers,
+				VectorClock:         vs,
+				OperationsPerformed: operations,
+				Data:                request.Data,
+			},
+			ClientReply{
+				Succeeded:     true,
+				OperationType: Write,
+				Data:          request.Data,
+				ReadVector:    request.ReadVector,
+				WriteVector:   vs,
+			}
 	}
 }
 
 // there might be an issue with this
-func RecieveGossip(serverData Server, gossipData ServerGossipRequest) Server {
+func ReceiveGossip(serverData Server, gossipData ServerGossipRequest) Server {
 	intermediateList := serverData.OperationsPerformed
 	j := 0
 
@@ -114,8 +150,14 @@ func RecieveGossip(serverData Server, gossipData ServerGossipRequest) Server {
 
 	data := intermediateList[len(intermediateList)-1].Data
 
-	return Server{Id: serverData.Id, Self: serverData.Self, Peers: serverData.Peers, VectorClock: getMaxVersionVector(intermediateList),
-		OperationsPerformed: intermediateList, Data: data}
+	return Server{
+		Id:                  serverData.Id,
+		Self:                serverData.Self,
+		Peers:               serverData.Peers,
+		VectorClock:         getMaxVersionVector(intermediateList),
+		OperationsPerformed: intermediateList,
+		Data:                data,
+	}
 }
 
 func (s *Server) handleNetworkCalls(req *ClientRequest, reply *ClientReply) {

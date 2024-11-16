@@ -8,15 +8,31 @@ import (
 	"github.com/charmbracelet/log"
 )
 
+type OperationType uint64
+
+const (
+	Read OperationType = iota
+	Write
+)
+
+type SessionType uint64
+
+const (
+	MonotonicReads SessionType = iota
+	MonotonicWrites
+	ReadYourWrites
+	WritesFollowReads
+)
+
 type Operation struct {
-	OperationType uint64 // 0 for read, 1 for write
+	OperationType OperationType
 	VersionVector []uint64
 	Data          uint64
 }
 
 type ClientRequest struct {
-	OperationType uint64 // 0 for read, 1 for write
-	SessionType   uint64 // 0 for RYW, 1 for monotonic reads, 2 for WFR, 3 for monotonic writes
+	OperationType OperationType
+	SessionType   SessionType
 	Data          uint64 // only for write operations
 	ReadVector    []uint64
 	WriteVector   []uint64
@@ -24,7 +40,7 @@ type ClientRequest struct {
 
 type ClientReply struct {
 	Succeeded     bool
-	OperationType uint64
+	OperationType OperationType
 	Data          uint64
 	ReadVector    []uint64
 	WriteVector   []uint64
