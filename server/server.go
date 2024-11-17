@@ -43,8 +43,8 @@ func GetOperationsPerformed(serverData Server) []Operation {
 
 func DependencyCheck(serverData Server, request ClientRequest) bool {
 	switch request.SessionType {
-        case Causal:
-                return compareVersionVector(serverData.VectorClock, request.WriteVector) && compareVersionVector(serverData.VectorClock, request.ReadVector)
+	case Causal:
+		return compareVersionVector(serverData.VectorClock, request.WriteVector) && compareVersionVector(serverData.VectorClock, request.ReadVector)
 	case MonotonicReads:
 		return compareVersionVector(serverData.VectorClock, request.WriteVector)
 	case MonotonicWrites:
