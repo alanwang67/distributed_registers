@@ -18,7 +18,8 @@ const (
 type SessionType uint64
 
 const (
-	MonotonicReads SessionType = iota
+        Causal SessionType = iota
+	MonotonicReads 
 	MonotonicWrites
 	ReadYourWrites
 	WritesFollowReads
