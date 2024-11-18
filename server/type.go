@@ -8,6 +8,13 @@ import (
 	"github.com/charmbracelet/log"
 )
 
+type RequestType uint64
+
+const (
+	Client RequestType = iota
+	Gossip
+)
+
 type OperationType uint64
 
 const (
@@ -50,6 +57,17 @@ type ClientReply struct {
 type ServerGossipRequest struct {
 	ServerId   uint64
 	Operations []Operation
+}
+
+type Request struct {
+	Type   RequestType
+	Client ClientRequest
+	Gossip ServerGossipRequest
+}
+
+type Reply struct {
+	Type   RequestType
+	Client ClientReply
 }
 
 type Server struct {

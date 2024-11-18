@@ -2,17 +2,20 @@ package server
 
 import (
 	"github.com/alanwang67/distributed_registers/protocol"
+	"github.com/charmbracelet/log"
 )
 
 func New(id uint64, self *protocol.Connection, peers []*protocol.Connection) *Server {
 	return &Server{
-		Id:          id,
-		Self:        self,
-		Peers:       peers,
-		VectorClock: make([]uint64, len(peers)),
+		Id:                  id,
+		Self:                self,
+		Peers:               peers,
+		VectorClock:         make([]uint64, len(peers)),
+		OperationsPerformed: make([]Operation, 0),
 	}
 }
 
+// this is not functional
 func generateVersionVector(serverData Server) []uint64 {
 	serverData.VectorClock[serverData.Id] += 1
 	return serverData.VectorClock
@@ -76,6 +79,24 @@ func ProcessClientRequest(serverData Server, request ClientRequest) (Server, Cli
 	}
 
 	if request.OperationType == Read {
+		if len(serverData.OperationsPerformed) == 0 {
+			return Server{
+					Id:                  serverData.Id,
+					Self:                serverData.Self,
+					Peers:               serverData.Peers,
+					VectorClock:         serverData.VectorClock,
+					OperationsPerformed: serverData.OperationsPerformed,
+					Data:                serverData.Data,
+				},
+				ClientReply{
+					Succeeded:     true,
+					OperationType: Read,
+					Data:          serverData.Data,
+					ReadVector:    request.ReadVector,
+					WriteVector:   request.WriteVector,
+				}
+		}
+
 		lastElem := len(serverData.OperationsPerformed) - 1
 		ReadVector := serverData.OperationsPerformed[lastElem].VersionVector
 		if compareVersionVector(
@@ -103,6 +124,7 @@ func ProcessClientRequest(serverData Server, request ClientRequest) (Server, Cli
 	} else { // writes
 		vs := generateVersionVector(serverData)
 
+		// log.Debug(serverData.OperationsPerformed)
 		operations := append(
 			serverData.OperationsPerformed,
 			Operation{
@@ -160,6 +182,33 @@ func ReceiveGossip(serverData Server, gossipData ServerGossipRequest) Server {
 	}
 }
 
-func (s *Server) handleNetworkCalls(req *ClientRequest, reply *ClientReply) {
+func (s *Server) HandleNetworkCalls(req *Request, reply *Reply) error {
+	switch req.Type {
+	case Client:
+		new_server, new_reply := ProcessClientRequest(*s, req.Client)
+		s.Id = new_server.Id
+		s.Self = new_server.Self
+		s.Peers = new_server.Peers
+		s.VectorClock = new_server.VectorClock
+		s.OperationsPerformed = new_server.OperationsPerformed
+		s.Data = new_server.Data
 
+		reply.Type = Client
+		reply.Client = new_reply
+	case Gossip:
+		new_server := ReceiveGossip(*s, req.Gossip)
+		s.Id = new_server.Id
+		s.Self = new_server.Self
+		s.Peers = new_server.Peers
+		s.VectorClock = new_server.VectorClock
+		s.OperationsPerformed = new_server.OperationsPerformed
+		s.Data = new_server.Data
+
+	default:
+		panic("Not handled")
+	}
+
+	log.Debug(s.OperationsPerformed)
+
+	return nil
 }
