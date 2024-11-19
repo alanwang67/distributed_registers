@@ -5,20 +5,19 @@ import (
 	"github.com/alanwang67/distributed_registers/server"
 )
 
-func communicateWithServer(clientData Client, value uint64) Client {
-	for i := range clientData.Servers {
-		clientReq := server.ClientRequest{OperationType: server.Write, SessionType: 0, Data: value,
-			ReadVector:  make([]uint64, len(clientData.Servers)),
-			WriteVector: make([]uint64, len(clientData.Servers))}
+func (c *Client) communicateWithServer(value uint64) uint64 {
+	for i := range c.Servers {
+		clientReq := server.ClientRequest{OperationType: server.Write, SessionType: server.Causal, Data: value,
+			ReadVector:  make([]uint64, len(c.Servers)),
+			WriteVector: make([]uint64, len(c.Servers))}
 
-		req := server.Request{Type: server.Client, Client: clientReq}
-		reply := server.Reply{}
+		clientReply := server.ClientReply{}
 
-		protocol.Invoke(*clientData.Servers[i], "Server.HandleNetworkCalls", &req, &reply)
+		protocol.Invoke(*c.Servers[i], "Server.ProcessClientRequest", &clientReq, &clientReply)
 
-		if reply.Client.Succeeded {
-			return Client{Id: clientData.Id, Servers: clientData.Servers, ReadVector: reply.Client.ReadVector, WriteVector: reply.Client.WriteVector}
-		}
+		c.WriteVector = clientReply.WriteVector
+		c.ReadVector = clientReply.ReadVector
+		return clientReply.Data
 	}
 
 	panic("None found")

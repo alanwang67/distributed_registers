@@ -31,8 +31,8 @@ func (c *Client) Start() error {
 
 	for {
 
-		resp := communicateWithServer(*c, rc)
-		log.Debugf("%d", resp.WriteVector)
+		resp := c.communicateWithServer(rc)
+		log.Debugf("%d", resp)
 		// sc := len(c.Servers) // server count
 
 		// req := &protocol.ClientRequest{Id: c.Id}

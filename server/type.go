@@ -35,13 +35,14 @@ const (
 type Operation struct {
 	OperationType OperationType
 	VersionVector []uint64
+	TieBreaker    uint64
 	Data          uint64
 }
 
 type ClientRequest struct {
 	OperationType OperationType
 	SessionType   SessionType
-	Data          uint64 // only for write operations
+	Data          uint64
 	ReadVector    []uint64
 	WriteVector   []uint64
 }
@@ -54,20 +55,12 @@ type ClientReply struct {
 	WriteVector   []uint64
 }
 
-type ServerGossipRequest struct {
+type GossipRequest struct {
 	ServerId   uint64
 	Operations []Operation
 }
 
-type Request struct {
-	Type   RequestType
-	Client ClientRequest
-	Gossip ServerGossipRequest
-}
-
-type Reply struct {
-	Type   RequestType
-	Client ClientReply
+type GossipReply struct {
 }
 
 type Server struct {
@@ -77,6 +70,8 @@ type Server struct {
 
 	VectorClock         []uint64
 	OperationsPerformed []Operation
+	MyOperations        []Operation
+	PendingOperations   []Operation
 	Data                uint64
 }
 
@@ -94,6 +89,7 @@ func (s *Server) Start() error {
 
 	for {
 		rpc.Accept(l)
+		s.sendGossip()
 		// some other stuff goes here...
 
 	}
