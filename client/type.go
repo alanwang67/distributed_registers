@@ -43,6 +43,6 @@ func (c *Client) Start() error {
 		log.Debugf("client %d received a reply from server %d with session ID %d", c.Id, rep.ServerId, rep.SessionId)
 		rc += 1
 
-		time.Sleep(250 * time.Millisecond)
+		time.Sleep(2500 * time.Millisecond)
 	}
 }
