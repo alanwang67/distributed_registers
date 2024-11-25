@@ -1,8 +1,6 @@
 package protocol
 
-import (
-	"net/rpc"
-)
+import "net/rpc"
 
 type Connection struct {
 	Network string

@@ -5,8 +5,8 @@ import (
 	"sort"
 	"time"
 
-	"github.com/alanwang67/distributed_registers/protocol"
-	"github.com/alanwang67/distributed_registers/vectorclock"
+	"github.com/alanwang67/distributed_registers/session_semantics/protocol"
+	"github.com/alanwang67/distributed_registers/session_semantics/vectorclock"
 )
 
 // New creates and initializes a new Server instance with the given ID, self connection, and peer connections.

@@ -3,7 +3,7 @@ package client
 import (
 	"time"
 
-	"github.com/alanwang67/distributed_registers/protocol"
+	"github.com/alanwang67/distributed_registers/session_semantics/protocol"
 	"github.com/charmbracelet/log"
 )
 
