@@ -6,8 +6,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/alanwang67/distributed_registers/protocol"
-	"github.com/alanwang67/distributed_registers/vectorclock"
+	"github.com/alanwang67/distributed_registers/session_semantics/protocol"
+	"github.com/alanwang67/distributed_registers/session_semantics/vectorclock"
 )
 
 // TestNew tests the New function in the server package
