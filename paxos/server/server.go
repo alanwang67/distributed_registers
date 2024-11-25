@@ -18,7 +18,7 @@ func New(id uint64, self *protocol.Connection, peers []*protocol.Connection) *Se
 	return s
 }
 
-func (s *Server) prepareRequest(request PrepareRequest, reply PrepareReply) error {
+func (s *Server) PrepareRequest(request PrepareRequest, reply PrepareReply) error {
 	if s.LowestN < request.ProposalNumber {
 		s.LowestN = request.ProposalNumber
 	}
@@ -27,12 +27,12 @@ func (s *Server) prepareRequest(request PrepareRequest, reply PrepareReply) erro
 		reply.ServerId = s.Id
 		reply.LatestAcceptedProposalNumber = s.LatestAcceptedProposalNumber
 		reply.LatestAcceptedProposalData = s.LatestAcceptedProposalData
-
 	}
+
 	return nil
 }
 
-func (s *Server) acceptProposal(request AcceptRequest, reply AcceptReply) error {
+func (s *Server) AcceptProposal(request AcceptRequest, reply AcceptReply) error {
 	if s.LowestN <= request.ProposalNumber {
 		s.LatestAcceptedProposalData = request.ProposalNumber
 		s.LatestAcceptedProposalData = request.Value
