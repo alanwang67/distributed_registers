@@ -6,9 +6,9 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/alanwang67/distributed_registers/session_semantics/client"
-	"github.com/alanwang67/distributed_registers/session_semantics/protocol"
-	"github.com/alanwang67/distributed_registers/session_semantics/server"
+	"github.com/alanwang67/distributed_registers/paxos/client"
+	"github.com/alanwang67/distributed_registers/paxos/protocol"
+	"github.com/alanwang67/distributed_registers/paxos/server"
 	"github.com/charmbracelet/log"
 )
 

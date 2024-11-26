@@ -1,7 +1,9 @@
 package server
 
 import (
-	"github.com/alanwang67/distributed_registers/session_semantics/protocol"
+	"fmt"
+
+	"github.com/alanwang67/distributed_registers/paxos/protocol"
 )
 
 // New creates and initializes a new Server instance with the given ID, self connection, and peer connections.
@@ -10,7 +12,7 @@ func New(id uint64, self *protocol.Connection, peers []*protocol.Connection) *Se
 		Id:                           id,
 		Self:                         self,
 		Peers:                        peers,
-		Accepted:                     true,
+		Accepted:                     false,
 		LowestN:                      0,
 		LatestAcceptedProposalNumber: 0,
 		LatestAcceptedProposalData:   0,
@@ -18,7 +20,7 @@ func New(id uint64, self *protocol.Connection, peers []*protocol.Connection) *Se
 	return s
 }
 
-func (s *Server) PrepareRequest(request PrepareRequest, reply PrepareReply) error {
+func (s *Server) PrepareRequest(request *PrepareRequest, reply *PrepareReply) error {
 	if s.LowestN < request.ProposalNumber {
 		s.LowestN = request.ProposalNumber
 	}
@@ -32,11 +34,14 @@ func (s *Server) PrepareRequest(request PrepareRequest, reply PrepareReply) erro
 	return nil
 }
 
-func (s *Server) AcceptProposal(request AcceptRequest, reply AcceptReply) error {
+func (s *Server) AcceptProposal(request *AcceptRequest, reply *AcceptReply) error {
 	if s.LowestN <= request.ProposalNumber {
 		s.LatestAcceptedProposalData = request.ProposalNumber
 		s.LatestAcceptedProposalData = request.Value
 	}
 
+	fmt.Print(request.Value)
+
+	reply.Succeeded = true
 	return nil
 }

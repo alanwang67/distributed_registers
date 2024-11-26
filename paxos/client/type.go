@@ -24,11 +24,12 @@ func (c *Client) Start() error {
 	log.Debugf("starting client %d", c.Id)
 
 	rc := uint64(0) // retry count
+	resp := c.communicateWithServer(rc, 1)
 
 	for {
 
-		resp := c.communicateWithServer(rc)
-		log.Debugf("%d", resp)
+		// resp := c.communicateWithServer(rc)
+		// log.Debugf("%d", resp)
 		// sc := len(c.Servers) // server count
 
 		// req := &protocol.ClientRequest{Id: c.Id}
@@ -39,6 +40,6 @@ func (c *Client) Start() error {
 		log.Debugf("client %d received a reply from server %d with session ID %d", c.Id, rep.ServerId, rep.SessionId)
 		rc += 1
 
-		time.Sleep(2500 * time.Millisecond)
+		time.Sleep(250000000000 * time.Millisecond)
 	}
 }

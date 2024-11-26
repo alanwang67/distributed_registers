@@ -4,7 +4,7 @@ import (
 	"net"
 	"net/rpc"
 
-	"github.com/alanwang67/distributed_registers/session_semantics/protocol"
+	"github.com/alanwang67/distributed_registers/paxos/protocol"
 	"github.com/charmbracelet/log"
 )
 
@@ -34,6 +34,7 @@ type AcceptRequest struct {
 }
 
 type AcceptReply struct {
+	Succeeded bool
 }
 
 func (s *Server) Start() error {
