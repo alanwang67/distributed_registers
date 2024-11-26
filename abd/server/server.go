@@ -4,8 +4,20 @@ import (
 	"net"
 	"net/rpc"
 
+	"github.com/alanwang67/distributed_registers/abd/protocol"
 	"github.com/charmbracelet/log"
 )
+
+// Creates a new server with the given ID, connection, and list of peers.
+func New(id uint64, self *protocol.Connection, peers []*protocol.Connection) *Server {
+	return &Server{
+		Id:      id,
+		Self:    self,
+		Peers:   peers,
+		Version: 0,
+		Value:   0,
+	}
+}
 
 // Handles a read request and replies with the current version and value.
 func (s *Server) HandleReadRequest(req *ReadRequest, reply *ReadReply) error {
