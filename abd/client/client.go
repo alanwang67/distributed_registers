@@ -44,7 +44,7 @@ func (c *Client) ABDRead() (uint64, error) {
 	// Update LocalVersion for session guarantees
 	c.LocalVersion = maxVersion
 
-	// Optional Write-Back Phase
+	// Write-Back Phase
 	err = c.writeToQuorum(maxVersion, value) // Broadcast the highest value back to a quorum
 	if err != nil {
 		return 0, fmt.Errorf("write-back failed: %v", err)
