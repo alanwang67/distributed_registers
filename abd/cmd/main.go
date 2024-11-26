@@ -6,42 +6,50 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/alanwang67/distributed_registers/session_semantics/client"
-	"github.com/alanwang67/distributed_registers/session_semantics/protocol"
-	"github.com/alanwang67/distributed_registers/session_semantics/server"
+	"github.com/alanwang67/distributed_registers/abd/client"
+	"github.com/alanwang67/distributed_registers/abd/protocol"
+	"github.com/alanwang67/distributed_registers/abd/server"
+	"github.com/alanwang67/distributed_registers/abd/workload"
 	"github.com/charmbracelet/log"
 )
 
 //go:embed config.json
 var f embed.FS
 
+type Config struct {
+	Servers []ServerConfig `json:"servers"`
+	Clients []ClientConfig `json:"clients"`
+}
+
+type ServerConfig struct {
+	Network string `json:"network"`
+	Address string `json:"address"`
+}
+
+type ClientConfig struct {
+	ClientId uint64                 `json:"client_id"`
+	Workload []workload.Instruction `json:"workload"`
+}
+
 func main() {
 	log.SetLevel(log.DebugLevel)
 
-	config, err := f.ReadFile("config.json")
+	configData, err := f.ReadFile("config.json")
 	if err != nil {
 		log.Fatalf("can't read config.json: %s", err)
 	}
 
-	var data map[string]interface{}
-	err = json.Unmarshal(config, &data)
+	var config Config
+	err = json.Unmarshal(configData, &config)
 	if err != nil {
 		log.Fatalf("can't unmarshal JSON: %s", err)
 	}
 
-	servers := make([]*protocol.Connection, len(data["servers"].([]interface{})))
-	for i, s := range data["servers"].([]interface{}) {
-		conn, ok := s.(map[string]interface{})
-		if !ok {
-			log.Fatalf("invalid server data at index %d", i)
-		}
-
-		network, _ := conn["network"].(string)
-		address, _ := conn["address"].(string)
-
+	servers := make([]*protocol.Connection, len(config.Servers))
+	for i, s := range config.Servers {
 		servers[i] = &protocol.Connection{
-			Network: network,
-			Address: address,
+			Network: s.Network,
+			Address: s.Address,
 		}
 	}
 
@@ -56,9 +64,29 @@ func main() {
 
 	switch os.Args[1] {
 	case "client":
-		client.New(id, servers).Start() // TODO: make the servers available to client match the config
+		var clientWorkload []workload.Instruction
+		// Find the workload for this client
+		for _, clientConfig := range config.Clients {
+			if clientConfig.ClientId == id {
+				clientWorkload = clientConfig.Workload
+				break
+			}
+		}
+		if clientWorkload == nil {
+			log.Fatalf("No workload found for client %d", id)
+		}
+		err := client.New(id, servers).Start(clientWorkload)
+		if err != nil {
+			log.Fatalf("Client %d encountered an error: %v", id, err)
+		}
 	case "server":
-		server.New(id, servers[id], servers).Start()
+		if id >= uint64(len(servers)) {
+			log.Fatalf("Invalid server id %d", id)
+		}
+		err := server.New(id, servers[id], servers).Start()
+		if err != nil {
+			log.Fatalf("Server %d encountered an error: %v", id, err)
+		}
 	default:
 		log.Fatalf("unknown command: %s", os.Args[1])
 	}

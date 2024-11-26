@@ -3,7 +3,7 @@ package server
 import (
 	"sync"
 
-	"github.com/alanwang67/distributed_registers/session_semantics/protocol"
+	"github.com/alanwang67/distributed_registers/abd/protocol"
 )
 
 // Server represents a server in the ABD protocol

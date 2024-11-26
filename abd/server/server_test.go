@@ -7,7 +7,6 @@ import (
 	"time"
 
 	"github.com/alanwang67/distributed_registers/abd/protocol"
-	"github.com/alanwang67/distributed_registers/abd/server"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -19,7 +18,7 @@ func TestServerInitialization(t *testing.T) {
 	}
 	peers := []*protocol.Connection{}
 
-	s := server.New(id, self, peers)
+	s := New(id, self, peers)
 
 	assert.Equal(t, uint64(0), s.Version, "Initial version should be 0")
 	assert.Equal(t, uint64(0), s.Value, "Initial value should be 0")
@@ -28,8 +27,8 @@ func TestServerInitialization(t *testing.T) {
 func TestHandleReadRequest(t *testing.T) {
 	s := setupTestServer()
 
-	req := &server.ReadRequest{}
-	reply := &server.ReadReply{}
+	req := &ReadRequest{}
+	reply := &ReadReply{}
 
 	err := s.HandleReadRequest(req, reply)
 	assert.NoError(t, err, "HandleReadRequest should not return an error")
@@ -40,11 +39,11 @@ func TestHandleReadRequest(t *testing.T) {
 func TestHandleWriteRequestHigherVersion(t *testing.T) {
 	s := setupTestServer()
 
-	req := &server.WriteRequest{
+	req := &WriteRequest{
 		Version: 1,
 		Value:   42,
 	}
-	reply := &server.WriteReply{}
+	reply := &WriteReply{}
 
 	err := s.HandleWriteRequest(req, reply)
 	assert.NoError(t, err, "HandleWriteRequest should not return an error")
@@ -58,11 +57,11 @@ func TestHandleWriteRequestLowerVersion(t *testing.T) {
 	s.Version = 2
 	s.Value = 100
 
-	req := &server.WriteRequest{
+	req := &WriteRequest{
 		Version: 1, // Lower version
 		Value:   42,
 	}
-	reply := &server.WriteReply{}
+	reply := &WriteReply{}
 
 	err := s.HandleWriteRequest(req, reply)
 	assert.NoError(t, err, "HandleWriteRequest should not return an error")
@@ -74,7 +73,7 @@ func TestConcurrentWriteRequests(t *testing.T) {
 	s := setupTestServer()
 
 	var wg sync.WaitGroup
-	writeRequests := []server.WriteRequest{
+	writeRequests := []WriteRequest{
 		{Version: 1, Value: 10},
 		{Version: 2, Value: 20},
 		{Version: 3, Value: 30},
@@ -82,9 +81,9 @@ func TestConcurrentWriteRequests(t *testing.T) {
 
 	for _, req := range writeRequests {
 		wg.Add(1)
-		go func(r server.WriteRequest) {
+		go func(r WriteRequest) {
 			defer wg.Done()
-			reply := &server.WriteReply{}
+			reply := &WriteReply{}
 			err := s.HandleWriteRequest(&r, reply)
 			assert.NoError(t, err, "HandleWriteRequest should not return an error")
 		}(req)
@@ -102,15 +101,15 @@ func TestConcurrentReadAndWriteRequests(t *testing.T) {
 	s.Value = 100
 
 	var wg sync.WaitGroup
-	readReplies := make([]server.ReadReply, 5)
+	readReplies := make([]ReadReply, 5)
 
 	// Start concurrent reads
 	for i := 0; i < 5; i++ {
 		wg.Add(1)
 		go func(index int) {
 			defer wg.Done()
-			req := &server.ReadRequest{}
-			reply := &server.ReadReply{}
+			req := &ReadRequest{}
+			reply := &ReadReply{}
 			err := s.HandleReadRequest(req, reply)
 			assert.NoError(t, err, "HandleReadRequest should not return an error")
 			readReplies[index] = *reply
@@ -118,16 +117,16 @@ func TestConcurrentReadAndWriteRequests(t *testing.T) {
 	}
 
 	// Start concurrent writes
-	writeRequests := []server.WriteRequest{
+	writeRequests := []WriteRequest{
 		{Version: 2, Value: 200},
 		{Version: 3, Value: 300},
 	}
 
 	for _, req := range writeRequests {
 		wg.Add(1)
-		go func(r server.WriteRequest) {
+		go func(r WriteRequest) {
 			defer wg.Done()
-			reply := &server.WriteReply{}
+			reply := &WriteReply{}
 			err := s.HandleWriteRequest(&r, reply)
 			assert.NoError(t, err, "HandleWriteRequest should not return an error")
 		}(req)
@@ -150,7 +149,7 @@ func TestIgnoreOutdatedWrites(t *testing.T) {
 	s.Value = 500
 
 	var wg sync.WaitGroup
-	writeRequests := []server.WriteRequest{
+	writeRequests := []WriteRequest{
 		{Version: 40, Value: 400}, // Outdated
 		{Version: 60, Value: 600}, // Newer
 		{Version: 45, Value: 450}, // Outdated
@@ -158,9 +157,9 @@ func TestIgnoreOutdatedWrites(t *testing.T) {
 
 	for _, req := range writeRequests {
 		wg.Add(1)
-		go func(r server.WriteRequest) {
+		go func(r WriteRequest) {
 			defer wg.Done()
-			reply := &server.WriteReply{}
+			reply := &WriteReply{}
 			err := s.HandleWriteRequest(&r, reply)
 			assert.NoError(t, err, "HandleWriteRequest should not return an error")
 		}(req)
@@ -180,7 +179,7 @@ func TestServerStart(t *testing.T) {
 	}
 	peers := []*protocol.Connection{}
 
-	s := server.New(id, self, peers)
+	s := New(id, self, peers)
 
 	go func() {
 		err := s.Start()
@@ -194,12 +193,12 @@ func TestServerStart(t *testing.T) {
 	client, err := rpc.Dial(self.Network, self.Address)
 	assert.NoError(t, err, "Should be able to dial the server")
 
-	var readReply server.ReadReply
-	err = client.Call("Server.HandleReadRequest", &server.ReadRequest{}, &readReply)
+	var readReply ReadReply
+	err = client.Call("Server.HandleReadRequest", &ReadRequest{}, &readReply)
 	assert.NoError(t, err, "RPC call to HandleReadRequest should not return an error")
 }
 
-func setupTestServer() *server.Server {
+func setupTestServer() *Server {
 	id := uint64(0)
 	self := &protocol.Connection{
 		Network: "tcp",
@@ -207,6 +206,6 @@ func setupTestServer() *server.Server {
 	}
 	peers := []*protocol.Connection{}
 
-	s := server.New(id, self, peers)
+	s := New(id, self, peers)
 	return s
 }
