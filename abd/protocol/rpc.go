@@ -1,6 +1,10 @@
 package protocol
 
-import "net/rpc"
+import (
+	"context"
+	"net"
+	"net/rpc"
+)
 
 type Connection struct {
 	Network string
@@ -33,4 +37,13 @@ func Invoke(conn Connection, method string, args, reply any) error {
 	}
 
 	return nil
+}
+
+func DialContext(ctx context.Context, network, address string) (*rpc.Client, error) {
+	dialer := net.Dialer{}
+	conn, err := dialer.DialContext(ctx, network, address)
+	if err != nil {
+		return nil, err
+	}
+	return rpc.NewClient(conn), nil
 }
