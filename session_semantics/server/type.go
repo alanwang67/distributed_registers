@@ -3,6 +3,7 @@ package server
 import (
 	"net"
 	"net/rpc"
+	"sync"
 
 	"github.com/alanwang67/distributed_registers/session_semantics/protocol"
 	"github.com/charmbracelet/log"
@@ -73,6 +74,7 @@ type Server struct {
 	MyOperations        []Operation
 	PendingOperations   []Operation
 	Data                uint64
+	mu                  sync.Mutex
 }
 
 func (s *Server) Start() error {

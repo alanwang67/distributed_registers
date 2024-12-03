@@ -4,6 +4,7 @@ import (
 	"time"
 
 	"github.com/alanwang67/distributed_registers/session_semantics/protocol"
+	"github.com/alanwang67/distributed_registers/session_semantics/server"
 	"github.com/charmbracelet/log"
 )
 
@@ -29,7 +30,7 @@ func (c *Client) Start() error {
 
 	rc := uint64(0) // retry count
 
-	for {
+	for rc < 20 {
 
 		resp := c.communicateWithServer(rc)
 		log.Debugf("%d", resp)
@@ -43,6 +44,19 @@ func (c *Client) Start() error {
 		log.Debugf("client %d received a reply from server %d with session ID %d", c.Id, rep.ServerId, rep.SessionId)
 		rc += 1
 
-		time.Sleep(2500 * time.Millisecond)
+		time.Sleep(250 * time.Millisecond)
 	}
+
+	for i := range c.Servers {
+		clientReq := server.ClientRequest{}
+
+		clientReply := server.ClientReply{}
+
+		protocol.Invoke(*c.Servers[i], "Server.PrintOperations", &clientReq, &clientReply)
+
+	}
+	for {
+		time.Sleep(100 * time.Microsecond)
+	}
+
 }
