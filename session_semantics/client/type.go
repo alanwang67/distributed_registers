@@ -1,11 +1,14 @@
 package client
 
 import (
+	"fmt"
+	"sync"
 	"time"
 
 	"github.com/alanwang67/distributed_registers/session_semantics/protocol"
 	"github.com/alanwang67/distributed_registers/session_semantics/server"
 	"github.com/charmbracelet/log"
+	"golang.org/x/exp/rand"
 )
 
 type Client struct {
@@ -13,6 +16,7 @@ type Client struct {
 	Servers     []*protocol.Connection
 	ReadVector  []uint64
 	WriteVector []uint64
+	mu          sync.Mutex
 }
 
 func New(id uint64, servers []*protocol.Connection) *Client {
@@ -32,21 +36,20 @@ func (c *Client) Start() error {
 
 	for rc < 20 {
 
-		resp := c.communicateWithServer(rc)
-		log.Debugf("%d", resp)
-		// sc := len(c.Servers) // server count
+		resp := c.writeToServer(uint64(rand.Intn(500)), server.ReadYourWrites)
+		fmt.Print("write ", resp, "\n")
+		resp = c.readFromServer(server.ReadYourWrites)
+		fmt.Print("read ", resp, "\n")
 
-		// req := &protocol.ClientRequest{Id: c.Id}
 		rep := &protocol.ClientReply{}
 
-		// log.Debugf("client %d sent a request", req.Id)
-		// protocol.Invoke(*c.Servers[rc%sc], "Server.HandleClientRequest", req, rep)
 		log.Debugf("client %d received a reply from server %d with session ID %d", c.Id, rep.ServerId, rep.SessionId)
 		rc += 1
 
-		time.Sleep(250 * time.Millisecond)
+		time.Sleep(10 * time.Millisecond)
 	}
 
+	time.Sleep(500 * time.Millisecond)
 	for i := range c.Servers {
 		clientReq := server.ClientRequest{}
 

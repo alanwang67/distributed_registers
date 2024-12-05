@@ -34,11 +34,11 @@ func DependencyCheck(vectorClock []uint64, request ClientRequest) bool {
 		return vectorclock.CompareVersionVector(vectorClock, request.WriteVector) &&
 			vectorclock.CompareVersionVector(vectorClock, request.ReadVector)
 	case MonotonicReads:
-		return vectorclock.CompareVersionVector(vectorClock, request.WriteVector)
+		return vectorclock.CompareVersionVector(vectorClock, request.ReadVector)
 	case MonotonicWrites:
 		return vectorclock.CompareVersionVector(vectorClock, request.WriteVector)
 	case ReadYourWrites:
-		return vectorclock.CompareVersionVector(vectorClock, request.ReadVector)
+		return vectorclock.CompareVersionVector(vectorClock, request.WriteVector)
 	case WritesFollowReads:
 		return vectorclock.CompareVersionVector(vectorClock, request.ReadVector)
 	default:
@@ -68,7 +68,9 @@ func operationsGetMaxVersionVector(lst []Operation) []uint64 {
 // ProcessClientRequest processes a client's read or write request and populates the reply accordingly.
 func (s *Server) ProcessClientRequest(request *ClientRequest, reply *ClientReply) error {
 	s.mu.Lock()
-	if !(DependencyCheck(s.VectorClock, *request)) {
+	check := !(DependencyCheck(s.VectorClock, *request))
+
+	if check {
 		reply.Succeeded = false
 		s.mu.Unlock()
 		return nil
@@ -89,6 +91,7 @@ func (s *Server) ProcessClientRequest(request *ClientRequest, reply *ClientReply
 
 		// Update the client's read vector with the maximum of its current read vector and the server's vector clock
 		reply.ReadVector = vectorclock.GetMaxVersionVector(append([][]uint64{request.ReadVector}, append([]uint64(nil), s.VectorClock...)))
+
 		reply.WriteVector = request.WriteVector
 		s.mu.Unlock()
 		return nil
@@ -125,21 +128,20 @@ func (s *Server) ProcessClientRequest(request *ClientRequest, reply *ClientReply
 
 // oneOff checks if o2 is directly dependent on o1, i.e., if o2's vector clock is exactly one increment ahead
 func oneOffVersionVector(serverId uint64, v1 []uint64, v2 []uint64) bool {
-	ct := 0
+	ct := true
 
 	for i := 0; i < len(v1); i++ {
 		if i == int(serverId) {
 			continue
-		}
-		if v1[i]+1 == v2[i] {
-			ct += 1
-		}
-		if v1[i] == v2[i]+1 {
-			ct += 1
+		} else if ct && v1[i]+1 == v2[i] {
+			ct = false
+			continue
+		} else if v1[i] < v2[i] {
+			return false
 		}
 	}
 
-	return ct == 1
+	return true
 }
 
 // compareOperations compares two operations to determine their ordering.
@@ -198,7 +200,8 @@ func (s *Server) ReceiveGossip(request *GossipRequest, reply *GossipReply) error
 
 	latestVersionVector := make([]uint64, len(s.Peers))
 	if len(s.OperationsPerformed) != 0 {
-		latestVersionVector = s.OperationsPerformed[len(s.OperationsPerformed)-1].VersionVector
+		latestVersionVector = operationsGetMaxVersionVector(s.OperationsPerformed)
+		// s.OperationsPerformed[len(s.OperationsPerformed)-1].VersionVector
 	}
 
 	i := 0
@@ -208,7 +211,7 @@ func (s *Server) ReceiveGossip(request *GossipRequest, reply *GossipReply) error
 			i += 1
 		} else if oneOffVersionVector(s.Id, latestVersionVector, s.PendingOperations[i].VersionVector) {
 			s.OperationsPerformed = append(s.OperationsPerformed, s.PendingOperations[i])
-			latestVersionVector = s.OperationsPerformed[len(s.OperationsPerformed)-1].VersionVector // operationsGetMaxVersionVector(s.OperationsPerformed)
+			latestVersionVector = operationsGetMaxVersionVector(s.OperationsPerformed) // s.OperationsPerformed[len(s.OperationsPerformed)-1].VersionVector
 			i += 1
 		} else {
 			break
@@ -237,7 +240,7 @@ func (s *Server) ReceiveGossip(request *GossipRequest, reply *GossipReply) error
 // sendGossip sends the server's operations to all peers to synchronize state.
 func (s *Server) sendGossip() {
 	for {
-		ms := 100
+		ms := 50
 		time.Sleep(time.Duration(ms) * time.Millisecond)
 
 		if len(s.MyOperations) == 0 {
@@ -255,7 +258,6 @@ func (s *Server) sendGossip() {
 }
 
 func (s *Server) PrintOperations(request *ClientRequest, reply *ClientReply) error {
-	fmt.Print("We are called")
 	s.mu.Lock()
 	fmt.Print(s.OperationsPerformed)
 	s.mu.Unlock()
