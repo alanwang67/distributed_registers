@@ -3,6 +3,7 @@ package server
 import (
 	"net"
 	"net/rpc"
+	"sync"
 
 	"github.com/alanwang67/distributed_registers/paxos/protocol"
 	"github.com/charmbracelet/log"
@@ -16,6 +17,7 @@ type Server struct {
 	LowestN                      uint64
 	LatestAcceptedProposalNumber uint64
 	LatestAcceptedProposalData   uint64
+	mu                           sync.Mutex
 }
 
 type PrepareRequest struct {

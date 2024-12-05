@@ -29,5 +29,11 @@
       "id": 2,
       "servers": [10, 11, 12]
     }
+  ],
+  "sequencer": [
+    {
+    "network": "tcp", 
+    "address": "0.0.0.0:10003"
+    }
   ]
 }

@@ -21,6 +21,7 @@ func New(id uint64, self *protocol.Connection, peers []*protocol.Connection) *Se
 }
 
 func (s *Server) PrepareRequest(request *PrepareRequest, reply *PrepareReply) error {
+	s.mu.Lock()
 	if s.LowestN < request.ProposalNumber {
 		s.LowestN = request.ProposalNumber
 	}
@@ -31,10 +32,12 @@ func (s *Server) PrepareRequest(request *PrepareRequest, reply *PrepareReply) er
 		reply.LatestAcceptedProposalData = s.LatestAcceptedProposalData
 	}
 
+	s.mu.Unlock()
 	return nil
 }
 
 func (s *Server) AcceptProposal(request *AcceptRequest, reply *AcceptReply) error {
+	s.mu.Lock()
 	if s.LowestN <= request.ProposalNumber {
 		s.LatestAcceptedProposalData = request.ProposalNumber
 		s.LatestAcceptedProposalData = request.Value
@@ -43,5 +46,6 @@ func (s *Server) AcceptProposal(request *AcceptRequest, reply *AcceptReply) erro
 	fmt.Print(request.Value)
 
 	reply.Succeeded = true
+	s.mu.Unlock()
 	return nil
 }
