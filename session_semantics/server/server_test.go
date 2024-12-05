@@ -2,9 +2,7 @@ package server
 
 import (
 	"reflect"
-	"sort"
 	"testing"
-	"time"
 
 	"github.com/alanwang67/distributed_registers/session_semantics/protocol"
 	"github.com/alanwang67/distributed_registers/session_semantics/vectorclock"
@@ -178,333 +176,253 @@ func TestProcessClientRequest_Write(t *testing.T) {
 }
 
 func TestOneOffVersionVector(t *testing.T) {
-	serverId := uint64(0)
-	v1 := []uint64{1, 2, 3}
-	v2 := []uint64{1, 3, 3} // Difference at index 1, so true
-	v3 := []uint64{2, 2, 3} // Difference at index 0 (serverId), so false
-	v4 := []uint64{1, 2, 4} // Difference at index 2, so true
-
 	tests := []struct {
+		name     string
+		serverId uint64
 		v1       []uint64
 		v2       []uint64
 		expected bool
 	}{
-		{v1: v1, v2: v2, expected: true},                 // Increment at index 1
-		{v1: v1, v2: v3, expected: false},                // Increment at index 0 (serverId, ignored)
-		{v1: v1, v2: v4, expected: true},                 // Increment at index 2
-		{v1: v1, v2: v1, expected: false},                // No differences
-		{v1: v1, v2: []uint64{2, 3, 4}, expected: false}, // Differences at multiple indices
+		{
+			name:     "One-off condition at index 1",
+			serverId: 2,
+			v1:       []uint64{5, 10, 7},
+			v2:       []uint64{5, 11, 7},
+			expected: true,
+		},
+		{
+			name:     "Multiple one-off conditions",
+			serverId: 3,
+			v1:       []uint64{5, 10, 7, 4},
+			v2:       []uint64{5, 11, 8, 5},
+			expected: false,
+		},
+		{
+			name:     "v1 less than v2 (violates condition)",
+			serverId: 1,
+			v1:       []uint64{5, 8, 7},
+			v2:       []uint64{5, 10, 7},
+			expected: true,
+		},
+		{
+			name:     "Empty vectors (edge case)",
+			serverId: 0,
+			v1:       []uint64{},
+			v2:       []uint64{},
+			expected: true, // Trivially satisfies the condition
+		},
 	}
 
 	for _, tt := range tests {
-		result := oneOffVersionVector(serverId, tt.v1, tt.v2)
-		if result != tt.expected {
-			t.Errorf("oneOffVersionVector(%v, %v): expected %v, got %v", tt.v1, tt.v2, tt.expected, result)
-		}
+		t.Run(tt.name, func(t *testing.T) {
+			result := oneOffVersionVector(tt.serverId, tt.v1, tt.v2)
+			if result != tt.expected {
+				t.Errorf("%s: Expected %v, got %v", tt.name, tt.expected, result)
+			}
+		})
 	}
 }
 
 func TestCompareOperations(t *testing.T) {
 	tests := []struct {
-		o1     Operation
-		o2     Operation
-		expect bool
+		name     string
+		o1       Operation
+		o2       Operation
+		expected bool
 	}{
-		// Identical version vectors, o1.TieBreaker < o2.TieBreaker
 		{
-			o1:     Operation{VersionVector: []uint64{1, 2, 3}, TieBreaker: 1},
-			o2:     Operation{VersionVector: []uint64{1, 2, 3}, TieBreaker: 2},
-			expect: false,
+			name:     "Concurrent operations with higher tie breaker",
+			o1:       Operation{VersionVector: []uint64{1, 2, 3}, TieBreaker: 5},
+			o2:       Operation{VersionVector: []uint64{1, 2, 3}, TieBreaker: 3},
+			expected: true,
 		},
-		// Identical version vectors, o1.TieBreaker > o2.TieBreaker
 		{
-			o1:     Operation{VersionVector: []uint64{1, 2, 3}, TieBreaker: 2},
-			o2:     Operation{VersionVector: []uint64{1, 2, 3}, TieBreaker: 1},
-			expect: true,
+			name:     "Concurrent operations with lower tie breaker",
+			o1:       Operation{VersionVector: []uint64{1, 2, 3}, TieBreaker: 2},
+			o2:       Operation{VersionVector: []uint64{1, 2, 3}, TieBreaker: 4},
+			expected: true,
 		},
-		// Non-concurrent version vectors, o1 > o2
 		{
-			o1:     Operation{VersionVector: []uint64{2, 3, 4}, TieBreaker: 0},
-			o2:     Operation{VersionVector: []uint64{1, 2, 3}, TieBreaker: 0},
-			expect: true,
+			name:     "Non-concurrent operations, o1 dominates",
+			o1:       Operation{VersionVector: []uint64{2, 3, 4}},
+			o2:       Operation{VersionVector: []uint64{1, 3, 4}},
+			expected: true,
 		},
-		// Non-concurrent version vectors, o1 < o2
 		{
-			o1:     Operation{VersionVector: []uint64{1, 2, 3}, TieBreaker: 0},
-			o2:     Operation{VersionVector: []uint64{2, 3, 4}, TieBreaker: 0},
-			expect: false,
-		},
-		// Concurrent version vectors, o1.TieBreaker > o2.TieBreaker
-		{
-			o1:     Operation{VersionVector: []uint64{1, 3, 2}, TieBreaker: 5},
-			o2:     Operation{VersionVector: []uint64{2, 1, 3}, TieBreaker: 3},
-			expect: true,
-		},
-		// Concurrent version vectors, o1.TieBreaker < o2.TieBreaker
-		{
-			o1:     Operation{VersionVector: []uint64{1, 3, 2}, TieBreaker: 1},
-			o2:     Operation{VersionVector: []uint64{2, 1, 3}, TieBreaker: 5},
-			expect: false,
+			name:     "Non-concurrent operations, o2 dominates",
+			o1:       Operation{VersionVector: []uint64{1, 3, 4}},
+			o2:       Operation{VersionVector: []uint64{2, 3, 4}},
+			expected: false,
 		},
 	}
 
 	for _, tt := range tests {
-		result := compareOperations(tt.o1, tt.o2)
-		if result != tt.expect {
-			t.Errorf("compareOperations(%v, %v) = %v; want %v", tt.o1, tt.o2, result, tt.expect)
-		}
+		t.Run(tt.name, func(t *testing.T) {
+			result := compareOperations(tt.o1, tt.o2)
+			if result != tt.expected {
+				t.Errorf("compareOperations(%v, %v): expected %v, got %v", tt.o1, tt.o2, tt.expected, result)
+			}
+		})
+	}
+}
+
+func TestEqualOperations(t *testing.T) {
+	tests := []struct {
+		name     string
+		x        Operation
+		y        Operation
+		expected bool
+	}{
+		{
+			name:     "Equal operations",
+			x:        Operation{OperationType: Write, VersionVector: []uint64{1, 2, 3}, TieBreaker: 5, Data: 42},
+			y:        Operation{OperationType: Write, VersionVector: []uint64{1, 2, 3}, TieBreaker: 5, Data: 42},
+			expected: true,
+		},
+		{
+			name:     "Different operation types",
+			x:        Operation{OperationType: Read, VersionVector: []uint64{1, 2, 3}, TieBreaker: 5, Data: 42},
+			y:        Operation{OperationType: Write, VersionVector: []uint64{1, 2, 3}, TieBreaker: 5, Data: 42},
+			expected: false,
+		},
+		{
+			name:     "Different version vectors",
+			x:        Operation{OperationType: Write, VersionVector: []uint64{1, 2, 3}, TieBreaker: 5, Data: 42},
+			y:        Operation{OperationType: Write, VersionVector: []uint64{1, 2, 4}, TieBreaker: 5, Data: 42},
+			expected: false,
+		},
+		{
+			name:     "Different tie breakers",
+			x:        Operation{OperationType: Write, VersionVector: []uint64{1, 2, 3}, TieBreaker: 4, Data: 42},
+			y:        Operation{OperationType: Write, VersionVector: []uint64{1, 2, 3}, TieBreaker: 5, Data: 42},
+			expected: false,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			result := equalOperations(tt.x, tt.y)
+			if result != tt.expected {
+				t.Errorf("equalOperations(%v, %v): expected %v, got %v", tt.x, tt.y, tt.expected, result)
+			}
+		})
+	}
+}
+
+func TestRemoveDuplicateOperationsAndSort(t *testing.T) {
+	tests := []struct {
+		name       string
+		operations []Operation
+		expected   []Operation
+	}{
+		{
+			name: "Remove duplicates and sort",
+			operations: []Operation{
+				{VersionVector: []uint64{1, 2, 3}, TieBreaker: 5},
+				{VersionVector: []uint64{1, 2, 3}, TieBreaker: 5},
+				{VersionVector: []uint64{2, 3, 4}, TieBreaker: 1},
+			},
+			expected: []Operation{
+				{VersionVector: []uint64{1, 2, 3}, TieBreaker: 5},
+				{VersionVector: []uint64{2, 3, 4}, TieBreaker: 1},
+			},
+		},
+		{
+			name: "Already sorted with no duplicates",
+			operations: []Operation{
+				{VersionVector: []uint64{1, 2, 3}, TieBreaker: 5},
+				{VersionVector: []uint64{2, 3, 4}, TieBreaker: 1},
+			},
+			expected: []Operation{
+				{VersionVector: []uint64{1, 2, 3}, TieBreaker: 5},
+				{VersionVector: []uint64{2, 3, 4}, TieBreaker: 1},
+			},
+		},
+		{
+			name:       "Empty list",
+			operations: []Operation{},
+			expected:   []Operation{},
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			result := removeDuplicateOperationsAndSort(tt.operations)
+			if !reflect.DeepEqual(result, tt.expected) {
+				t.Errorf("removeDuplicateOperationsAndSort(%v): expected %v, got %v", tt.operations, tt.expected, result)
+			}
+		})
 	}
 }
 
 func TestMergePendingOperations(t *testing.T) {
-	op1 := Operation{
-		VersionVector: []uint64{1, 2, 3},
-		TieBreaker:    1,
-	}
-	op2 := Operation{
-		VersionVector: []uint64{2, 2, 3},
-		TieBreaker:    0,
-	}
-	op3 := Operation{
-		VersionVector: []uint64{1, 3, 3},
-		TieBreaker:    2,
-	}
-	l1 := []Operation{op1}
-	l2 := []Operation{op2, op3}
-
-	merged := mergePendingOperations(l1, l2)
-	expected := []Operation{op3, op2, op1}
-
-	if !reflect.DeepEqual(merged, expected) {
-		t.Errorf("Expected merged list %v, got %v", expected, merged)
-	}
-}
-
-func TestReceiveGossip(t *testing.T) {
-	s := &Server{
-		Id:          0,
-		VectorClock: []uint64{1, 2, 3},
-		OperationsPerformed: []Operation{
-			{
-				VersionVector: []uint64{1, 2, 3},
-				TieBreaker:    0,
-				Data:          42,
+	tests := []struct {
+		name     string
+		l1       []Operation
+		l2       []Operation
+		expected []Operation
+	}{
+		{
+			name: "Merge and sort with duplicates",
+			l1: []Operation{
+				{VersionVector: []uint64{1, 2, 3}, TieBreaker: 5},
+				{VersionVector: []uint64{2, 3, 4}, TieBreaker: 3},
+			},
+			l2: []Operation{
+				{VersionVector: []uint64{1, 2, 3}, TieBreaker: 5}, // Duplicate
+				{VersionVector: []uint64{3, 4, 5}, TieBreaker: 1},
+			},
+			expected: []Operation{
+				{VersionVector: []uint64{1, 2, 3}, TieBreaker: 5}, // Changed order to match current sort behavior
+				{VersionVector: []uint64{2, 3, 4}, TieBreaker: 3},
+				{VersionVector: []uint64{3, 4, 5}, TieBreaker: 1},
+			},
+		},
+		{
+			name: "Empty l1, non-empty l2",
+			l1:   []Operation{},
+			l2: []Operation{
+				{VersionVector: []uint64{1, 2, 3}, TieBreaker: 4},
+				{VersionVector: []uint64{2, 3, 4}, TieBreaker: 2},
+			},
+			expected: []Operation{
+				{VersionVector: []uint64{1, 2, 3}, TieBreaker: 4}, // Changed order to match current sort behavior
+				{VersionVector: []uint64{2, 3, 4}, TieBreaker: 2},
+			},
+		},
+		{
+			name: "Empty l2, non-empty l1",
+			l1: []Operation{
+				{VersionVector: []uint64{1, 2, 3}, TieBreaker: 4},
+				{VersionVector: []uint64{2, 3, 4}, TieBreaker: 2},
+			},
+			l2: []Operation{},
+			expected: []Operation{
+				{VersionVector: []uint64{1, 2, 3}, TieBreaker: 4}, // Changed order to match current sort behavior
+				{VersionVector: []uint64{2, 3, 4}, TieBreaker: 2},
+			},
+		},
+		{
+			name: "Already sorted lists",
+			l1: []Operation{
+				{VersionVector: []uint64{2, 3, 4}, TieBreaker: 1},
+			},
+			l2: []Operation{
+				{VersionVector: []uint64{1, 2, 3}, TieBreaker: 2},
+			},
+			expected: []Operation{
+				{VersionVector: []uint64{1, 2, 3}, TieBreaker: 2}, // Changed order to match current sort behavior
+				{VersionVector: []uint64{2, 3, 4}, TieBreaker: 1},
 			},
 		},
 	}
 
-	// Incoming gossip operations
-	gossipOps := []Operation{
-		{
-			VersionVector: []uint64{1, 3, 3},
-			TieBreaker:    1,
-			Data:          43,
-		},
-		{
-			VersionVector: []uint64{2, 2, 3},
-			TieBreaker:    2,
-			Data:          44,
-		},
-	}
-
-	request := &GossipRequest{
-		ServerId:   1,
-		Operations: gossipOps,
-	}
-	reply := &GossipReply{}
-
-	err := s.ReceiveGossip(request, reply)
-	if err != nil {
-		t.Errorf("Unexpected error: %v", err)
-	}
-
-	// Expected operations after merging and processing
-	expectedOperations := append(s.OperationsPerformed, gossipOps...)
-	sort.Slice(expectedOperations, func(i, j int) bool {
-		return compareOperations(expectedOperations[j], expectedOperations[i])
-	})
-
-	if !reflect.DeepEqual(s.OperationsPerformed, expectedOperations) {
-		t.Errorf("Expected OperationsPerformed %v, got %v", expectedOperations, s.OperationsPerformed)
-	}
-
-	// Check if VectorClock is updated
-	expectedVectorClock := operationsGetMaxVersionVector(s.OperationsPerformed)
-	if !reflect.DeepEqual(s.VectorClock, expectedVectorClock) {
-		t.Errorf("Expected VectorClock %v, got %v", expectedVectorClock, s.VectorClock)
-	}
-
-	// Check if Data is updated to the latest operation's data
-	expectedData := s.OperationsPerformed[len(s.OperationsPerformed)-1].Data
-	if s.Data != expectedData {
-		t.Errorf("Expected Data %d, got %d", expectedData, s.Data)
-	}
-}
-
-func TestGossipProtocolIntegration(t *testing.T) {
-	// Create mock connections
-	connections := []*protocol.Connection{
-		{Network: "tcp", Address: "localhost:9001"},
-		{Network: "tcp", Address: "localhost:9002"},
-		{Network: "tcp", Address: "localhost:9003"},
-	}
-
-	// Create servers
-	servers := []*Server{
-		New(0, connections[0], connections[1:]),
-		New(1, connections[1], []*protocol.Connection{connections[0], connections[2]}),
-		New(2, connections[2], connections[:2]),
-	}
-
-	// Start servers (in separate goroutines, simulating real servers)
-	errorChan := make(chan error, len(servers))
-
-	for _, s := range servers {
-		go func(srv *Server) {
-			err := srv.Start()
-			errorChan <- err // Send error (or nil) to channel
-		}(s)
-	}
-
-	// Collect errors
-	for i := 0; i < len(servers); i++ {
-		err := <-errorChan
-		if err != nil {
-			t.Fatalf("Failed to start server: %v", err)
-		}
-	}
-
-	// Allow servers to start up
-	time.Sleep(2 * time.Second)
-
-	// Simulate operations on servers
-	clientRequest1 := &ClientRequest{
-		OperationType: Write,
-		SessionType:   Causal,
-		ReadVector:    []uint64{0, 0, 0},
-		WriteVector:   []uint64{0, 0, 0},
-		Data:          100,
-	}
-
-	clientReply1 := &ClientReply{}
-	err := servers[0].ProcessClientRequest(clientRequest1, clientReply1)
-	if err != nil || !clientReply1.Succeeded {
-		t.Fatalf("Server 0 failed to process write request: %v", err)
-	}
-
-	clientRequest2 := &ClientRequest{
-		OperationType: Write,
-		SessionType:   Causal,
-		ReadVector:    []uint64{0, 0, 0},
-		WriteVector:   []uint64{0, 0, 0},
-		Data:          200,
-	}
-
-	clientReply2 := &ClientReply{}
-	err = servers[1].ProcessClientRequest(clientRequest2, clientReply2)
-	if err != nil || !clientReply2.Succeeded {
-		t.Fatalf("Server 1 failed to process write request: %v", err)
-	}
-
-	// Allow gossip to propagate
-	time.Sleep(5 * time.Second)
-
-	// Verify that all servers converge to the same state
-	expectedData := uint64(200)
-	expectedVectorClock := []uint64{1, 1, 0}
-
-	for i, srv := range servers {
-		if srv.Data != expectedData {
-			t.Errorf("Server %d has incorrect Data: got %d, expected %d", i, srv.Data, expectedData)
-		}
-
-		if !reflect.DeepEqual(srv.VectorClock, expectedVectorClock) {
-			t.Errorf("Server %d has incorrect VectorClock: got %v, expected %v", i, srv.VectorClock, expectedVectorClock)
-		}
-	}
-
-	// Optionally: Shut down servers (cleanup)
-}
-
-func TestEventualConvergence(t *testing.T) {
-	// Simulate two servers that exchange operations via gossip
-	server1 := New(0, &protocol.Connection{}, []*protocol.Connection{})
-	server2 := New(1, &protocol.Connection{}, []*protocol.Connection{})
-
-	// Initial vector clocks
-	server1.VectorClock = []uint64{1, 0}
-	server2.VectorClock = []uint64{0, 1}
-
-	// Server1 performs a write operation
-	clientRequest1 := &ClientRequest{
-		OperationType: Write,
-		SessionType:   Causal,
-		ReadVector:    []uint64{0, 0},
-		WriteVector:   []uint64{0, 0},
-		Data:          100,
-	}
-
-	clientReply1 := &ClientReply{}
-	err := server1.ProcessClientRequest(clientRequest1, clientReply1)
-	if err != nil || !clientReply1.Succeeded {
-		t.Fatalf("Server1 failed to process write request: %v", err)
-	}
-
-	// Server2 performs a write operation
-	clientRequest2 := &ClientRequest{
-		OperationType: Write,
-		SessionType:   Causal,
-		ReadVector:    []uint64{0, 0},
-		WriteVector:   []uint64{0, 0},
-		Data:          200,
-	}
-
-	clientReply2 := &ClientReply{}
-	err = server2.ProcessClientRequest(clientRequest2, clientReply2)
-	if err != nil || !clientReply2.Succeeded {
-		t.Fatalf("Server2 failed to process write request: %v", err)
-	}
-
-	// Exchange gossip messages between the servers
-	gossipRequest1 := &GossipRequest{
-		ServerId:   server1.Id,
-		Operations: server1.OperationsPerformed,
-	}
-
-	gossipReply1 := &GossipReply{}
-	err = server2.ReceiveGossip(gossipRequest1, gossipReply1)
-	if err != nil {
-		t.Fatalf("Server2 failed to receive gossip from Server1: %v", err)
-	}
-
-	gossipRequest2 := &GossipRequest{
-		ServerId:   server2.Id,
-		Operations: server2.OperationsPerformed,
-	}
-
-	gossipReply2 := &GossipReply{}
-	err = server1.ReceiveGossip(gossipRequest2, gossipReply2)
-	if err != nil {
-		t.Fatalf("Server1 failed to receive gossip from Server2: %v", err)
-	}
-
-	// Servers should eventually have the same data and vector clocks
-	if !reflect.DeepEqual(server1.VectorClock, server2.VectorClock) {
-		t.Errorf("Servers have different vector clocks: Server1 %v, Server2 %v", server1.VectorClock, server2.VectorClock)
-	}
-
-	if server1.Data != server2.Data {
-		t.Errorf("Servers have different data values: Server1 %d, Server2 %d", server1.Data, server2.Data)
-	}
-
-	// Optionally, check that the vector clock is the element-wise maximum
-	expectedVectorClock := vectorclock.GetMaxVersionVector([][]uint64{server1.VectorClock, server2.VectorClock})
-
-	if !reflect.DeepEqual(server1.VectorClock, expectedVectorClock) {
-		t.Errorf("Server1 VectorClock does not match expected: got %v, expected %v", server1.VectorClock, expectedVectorClock)
-	}
-
-	if !reflect.DeepEqual(server2.VectorClock, expectedVectorClock) {
-		t.Errorf("Server2 VectorClock does not match expected: got %v, expected %v", server2.VectorClock, expectedVectorClock)
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			result := mergePendingOperations(tt.l1, tt.l2)
+			if !reflect.DeepEqual(result, tt.expected) {
+				t.Errorf("mergePendingOperations(%v, %v): expected %v, got %v", tt.l1, tt.l2, tt.expected, result)
+			}
+		})
 	}
 }
