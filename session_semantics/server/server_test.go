@@ -46,13 +46,11 @@ func TestNew(t *testing.T) {
 }
 
 func TestDependencyCheck(t *testing.T) {
-	// Initialize server state
 	serverData := Server{
 		Id:          0,
 		VectorClock: []uint64{2, 3, 5},
 	}
 
-	// Define test cases for each session guarantee
 	tests := []struct {
 		name     string
 		request  ClientRequest
@@ -76,11 +74,10 @@ func TestDependencyCheck(t *testing.T) {
 			},
 			expected: false,
 		},
-		// Add more test cases for other session types
 	}
 
 	for _, tt := range tests {
-		result := DependencyCheck(serverData, tt.request)
+		result := DependencyCheck(serverData.VectorClock, tt.request) // Fixed here
 		if result != tt.expected {
 			t.Errorf("%s: Expected %v, got %v", tt.name, tt.expected, result)
 		}
