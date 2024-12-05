@@ -7,7 +7,7 @@ import (
 	"github.com/alanwang67/distributed_registers/paxos/server"
 )
 
-func (c *Client) communicateWithServer(ProposalNumber uint64, value uint64) bool {
+func (c *Client) writeOperation(ProposalNumber uint64, value uint64) bool {
 
 	req := server.PrepareRequest{ProposalNumber: ProposalNumber}
 	majority := (len(c.Servers) / 2) + 1

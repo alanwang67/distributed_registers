@@ -1,31 +1,42 @@
 package client
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/alanwang67/distributed_registers/paxos/protocol"
+	"github.com/alanwang67/distributed_registers/paxos/sequencer"
+
 	"github.com/charmbracelet/log"
 )
 
 type Client struct {
-	Id      uint64
-	Servers []*protocol.Connection
+	Id         uint64
+	Servers    []*protocol.Connection
+	Sequencers []*protocol.Connection
 }
 
-func New(id uint64, servers []*protocol.Connection) *Client {
+func New(id uint64, servers []*protocol.Connection, sequencers []*protocol.Connection) *Client {
 	log.Debugf("client %d created", id)
 	return &Client{
-		Id:      id,
-		Servers: servers,
+		Id:         id,
+		Servers:    servers,
+		Sequencers: sequencers,
 	}
 }
 
 func (c *Client) Start() error {
 	log.Debugf("starting client %d", c.Id)
-
 	rc := uint64(0) // retry count
-	resp := c.communicateWithServer(rc, 1)
 
+	req := sequencer.ReqProposalNum{}
+	rep := sequencer.ReplyProposalNum{}
+	protocol.Invoke(*c.Sequencers[0], "Sequencer.GetProposalNumber", &req, &rep)
+
+	// send rpc to someone to get proposal number
+	resp := c.writeOperation(rep.Count, 1)
+
+	fmt.Print(resp)
 	for {
 
 		// resp := c.communicateWithServer(rc)

@@ -36,9 +36,9 @@ func (c *Client) Start() error {
 
 	for rc < 20 {
 
-		resp := c.writeToServer(uint64(rand.Intn(500)), server.ReadYourWrites)
+		resp := c.writeToServer(uint64(rand.Intn(500)), server.Causal)
 		fmt.Print("write ", resp, "\n")
-		resp = c.readFromServer(server.ReadYourWrites)
+		resp = c.readFromServer(server.Causal)
 		fmt.Print("read ", resp, "\n")
 
 		rep := &protocol.ClientReply{}
