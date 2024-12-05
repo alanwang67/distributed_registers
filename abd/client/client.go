@@ -8,7 +8,7 @@ import (
 
 	"github.com/alanwang67/distributed_registers/abd/protocol"
 	"github.com/alanwang67/distributed_registers/abd/server"
-	"github.com/alanwang67/distributed_registers/abd/workload"
+	"github.com/alanwang67/distributed_registers/workload"
 	"github.com/charmbracelet/log"
 )
 
@@ -183,6 +183,7 @@ func (c *Client) writeToQuorum(version uint64, value uint64) error {
 	ackCh := make(chan struct{}, len(c.Servers))
 	errCh := make(chan error, len(c.Servers))
 	doneCh := make(chan struct{})
+	var once sync.Once // Ensure `doneCh` is closed only once
 
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
@@ -203,6 +204,7 @@ func (c *Client) writeToQuorum(version uint64, value uint64) error {
 				return
 			}
 			defer client.Close()
+
 			writeReq := server.WriteRequest{
 				Version: version,
 				Value:   value,
@@ -213,13 +215,10 @@ func (c *Client) writeToQuorum(version uint64, value uint64) error {
 				errCh <- fmt.Errorf("call error: %v", err)
 				return
 			}
+
 			ackCh <- struct{}{}
 			if len(ackCh) >= quorumSize {
-				select {
-				case <-doneCh:
-				default:
-					close(doneCh)
-				}
+				once.Do(func() { close(doneCh) }) // Ensure `doneCh` is closed only once
 			}
 		}(serverConn)
 	}
@@ -227,7 +226,7 @@ func (c *Client) writeToQuorum(version uint64, value uint64) error {
 	// Wait for all goroutines to finish or context timeout
 	go func() {
 		wg.Wait()
-		close(errCh)
+		close(errCh) // Ensure the error channel is properly closed
 	}()
 
 	select {

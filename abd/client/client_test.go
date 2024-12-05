@@ -9,7 +9,7 @@ import (
 
 	"github.com/alanwang67/distributed_registers/abd/protocol"
 	"github.com/alanwang67/distributed_registers/abd/server"
-	"github.com/alanwang67/distributed_registers/abd/workload"
+	"github.com/alanwang67/distributed_registers/workload"
 	"github.com/charmbracelet/log"
 )
 

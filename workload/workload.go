@@ -69,3 +69,31 @@ func (wg *WorkloadGenerator) Generate() []Instruction {
 
 	return instructions
 }
+
+/*
+// Main function for generating a workload and saving it as a JSON file
+func main() {
+	// Create a workload generator with default parameters
+	generator := NewWorkloadGenerator()
+
+	// Generate the workload
+	workload := generator.Generate()
+
+	// Convert the workload to JSON
+	workloadJSON, err := json.MarshalIndent(workload, "", "  ")
+	if err != nil {
+		fmt.Printf("Error generating workload JSON: %v\n", err)
+		return
+	}
+
+	// Save the workload to a file
+	outputFile := "workload.json"
+	err = os.WriteFile(outputFile, workloadJSON, 0644)
+	if err != nil {
+		fmt.Printf("Error writing workload to file: %v\n", err)
+		return
+	}
+
+	fmt.Printf("Workload successfully written to %s\n", outputFile)
+}
+*/
