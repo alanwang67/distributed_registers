@@ -8,7 +8,7 @@ require (
 	gonum.org/v1/plot v0.15.0 // Added for plotting
 )
 
-require golang.org/x/exp v0.0.0-20241009180824-f66d83c29e7c
+require golang.org/x/exp v0.0.0-20241009180824-f66d83c29e7c // indirect
 
 require (
 	git.sr.ht/~sbinet/gg v0.6.0 // indirect
