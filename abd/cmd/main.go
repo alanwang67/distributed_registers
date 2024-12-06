@@ -99,22 +99,29 @@ func runClientWithMetrics(id uint64, servers []*protocol.Connection, workload []
 
 	for i, instr := range workload {
 		startOp := time.Now()
-		if instr.Type == "read" {
+
+		// Convert InstructionType to string for comparison
+		instructionType := string(instr.Type) // Explicit conversion
+
+		if instructionType == "read" {
 			_, err := c.ABDRead()
 			if err != nil {
 				log.Errorf("Client %d failed to read: %v", id, err)
 			}
-		} else {
+		} else if instructionType == "write" {
 			err := c.ABDWrite(instr.Value)
 			if err != nil {
 				log.Errorf("Client %d failed to write value %d: %v", id, instr.Value, err)
 			}
+		} else {
+			log.Warnf("Client %d encountered unknown instruction type: %s", id, instructionType)
 		}
+
 		duration := time.Since(startOp)
 
 		metrics = append(metrics, Metric{
 			OperationIndex: i + 1,
-			OperationType:  instr.Type,
+			OperationType:  instructionType, // Use string here
 			Latency:        duration.Seconds(),
 		})
 	}
