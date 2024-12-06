@@ -1,33 +1,73 @@
 package server
 
 import (
-	"fmt"
 	"reflect"
 	"sort"
 	"time"
 
 	"github.com/alanwang67/distributed_registers/session_semantics/protocol"
 	"github.com/alanwang67/distributed_registers/session_semantics/vectorclock"
+	"github.com/charmbracelet/log"
 )
 
-// New creates and initializes a new Server instance with the given ID, self connection, and peer connections.
 func New(id uint64, self *protocol.Connection, peers []*protocol.Connection) *Server {
 	s := &Server{
 		Id:                  id,
 		Self:                self,
 		Peers:               peers,
 		VectorClock:         make([]uint64, len(peers)),
-		MyOperations:        make([]Operation, 0),
-		OperationsPerformed: make([]Operation, 0),
-		PendingOperations:   make([]Operation, 0),
+		OperationsPerformed: []Operation{},
+		MyOperations:        []Operation{},
+		PendingOperations:   []Operation{},
 		Data:                0,
 	}
 	go s.sendGossip()
+	log.Infof("Server %d initialized", id)
 	return s
 }
 
-// DependencyCheck verifies if the server's vector clock satisfies the client's dependency
-// requirements based on the session type.
+func (s *Server) ProcessClientRequest(request *ClientRequest, reply *ClientReply) error {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+
+	log.Infof("Server %d received client request: %+v", s.Id, request)
+
+	if !DependencyCheck(s.VectorClock, *request) {
+		log.Warnf("Server %d dependency check failed for client request", s.Id)
+		reply.Succeeded = false
+		return nil
+	}
+
+	if request.OperationType == Read {
+		log.Infof("Server %d processing read request", s.Id)
+		reply.Succeeded = true
+		reply.OperationType = Read
+		reply.Data = s.Data
+		reply.ReadVector = vectorclock.GetMaxVersionVector(append([][]uint64{request.ReadVector}, append([]uint64(nil), s.VectorClock...)))
+		reply.WriteVector = request.WriteVector
+	} else {
+		log.Infof("Server %d processing write request with value %d", s.Id, request.Data)
+		s.VectorClock[s.Id]++
+		op := Operation{
+			OperationType: Write,
+			VersionVector: append([]uint64(nil), s.VectorClock...),
+			TieBreaker:    s.Id,
+			Data:          request.Data,
+		}
+		s.OperationsPerformed = append(s.OperationsPerformed, op)
+		s.MyOperations = append(s.MyOperations, op)
+		s.Data = request.Data
+		reply.Succeeded = true
+		reply.OperationType = Write
+		reply.Data = request.Data
+		reply.ReadVector = request.ReadVector
+		reply.WriteVector = append([]uint64(nil), s.VectorClock...)
+	}
+
+	log.Infof("Server %d updated vector clock: %+v", s.Id, s.VectorClock)
+	return nil
+}
+
 func DependencyCheck(vectorClock []uint64, request ClientRequest) bool {
 	switch request.SessionType {
 	case Causal:
@@ -42,224 +82,98 @@ func DependencyCheck(vectorClock []uint64, request ClientRequest) bool {
 	case WritesFollowReads:
 		return vectorclock.CompareVersionVector(vectorClock, request.ReadVector)
 	default:
-		panic("Unspecified session type")
+		log.Errorf("Unspecified session type in dependency check")
+		return false
 	}
 }
 
-// operationsGetMaxVersionVector computes the maximum version vector from a list of operations.
-// It returns a new version vector where each element is the maximum across all operations.
-func operationsGetMaxVersionVector(lst []Operation) []uint64 {
-	if len(lst) == 0 {
-		return nil
-	}
-	// Initialize mx as a copy of the first operation's VersionVector
-	mx := make([]uint64, len(lst[0].VersionVector))
-	copy(mx, lst[0].VersionVector)
-	for i := 1; i < len(lst); i++ {
-		for j := 0; j < len(lst[i].VersionVector); j++ {
-			if lst[i].VersionVector[j] > mx[j] {
-				mx[j] = lst[i].VersionVector[j]
-			}
-		}
-	}
-	return mx
-}
-
-// ProcessClientRequest processes a client's read or write request and populates the reply accordingly.
-func (s *Server) ProcessClientRequest(request *ClientRequest, reply *ClientReply) error {
-	s.mu.Lock()
-	check := !(DependencyCheck(s.VectorClock, *request))
-
-	if check {
-		reply.Succeeded = false
-		s.mu.Unlock()
-		return nil
-	}
-
-	if request.OperationType == Read {
-		if len(s.OperationsPerformed) == 0 {
-			reply.Succeeded = true
-			reply.OperationType = Read
-			reply.Data = s.Data
-			reply.ReadVector = request.ReadVector
-			reply.WriteVector = request.WriteVector
-		}
-
-		reply.Succeeded = true
-		reply.OperationType = Read
-		reply.Data = s.Data
-
-		// Update the client's read vector with the maximum of its current read vector and the server's vector clock
-		reply.ReadVector = vectorclock.GetMaxVersionVector(append([][]uint64{request.ReadVector}, append([]uint64(nil), s.VectorClock...)))
-
-		reply.WriteVector = request.WriteVector
-		s.mu.Unlock()
-		return nil
-	} else {
-		s.VectorClock[s.Id] += 1
-
-		s.OperationsPerformed = append(
-			s.OperationsPerformed,
-			Operation{
-				OperationType: Write,
-				VersionVector: append([]uint64(nil), s.VectorClock...),
-				TieBreaker:    s.Id,
-				Data:          request.Data,
-			})
-		s.MyOperations = append(
-			s.MyOperations,
-			Operation{
-				OperationType: Write,
-				VersionVector: append([]uint64(nil), s.VectorClock...),
-				TieBreaker:    s.Id,
-				Data:          request.Data,
-			})
-
-		s.Data = request.Data
-		reply.Succeeded = true
-		reply.OperationType = Write
-		reply.Data = request.Data
-		reply.ReadVector = request.ReadVector
-		reply.WriteVector = append([]uint64(nil), s.VectorClock...)
-		s.mu.Unlock()
-		return nil
-	}
-}
-
-// oneOff checks if o2 is directly dependent on o1, i.e., if o2's vector clock is exactly one increment ahead
-func oneOffVersionVector(serverId uint64, v1 []uint64, v2 []uint64) bool {
-	ct := true
-
-	for i := 0; i < len(v1); i++ {
+func oneOffVersionVector(serverId uint64, v1, v2 []uint64) bool {
+	for i := range v1 {
 		if i == int(serverId) {
 			continue
-		} else if ct && v1[i]+1 == v2[i] {
-			ct = false
-			continue
-		} else if v1[i] < v2[i] {
+		}
+		if v1[i] > v2[i] {
 			return false
 		}
 	}
-
 	return true
 }
 
-// compareOperations compares two operations to determine their ordering.
-// If the operations are concurrent, the tie-breaker (server ID) is used.
-func compareOperations(o1 Operation, o2 Operation) bool {
+func compareOperations(o1, o2 Operation) bool {
 	if vectorclock.ConcurrentVersionVectors(o1.VersionVector, o2.VersionVector) {
 		return o1.TieBreaker > o2.TieBreaker
 	}
 	return vectorclock.CompareVersionVector(o1.VersionVector, o2.VersionVector)
 }
 
-func equalOperations(x Operation, y Operation) bool {
-	return (x.OperationType == y.OperationType) && (reflect.DeepEqual(x.VersionVector, y.VersionVector)) && x.TieBreaker == y.TieBreaker && x.Data == y.Data
-}
-
-func removeDuplicateOperationsAndSort(s []Operation) []Operation {
-	if len(s) < 1 {
-		return s
-	}
-
-	sort.Slice(s, func(i, j int) bool {
-		return compareOperations(s[j], s[i])
+func removeDuplicateOperationsAndSort(ops []Operation) []Operation {
+	sort.Slice(ops, func(i, j int) bool {
+		return compareOperations(ops[j], ops[i])
 	})
-
-	prev := 1
-	for curr := 1; curr < len(s); curr++ {
-		if !equalOperations(s[curr-1], s[curr]) {
-			s[prev] = s[curr]
-			prev++
+	uniqueOps := []Operation{}
+	for i, op := range ops {
+		if i == 0 || !reflect.DeepEqual(op, ops[i-1]) {
+			uniqueOps = append(uniqueOps, op)
 		}
 	}
-
-	return s[:prev]
+	return uniqueOps
 }
 
-// merge combines two lists of operations and sorts them using compareOperations.
-// what do we do about duplicate operations
-func mergePendingOperations(l1 []Operation, l2 []Operation) []Operation {
-	output := append(l1, l2...)
-	sort.Slice(output, func(i, j int) bool {
-		return compareOperations(output[j], output[i])
-	})
-
-	return removeDuplicateOperationsAndSort(output)
-}
-
-// ReceiveGossip processes incoming gossip messages from peers and updates the server's state.
 func (s *Server) ReceiveGossip(request *GossipRequest, reply *GossipReply) error {
 	s.mu.Lock()
-	if len(request.Operations) == 0 {
-		s.mu.Unlock()
-		return nil
-	}
+	defer s.mu.Unlock()
+
+	log.Infof("Server %d received gossip from Server %d", s.Id, request.ServerId)
 
 	s.PendingOperations = mergePendingOperations(request.Operations, s.PendingOperations)
+	log.Infof("Server %d merged pending operations, total pending: %d", s.Id, len(s.PendingOperations))
 
-	latestVersionVector := make([]uint64, len(s.Peers))
-	if len(s.OperationsPerformed) != 0 {
-		latestVersionVector = operationsGetMaxVersionVector(s.OperationsPerformed)
-		// s.OperationsPerformed[len(s.OperationsPerformed)-1].VersionVector
-	}
+	latestVersionVector := vectorclock.GetMaxVersionVector([][]uint64{s.VectorClock})
 
 	i := 0
 	for i < len(s.PendingOperations) {
-		// perform operation if it doesn't have any dependencies and remove it from the pending operations
-		if vectorclock.CompareVersionVector(latestVersionVector, s.PendingOperations[i].VersionVector) {
-			i += 1
-		} else if oneOffVersionVector(s.Id, latestVersionVector, s.PendingOperations[i].VersionVector) {
-			s.OperationsPerformed = append(s.OperationsPerformed, s.PendingOperations[i])
-			latestVersionVector = operationsGetMaxVersionVector(s.OperationsPerformed) // s.OperationsPerformed[len(s.OperationsPerformed)-1].VersionVector
-			i += 1
+		op := s.PendingOperations[i]
+		if vectorclock.CompareVersionVector(latestVersionVector, op.VersionVector) ||
+			oneOffVersionVector(s.Id, latestVersionVector, op.VersionVector) {
+			log.Infof("Server %d applying operation: %+v", s.Id, op)
+			s.OperationsPerformed = append(s.OperationsPerformed, op)
+			latestVersionVector = vectorclock.GetMaxVersionVector([][]uint64{latestVersionVector, op.VersionVector})
+			i++
 		} else {
+			log.Warnf("Server %d cannot yet apply operation: %+v", s.Id, op)
 			break
 		}
 	}
 
-	if i == len(s.PendingOperations) {
-		s.PendingOperations = make([]Operation, 0)
-	} else {
-
-		s.PendingOperations = s.PendingOperations[i:]
-	}
-
-	sort.Slice(s.OperationsPerformed, func(i, j int) bool {
-		return compareOperations(s.OperationsPerformed[j], s.OperationsPerformed[i])
-	})
-
-	if len(s.OperationsPerformed) != 0 {
-		s.Data = s.OperationsPerformed[len(s.OperationsPerformed)-1].Data
-		s.VectorClock = operationsGetMaxVersionVector(s.OperationsPerformed)
-	}
-	s.mu.Unlock()
+	s.PendingOperations = s.PendingOperations[i:]
+	log.Infof("Server %d updated vector clock: %+v", s.Id, s.VectorClock)
 	return nil
 }
 
-// sendGossip sends the server's operations to all peers to synchronize state.
 func (s *Server) sendGossip() {
 	for {
-		ms := 50
-		time.Sleep(time.Duration(ms) * time.Millisecond)
-
+		time.Sleep(50 * time.Millisecond)
 		if len(s.MyOperations) == 0 {
 			continue
 		}
-
-		for i := range s.Peers {
-			if i != int(s.Id) {
-				req := &GossipRequest{ServerId: s.Id, Operations: s.MyOperations}
-				reply := &GossipReply{}
-				protocol.Invoke(*s.Peers[i], "Server.ReceiveGossip", &req, &reply)
-			}
+		log.Infof("Server %d sending gossip", s.Id)
+		for _, peer := range s.Peers {
+			req := &GossipRequest{ServerId: s.Id, Operations: s.MyOperations}
+			reply := &GossipReply{}
+			protocol.Invoke(*peer, "Server.ReceiveGossip", req, reply)
 		}
+		s.MyOperations = []Operation{}
 	}
 }
 
 func (s *Server) PrintOperations(request *ClientRequest, reply *ClientReply) error {
 	s.mu.Lock()
-	fmt.Print(s.OperationsPerformed)
-	s.mu.Unlock()
+	defer s.mu.Unlock()
+	log.Infof("Server %d operations performed: %+v", s.Id, s.OperationsPerformed)
 	return nil
+}
+
+func mergePendingOperations(l1, l2 []Operation) []Operation {
+	output := append(l1, l2...)
+	return removeDuplicateOperationsAndSort(output)
 }
