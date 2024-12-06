@@ -5,17 +5,20 @@ import (
 	"time"
 )
 
+// InstructionType constants define
+type InstructionType string
+
 // InstructionType constants define the types of operations.
 const (
-	InstructionTypeRead  = "read"
-	InstructionTypeWrite = "write"
+	InstructionTypeRead  InstructionType = "read"
+	InstructionTypeWrite InstructionType = "write"
 )
 
 // Instruction represents a single operation in the workload.
 type Instruction struct {
-	Type  string        // "read" or "write"
-	Value uint64        // Value to write (only used for write operations)
-	Delay time.Duration // Optional delay before executing the instruction
+	Type  InstructionType // "read" or "write"
+	Value uint64          // Value to write (only used for write operations)
+	Delay time.Duration   // Optional delay before executing the instruction
 }
 
 // WorkloadGenerator generates workloads based on specified parameters.
@@ -42,15 +45,16 @@ func NewWorkloadGenerator() *WorkloadGenerator {
 
 // Generate creates a workload based on the generator's parameters.
 func (wg *WorkloadGenerator) Generate() []Instruction {
-	rand.Seed(time.Now().UnixNano())
-	zipf := rand.NewZipf(rand.New(rand.NewSource(time.Now().UnixNano())), wg.ZipfianS, 1, wg.ZipfianV)
+	// Create a local random generator with a random seed
+	rng := rand.New(rand.NewSource(time.Now().UnixNano()))
+	zipf := rand.NewZipf(rng, wg.ZipfianS, 1, wg.ZipfianV)
 
 	instructions := make([]Instruction, 0, wg.OperationCount)
 
 	for i := 0; i < wg.OperationCount; i++ {
 		// Determine if this is a read or write operation
-		var instrType string
-		if rand.Float64() < wg.ReadPercentage {
+		var instrType InstructionType
+		if rng.Float64() < wg.ReadPercentage {
 			instrType = InstructionTypeRead
 		} else {
 			instrType = InstructionTypeWrite
