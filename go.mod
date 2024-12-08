@@ -4,7 +4,6 @@ go 1.23.2
 
 require (
 	github.com/charmbracelet/log v0.4.0
-	github.com/stretchr/testify v1.9.0
 	gonum.org/v1/plot v0.15.0 // Added for plotting
 )
 
@@ -16,7 +15,6 @@ require (
 	github.com/aymanbagabas/go-osc52/v2 v2.0.1 // indirect
 	github.com/campoy/embedmd v1.0.0 // indirect
 	github.com/charmbracelet/lipgloss v0.10.0 // indirect
-	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/go-fonts/liberation v0.3.3 // indirect
 	github.com/go-latex/latex v0.0.0-20240709081214-31cef3c7570e // indirect
 	github.com/go-logfmt/logfmt v0.6.0 // indirect
@@ -32,5 +30,4 @@ require (
 	golang.org/x/image v0.21.0 // indirect
 	golang.org/x/sys v0.26.0 // indirect
 	golang.org/x/text v0.19.0 // indirect
-	gopkg.in/yaml.v3 v3.0.1 // indirect
 )

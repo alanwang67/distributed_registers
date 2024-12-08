@@ -3,141 +3,239 @@ package server
 import (
 	"net"
 	"net/rpc"
-	"os"
-	"os/signal"
 	"sync"
-	"syscall"
 	"time"
 
 	"github.com/alanwang67/distributed_registers/abd/protocol"
 	"github.com/charmbracelet/log"
 )
 
-// Server represents a server in the ABD protocol
 type Server struct {
-	Id    uint64
-	Self  *protocol.Connection
-	Peers []*protocol.Connection
-
-	mutex   sync.RWMutex // Use RWMutex for better performance with concurrent reads
-	Version uint64       // Version number for the server
-	Value   uint64       // Value stored in the server
+	ID      uint64                 // Unique ID of the server
+	Address string                 // Server address
+	Peers   []*protocol.Connection // List of peer servers
+	mutex   sync.RWMutex           // Protects access to the register
+	Version uint64                 // Current version of the register
+	Value   uint64                 // Current value of the register
+	Alive   map[string]bool        // Tracks live status of peers
+	pool    map[string]*rpc.Client // Connection pool for heartbeats
 }
 
-type ReadRequest struct{}
-
-type ReadReply struct {
-	Version uint64
-	Value   uint64
-}
-
-type WriteRequest struct {
-	Version uint64
-	Value   uint64
-}
-
-type WriteReply struct{}
-
-// Creates a new server with the given ID, connection, and list of peers.
-func New(id uint64, self *protocol.Connection, peers []*protocol.Connection) *Server {
+// NewServer initializes the server with given ID, address, and peers.
+func NewServer(id uint64, address string, peers []*protocol.Connection) *Server {
+	alive := make(map[string]bool)
+	pool := make(map[string]*rpc.Client)
+	for _, peer := range peers {
+		alive[peer.Address] = true
+	}
 	return &Server{
-		Id:      id,
-		Self:    self,
+		ID:      id,
+		Address: address,
 		Peers:   peers,
 		Version: 0,
 		Value:   0,
+		Alive:   alive,
+		pool:    pool,
 	}
 }
 
-// Handles a read request and replies with the current version and value.
-func (s *Server) HandleReadRequest(req *ReadRequest, reply *ReadReply) error {
-	s.mutex.RLock() // Use RLock for read operations
+// getConnection retrieves or establishes a connection to a peer.
+func (s *Server) getConnection(peer *protocol.Connection) (*rpc.Client, error) {
+	s.mutex.Lock()
+	defer s.mutex.Unlock()
+
+	if client, exists := s.pool[peer.Address]; exists {
+		var reply struct{}
+		if err := client.Call("Server.Ping", struct{}{}, &reply); err == nil {
+			return client, nil
+		}
+		client.Close()
+		delete(s.pool, peer.Address)
+	}
+
+	client, err := rpc.Dial(peer.Network, peer.Address)
+	if err != nil {
+		return nil, err
+	}
+	s.pool[peer.Address] = client
+	return client, nil
+}
+
+// HandleReadRequest processes a read request from the client and returns the register state.
+func (s *Server) HandleReadRequest(req *protocol.ReadRequest, reply *protocol.ReadReply) error {
+	s.mutex.RLock()
 	defer s.mutex.RUnlock()
 
 	reply.Version = s.Version
 	reply.Value = s.Value
-
-	log.Debugf("Server %d: Handled ReadRequest, Version=%d, Value=%d", s.Id, s.Version, s.Value)
+	log.Infof("Server %d: Client READ - Version: %d, Value: %d", s.ID, s.Version, s.Value)
 	return nil
 }
 
-// Handles a write request and updates the server's version and value if the
-// request's version is greater than the server's version.
-func (s *Server) HandleWriteRequest(req *WriteRequest, reply *WriteReply) error {
+// HandleReadConfirm processes a read confirmation from the client.
+func (s *Server) HandleReadConfirm(req *protocol.ReadConfirmRequest, reply *protocol.ReadConfirmReply) error {
 	s.mutex.Lock()
 	defer s.mutex.Unlock()
 
 	if req.Version > s.Version {
 		s.Version = req.Version
 		s.Value = req.Value
-		log.Debugf("Server %d: Updated Version=%d, Value=%d", s.Id, s.Version, s.Value)
+		log.Infof("Server %d: ReadConfirm - Updated Version: %d, Value: %d", s.ID, req.Version, req.Value)
+	} else {
+		log.Infof("Server %d: ReadConfirm Ignored - Incoming Version: %d <= Current Version: %d", s.ID, req.Version, s.Version)
+	}
+
+	reply.Acknowledged = true
+	return nil
+}
+
+// HandleWriteRequest processes a write request from the client and updates the register state if the version is newer.
+func (s *Server) HandleWriteRequest(req *protocol.WriteRequest, reply *protocol.WriteReply) error {
+	s.mutex.Lock()
+	defer s.mutex.Unlock()
+
+	if req.Version >= s.Version {
+		s.Version = req.Version
+		s.Value = req.Value
+		go s.PropagateWrite(req.Version, req.Value)
+		log.Infof("Server %d: Client WRITE - Updated Version: %d, Value: %d", s.ID, s.Version, s.Value)
+	} else {
+		log.Warnf("Server %d: Client WRITE Ignored - Incoming Version: %d < Current Version: %d", s.ID, req.Version, s.Version)
 	}
 	return nil
 }
 
-// Starts the server and listens for incoming connections.
-func (s *Server) Start() error {
-	log.Debugf("Starting server %d", s.Id)
-
-	// Configure the listener with SO_REUSEADDR/SO_REUSEPORT
-	tcpAddr, err := net.ResolveTCPAddr(s.Self.Network, s.Self.Address)
-	if err != nil {
-		log.Fatalf("Server %d: Failed to resolve address: %v", s.Id, err)
-		return err
-	}
-
-	l, err := net.ListenTCP("tcp", tcpAddr)
-	if err != nil {
-		if opErr, ok := err.(*net.OpError); ok {
-			log.Errorf("Socket reuse error for server %d: %v", s.Id, opErr)
-		}
-		return err
-	}
-	defer l.Close()
-	log.Infof("Server %d listening on %s", s.Id, s.Self.Address)
-
-	// Register the RPC server
-	if err := rpc.RegisterName("Server", s); err != nil {
-		log.Fatalf("Server %d: Failed to register RPC: %v", s.Id, err)
-		return err
-	}
-
-	// Graceful shutdown handling
-	shutdownCh := make(chan os.Signal, 1)
-	signal.Notify(shutdownCh, os.Interrupt, syscall.SIGTERM)
-
-	go func() {
-		<-shutdownCh
-		log.Infof("Server %d shutting down", s.Id)
-		l.Close()
-		os.Exit(0)
-	}()
-
-	// Accept incoming connections
-	for {
-		conn, err := l.Accept()
-		if err != nil {
-			if opErr, ok := err.(*net.OpError); ok && !opErr.Temporary() {
-				log.Errorf("Server %d: Listener closed", s.Id)
-				break
+// PropagateWrite sends write updates to peer servers.
+func (s *Server) PropagateWrite(version uint64, value uint64) {
+	for _, peer := range s.Peers {
+		go func(peer *protocol.Connection) {
+			writeReq := protocol.WriteRequest{Version: version, Value: value}
+			var reply protocol.WriteReply
+			err := protocol.Invoke(*peer, "Server.HandleWriteRequest", &writeReq, &reply)
+			if err != nil {
+				log.Warnf("Server %d: Write Propagation to %s failed: %v", s.ID, peer.Address, err)
+			} else {
+				log.Infof("Server %d: Write Propagated to %s - Version: %d, Value: %d", s.ID, peer.Address, version, value)
 			}
-			log.Errorf("Server %d accept error: %v", s.Id, err)
+		}(peer)
+	}
+}
+
+// SendHeartbeat sends periodic heartbeat messages to all peers and logs the server's state.
+func (s *Server) SendHeartbeat() {
+	ticker := time.NewTicker(5 * time.Second)
+	defer ticker.Stop()
+
+	timeoutCount := 0 // Tracks the number of heartbeat cycles
+
+	for range ticker.C {
+		timeoutCount++
+
+		// Collect the current state and peer statuses
+		s.mutex.RLock()
+		version := s.Version
+		value := s.Value
+		aliveStatus := make(map[string]bool, len(s.Alive))
+		for addr, status := range s.Alive {
+			aliveStatus[addr] = status
+		}
+		s.mutex.RUnlock()
+
+		// Log current state
+		log.Infof("==== Server %d: Heartbeat Timeout %d ====", s.ID, timeoutCount)
+		log.Infof("Current State: Version: %d, Value: %d", version, value)
+
+		for addr, status := range aliveStatus {
+			if status {
+				log.Infof("Peer %s: LIVE", addr)
+			} else {
+				log.Warnf("Peer %s: DOWN", addr)
+			}
+		}
+
+		// Send heartbeat to all peers
+		for _, peer := range s.Peers {
+			go func(peer *protocol.Connection) {
+				client, err := s.getConnection(peer)
+				if err != nil {
+					s.mutex.Lock()
+					s.Alive[peer.Address] = false
+					s.mutex.Unlock()
+					log.Warnf("Heartbeat to %s failed: %v", peer.Address, err)
+					return
+				}
+				heartbeat := protocol.Heartbeat{Version: version, Value: value}
+				var reply protocol.HeartbeatReply
+				err = client.Call("Server.ReceiveHeartbeat", heartbeat, &reply)
+				if err != nil {
+					s.mutex.Lock()
+					s.Alive[peer.Address] = false
+					s.mutex.Unlock()
+					log.Warnf("Heartbeat to %s failed: %v", peer.Address, err)
+				} else {
+					s.mutex.Lock()
+					s.Alive[peer.Address] = true
+					s.mutex.Unlock()
+					log.Infof("Heartbeat to %s successful.", peer.Address)
+				}
+			}(peer)
+		}
+
+		log.Infof("==== End of Heartbeat Timeout %d ====", timeoutCount)
+	}
+}
+
+// ReceiveHeartbeat processes heartbeat messages from peers.
+func (s *Server) ReceiveHeartbeat(req *protocol.Heartbeat, reply *protocol.HeartbeatReply) error {
+	s.mutex.Lock()
+	defer s.mutex.Unlock()
+
+	if req.Version > s.Version {
+		s.Version = req.Version
+		s.Value = req.Value
+		log.Infof("Server %d: Heartbeat Update - Version: %d, Value: %d", s.ID, req.Version, req.Value)
+	}
+	reply.Acknowledged = true
+	return nil
+}
+
+// Ping allows peers or clients to test connectivity.
+func (s *Server) Ping(_ *struct{}, _ *struct{}) error {
+	return nil
+}
+
+// Start launches the server and begins listening for connections.
+func (s *Server) Start() error {
+	log.Infof("Starting server %d at %s", s.ID, s.Address)
+	tcpAddr, err := net.ResolveTCPAddr("tcp", s.Address)
+	if err != nil {
+		return err
+	}
+	listener, err := net.ListenTCP("tcp", tcpAddr)
+	if err != nil {
+		return err
+	}
+	defer listener.Close()
+
+	if err := rpc.Register(s); err != nil {
+		return err
+	}
+
+	go s.SendHeartbeat()
+
+	for {
+		conn, err := listener.Accept()
+		if err != nil {
+			log.Errorf("Connection error: %v", err)
 			continue
 		}
-
-		// Set a connection timeout
-		if tcpConn, ok := conn.(*net.TCPConn); ok {
-			tcpConn.SetKeepAlive(true)
-			tcpConn.SetKeepAlivePeriod(30 * time.Second) // Example: 30-second keep-alive timeout
-			tcpConn.SetDeadline(time.Now().Add(30 * time.Second))
-		}
-
-		log.Infof("Server %d: Accepted connection from %s", s.Id, conn.RemoteAddr())
-		go func(c net.Conn) {
-			defer c.Close()
-			rpc.ServeConn(c)
+		log.Infof("Server %d: New client connected from %s", s.ID, conn.RemoteAddr())
+		go func(conn net.Conn) {
+			defer func() {
+				log.Infof("Server %d: Client disconnected from %s", s.ID, conn.RemoteAddr())
+				_ = conn.Close()
+			}()
+			rpc.ServeConn(conn)
 		}(conn)
 	}
-
-	return nil
 }
