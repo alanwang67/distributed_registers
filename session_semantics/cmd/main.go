@@ -20,7 +20,8 @@ import (
 type Metric struct {
 	OperationIndex int     `json:"operation_index"`
 	OperationType  string  `json:"operation_type"`
-	Latency        float64 `json:"latency"` // In seconds
+	Latency        float64 `json:"latency"`   // In seconds
+	Timestamp      float64 `json:"timestamp"` // Time since start in seconds
 }
 
 // Config structure for loading config.json
@@ -104,9 +105,10 @@ func main() {
 		// Run the client and collect metrics
 		metrics := runClientWithMetrics(id, servers, config.Workload)
 
-		// Save metrics and generate chart
+		// Save metrics and generate charts
 		saveMetrics(metrics, "metrics.json")
-		generateChart(metrics, "output_chart.png")
+		generateChart(metrics, "latency_chart.png")
+		generateThroughputChart(metrics, "throughput_chart.png")
 
 	case "server":
 		if id >= uint64(len(servers)) {
@@ -127,7 +129,9 @@ func main() {
 func runClientWithMetrics(id uint64, servers []*protocol.Connection, workload []WorkloadConfig) []Metric {
 	c := client.New(id, servers)
 
+	startTime := time.Now()
 	metrics := []Metric{}
+
 	for i, op := range workload {
 		startOp := time.Now()
 
@@ -144,11 +148,13 @@ func runClientWithMetrics(id uint64, servers []*protocol.Connection, workload []
 		}
 
 		duration := time.Since(startOp)
+		elapsedTime := time.Since(startTime).Seconds()
 
 		metrics = append(metrics, Metric{
 			OperationIndex: i + 1,
 			OperationType:  op.Type,
 			Latency:        duration.Seconds(),
+			Timestamp:      elapsedTime,
 		})
 
 		if op.Delay > 0 {
@@ -172,7 +178,7 @@ func saveMetrics(metrics []Metric, filename string) {
 	log.Infof("Metrics saved to %s", filename)
 }
 
-// generateChart creates a chart of operation latencies and saves it to a file
+// generateChart creates a latency chart and saves it to a file
 func generateChart(metrics []Metric, filename string) {
 	points := make(plotter.XYs, len(metrics))
 	for i, metric := range metrics {
@@ -194,5 +200,31 @@ func generateChart(metrics []Metric, filename string) {
 	if err := p.Save(8*vg.Inch, 4*vg.Inch, filename); err != nil {
 		log.Fatalf("Failed to save chart: %v", err)
 	}
-	log.Infof("Chart saved to %s", filename)
+	log.Infof("Latency chart saved to %s", filename)
+}
+
+// generateThroughputChart creates a throughput chart and saves it to a file
+func generateThroughputChart(metrics []Metric, filename string) {
+	points := make(plotter.XYs, len(metrics))
+	for i, metric := range metrics {
+		throughput := float64(metric.OperationIndex) / metric.Timestamp // Throughput = operations / time
+		points[i].X = metric.Timestamp
+		points[i].Y = throughput
+	}
+
+	p := plot.New()
+	p.Title.Text = "Operation Throughput"
+	p.X.Label.Text = "Time (s)"
+	p.Y.Label.Text = "Throughput (ops/s)"
+
+	line, err := plotter.NewLine(points)
+	if err != nil {
+		log.Fatalf("Failed to create plot line: %v", err)
+	}
+	p.Add(line)
+
+	if err := p.Save(8*vg.Inch, 4*vg.Inch, filename); err != nil {
+		log.Fatalf("Failed to save chart: %v", err)
+	}
+	log.Infof("Throughput chart saved to %s", filename)
 }
