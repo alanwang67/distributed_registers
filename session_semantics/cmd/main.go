@@ -141,6 +141,16 @@ func runClientWithMetrics(id uint64, servers []*protocol.Connection, workload []
 		}
 	}
 
+	time.Sleep(500 * time.Millisecond)
+	for i := range c.Servers {
+		clientReq := server.ClientRequest{}
+
+		clientReply := server.ClientReply{}
+
+		protocol.Invoke(*c.Servers[i], "Server.PrintOperations", &clientReq, &clientReply)
+
+	}
+
 	log.Printf("[INFO] Client %d completed workload", id)
 	return metrics
 }
