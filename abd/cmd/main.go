@@ -139,7 +139,9 @@ func startClient(id int, config Config, resultsDir string, interactive bool) {
 }
 
 func executeWorkload(cli *client.Client, clientServers []client.ServerConfig, workload []client.Instruction, resultsDir string) {
+	// Use data points for throughput and latency as defined in paxos_dh
 	var latencyX, latencyY, throughputX, throughputY []float64
+
 	start := time.Now()
 
 	fmt.Println("Client: Starting workload execution...")
@@ -153,12 +155,12 @@ func executeWorkload(cli *client.Client, clientServers []client.ServerConfig, wo
 			continue
 		}
 
-		// Measure latency in ms
+		// Measure latency in milliseconds
 		latency := float64(time.Since(operationStart).Milliseconds())
 		latencyX = append(latencyX, float64(i+1))
 		latencyY = append(latencyY, latency)
 
-		// Measure throughput (operations/sec)
+		// Measure throughput (operations per second)
 		elapsed := time.Since(start).Seconds()
 		throughput := float64(i+1) / elapsed
 		throughputX = append(throughputX, elapsed)
@@ -212,7 +214,7 @@ func generateChart(title, xLabel, yLabel string, xData, yData []float64, outPath
 	}
 	defer f.Close()
 
-	// Render the chart as PNG (width=1000px, height=400px)
+	// Render the chart as PNG
 	if err := c.Render(chart.PNG, f); err != nil {
 		fmt.Printf("Error rendering chart: %v\n", err)
 	}

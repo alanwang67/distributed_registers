@@ -2,12 +2,12 @@ package sequencer
 
 import (
 	"fmt"
+	"log"
 	"net"
 	"net/rpc"
 	"sync"
 
 	"github.com/alanwang67/distributed_registers/paxos/protocol"
-	"github.com/charmbracelet/log"
 )
 
 type Sequencer struct {
@@ -38,13 +38,13 @@ func (s *Sequencer) GetProposalNumber(_ *ReqProposalNum, reply *ReplyProposalNum
 	reply.Count = s.Count
 	s.Count++
 	s.mu.Unlock()
-	log.Debugf("Sequencer returned proposal number %d", reply.Count)
+	log.Printf("[DEBUG] Sequencer returned proposal number %d", reply.Count)
 	return nil
 }
 
 // Start begins listening for RPC requests on the sequencer's configured address.
 func (s *Sequencer) Start() error {
-	log.Debugf("starting sequencer")
+	log.Printf("[DEBUG] starting sequencer")
 
 	l, err := net.Listen(s.Self.Network, s.Self.Address)
 	if err != nil {
@@ -52,7 +52,7 @@ func (s *Sequencer) Start() error {
 		return err
 	}
 	defer l.Close()
-	log.Debugf("sequencer listening on %s", s.Self.Address)
+	log.Printf("[DEBUG] sequencer listening on %s", s.Self.Address)
 
 	rpc.Register(s)
 
