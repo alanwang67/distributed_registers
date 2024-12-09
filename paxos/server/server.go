@@ -1,8 +1,6 @@
 package server
 
 import (
-	"fmt"
-
 	"github.com/alanwang67/distributed_registers/paxos/protocol"
 )
 
@@ -39,13 +37,23 @@ func (s *Server) PrepareRequest(request *PrepareRequest, reply *PrepareReply) er
 func (s *Server) AcceptProposal(request *AcceptRequest, reply *AcceptReply) error {
 	s.mu.Lock()
 	if s.LowestN <= request.ProposalNumber {
-		s.LatestAcceptedProposalData = request.ProposalNumber
+		s.LatestAcceptedProposalNumber = request.ProposalNumber
 		s.LatestAcceptedProposalData = request.Value
 	}
 
-	fmt.Print(request.Value)
-
+	s.Accepted = true
 	reply.Succeeded = true
+	s.mu.Unlock()
+	return nil
+}
+
+func (s *Server) QuorumRead(request *ReadRequest, reply *ReadReply) error {
+	s.mu.Lock()
+	if s.LatestAcceptedProposalData > 0 {
+		reply.Value = s.LatestAcceptedProposalData
+		reply.ProposalNumber = s.LatestAcceptedProposalNumber
+	}
+
 	s.mu.Unlock()
 	return nil
 }

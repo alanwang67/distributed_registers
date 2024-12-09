@@ -27,30 +27,21 @@ func New(id uint64, servers []*protocol.Connection, sequencers []*protocol.Conne
 
 func (c *Client) Start() error {
 	log.Debugf("starting client %d", c.Id)
-	rc := uint64(0) // retry count
+	rc := uint64(0)
 
-	req := sequencer.ReqProposalNum{}
-	rep := sequencer.ReplyProposalNum{}
-	protocol.Invoke(*c.Sequencers[0], "Sequencer.GetProposalNumber", &req, &rep)
-
-	// send rpc to someone to get proposal number
-	resp := c.writeOperation(rep.Count, 1)
-
-	fmt.Print(resp)
-	for {
-
-		// resp := c.communicateWithServer(rc)
-		// log.Debugf("%d", resp)
-		// sc := len(c.Servers) // server count
-
-		// req := &protocol.ClientRequest{Id: c.Id}
-		rep := &protocol.ClientReply{}
-
-		// log.Debugf("client %d sent a request", req.Id)
-		// protocol.Invoke(*c.Servers[rc%sc], "Server.HandleClientRequest", req, rep)
-		log.Debugf("client %d received a reply from server %d with session ID %d", c.Id, rep.ServerId, rep.SessionId)
+	for rc < 100 {
+		req := sequencer.ReqProposalNum{}
+		rep := sequencer.ReplyProposalNum{}
+		protocol.Invoke(*c.Sequencers[0], "Sequencer.GetProposalNumber", &req, &rep)
+		fmt.Print(rep)
+		// send rpc to someone to get proposal number
+		resp := c.writeOperation(rep.Count, rc)
+		fmt.Print("proposal number: ", rep.Count, "value written: ", resp, "\n")
+		read := c.readOperation()
+		fmt.Print("value read: ", read, "\n")
 		rc += 1
-
-		time.Sleep(250000000000 * time.Millisecond)
+	}
+	for {
+		time.Sleep(100 * time.Millisecond)
 	}
 }

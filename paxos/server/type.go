@@ -39,6 +39,14 @@ type AcceptReply struct {
 	Succeeded bool
 }
 
+type ReadRequest struct {
+}
+
+type ReadReply struct {
+	Value          uint64
+	ProposalNumber uint64
+}
+
 func (s *Server) Start() error {
 	log.Debugf("starting server %d", s.Id)
 
