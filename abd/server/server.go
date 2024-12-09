@@ -1,13 +1,13 @@
 package server
 
 import (
+	"log"
 	"net"
 	"net/rpc"
 	"sync"
 	"time"
 
 	"github.com/alanwang67/distributed_registers/abd/protocol"
-	"github.com/charmbracelet/log"
 )
 
 type Server struct {
@@ -68,7 +68,7 @@ func (s *Server) HandleReadRequest(req *protocol.ReadRequest, reply *protocol.Re
 
 	reply.Version = s.Version
 	reply.Value = s.Value
-	log.Infof("Server %d: Client READ - Version: %d, Value: %d", s.ID, s.Version, s.Value)
+	log.Printf("Server %d: Client READ - Version: %d, Value: %d", s.ID, s.Version, s.Value)
 	return nil
 }
 
@@ -80,9 +80,9 @@ func (s *Server) HandleReadConfirm(req *protocol.ReadConfirmRequest, reply *prot
 	if req.Version > s.Version {
 		s.Version = req.Version
 		s.Value = req.Value
-		log.Infof("Server %d: ReadConfirm - Updated Version: %d, Value: %d", s.ID, req.Version, req.Value)
+		log.Printf("Server %d: ReadConfirm - Updated Version: %d, Value: %d", s.ID, req.Version, req.Value)
 	} else {
-		log.Infof("Server %d: ReadConfirm Ignored - Incoming Version: %d <= Current Version: %d", s.ID, req.Version, s.Version)
+		log.Printf("Server %d: ReadConfirm Ignored - Incoming Version: %d <= Current Version: %d", s.ID, req.Version, s.Version)
 	}
 
 	reply.Acknowledged = true
@@ -98,9 +98,10 @@ func (s *Server) HandleWriteRequest(req *protocol.WriteRequest, reply *protocol.
 		s.Version = req.Version
 		s.Value = req.Value
 		go s.PropagateWrite(req.Version, req.Value)
-		log.Infof("Server %d: Client WRITE - Updated Version: %d, Value: %d", s.ID, s.Version, s.Value)
+		log.Printf("Server %d: Client WRITE - Updated Version: %d, Value: %d", s.ID, s.Version, s.Value)
 	} else {
-		log.Warnf("Server %d: Client WRITE Ignored - Incoming Version: %d < Current Version: %d", s.ID, req.Version, s.Version)
+		log.Printf("WARNING: Server %d: Client WRITE Ignored - Incoming Version: %d < Current Version: %d",
+			s.ID, req.Version, s.Version)
 	}
 	return nil
 }
@@ -113,9 +114,9 @@ func (s *Server) PropagateWrite(version uint64, value uint64) {
 			var reply protocol.WriteReply
 			err := protocol.Invoke(*peer, "Server.HandleWriteRequest", &writeReq, &reply)
 			if err != nil {
-				log.Warnf("Server %d: Write Propagation to %s failed: %v", s.ID, peer.Address, err)
+				log.Printf("WARNING: Server %d: Write Propagation to %s failed: %v", s.ID, peer.Address, err)
 			} else {
-				log.Infof("Server %d: Write Propagated to %s - Version: %d, Value: %d", s.ID, peer.Address, version, value)
+				log.Printf("Server %d: Write Propagated to %s - Version: %d, Value: %d", s.ID, peer.Address, version, value)
 			}
 		}(peer)
 	}
@@ -142,14 +143,14 @@ func (s *Server) SendHeartbeat() {
 		s.mutex.RUnlock()
 
 		// Log current state
-		log.Infof("==== Server %d: Heartbeat Timeout %d ====", s.ID, timeoutCount)
-		log.Infof("Current State: Version: %d, Value: %d", version, value)
+		log.Printf("==== Server %d: Heartbeat Timeout %d ====", s.ID, timeoutCount)
+		log.Printf("Current State: Version: %d, Value: %d", version, value)
 
 		for addr, status := range aliveStatus {
 			if status {
-				log.Infof("Peer %s: LIVE", addr)
+				log.Printf("Peer %s: LIVE", addr)
 			} else {
-				log.Warnf("Peer %s: DOWN", addr)
+				log.Printf("WARNING: Peer %s: DOWN", addr)
 			}
 		}
 
@@ -161,7 +162,7 @@ func (s *Server) SendHeartbeat() {
 					s.mutex.Lock()
 					s.Alive[peer.Address] = false
 					s.mutex.Unlock()
-					log.Warnf("Heartbeat to %s failed: %v", peer.Address, err)
+					log.Printf("WARNING: Heartbeat to %s failed: %v", peer.Address, err)
 					return
 				}
 				heartbeat := protocol.Heartbeat{Version: version, Value: value}
@@ -171,17 +172,17 @@ func (s *Server) SendHeartbeat() {
 					s.mutex.Lock()
 					s.Alive[peer.Address] = false
 					s.mutex.Unlock()
-					log.Warnf("Heartbeat to %s failed: %v", peer.Address, err)
+					log.Printf("WARNING: Heartbeat to %s failed: %v", peer.Address, err)
 				} else {
 					s.mutex.Lock()
 					s.Alive[peer.Address] = true
 					s.mutex.Unlock()
-					log.Infof("Heartbeat to %s successful.", peer.Address)
+					log.Printf("Heartbeat to %s successful.", peer.Address)
 				}
 			}(peer)
 		}
 
-		log.Infof("==== End of Heartbeat Timeout %d ====", timeoutCount)
+		log.Printf("==== End of Heartbeat Timeout %d ====", timeoutCount)
 	}
 }
 
@@ -193,7 +194,7 @@ func (s *Server) ReceiveHeartbeat(req *protocol.Heartbeat, reply *protocol.Heart
 	if req.Version > s.Version {
 		s.Version = req.Version
 		s.Value = req.Value
-		log.Infof("Server %d: Heartbeat Update - Version: %d, Value: %d", s.ID, req.Version, req.Value)
+		log.Printf("Server %d: Heartbeat Update - Version: %d, Value: %d", s.ID, req.Version, req.Value)
 	}
 	reply.Acknowledged = true
 	return nil
@@ -206,7 +207,7 @@ func (s *Server) Ping(_ *struct{}, _ *struct{}) error {
 
 // Start launches the server and begins listening for connections.
 func (s *Server) Start() error {
-	log.Infof("Starting server %d at %s", s.ID, s.Address)
+	log.Printf("Starting server %d at %s", s.ID, s.Address)
 	tcpAddr, err := net.ResolveTCPAddr("tcp", s.Address)
 	if err != nil {
 		return err
@@ -226,13 +227,13 @@ func (s *Server) Start() error {
 	for {
 		conn, err := listener.Accept()
 		if err != nil {
-			log.Errorf("Connection error: %v", err)
+			log.Printf("ERROR: Connection error: %v", err)
 			continue
 		}
-		log.Infof("Server %d: New client connected from %s", s.ID, conn.RemoteAddr())
+		log.Printf("Server %d: New client connected from %s", s.ID, conn.RemoteAddr())
 		go func(conn net.Conn) {
 			defer func() {
-				log.Infof("Server %d: Client disconnected from %s", s.ID, conn.RemoteAddr())
+				log.Printf("Server %d: Client disconnected from %s", s.ID, conn.RemoteAddr())
 				_ = conn.Close()
 			}()
 			rpc.ServeConn(conn)

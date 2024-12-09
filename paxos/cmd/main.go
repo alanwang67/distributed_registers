@@ -3,6 +3,7 @@ package main
 import (
 	"embed"
 	"encoding/json"
+	"log"
 	"os"
 	"strconv"
 
@@ -10,33 +11,32 @@ import (
 	"github.com/alanwang67/distributed_registers/paxos/protocol"
 	"github.com/alanwang67/distributed_registers/paxos/sequencer"
 	"github.com/alanwang67/distributed_registers/paxos/server"
-
-	"github.com/charmbracelet/log"
 )
 
 //go:embed config.json
 var f embed.FS
 
 func main() {
-
-	log.SetLevel(log.DebugLevel)
-
 	config, err := f.ReadFile("config.json")
 	if err != nil {
-		log.Fatalf("can't read config.json: %s", err)
+		log.Fatalf("[ERROR] can't read config.json: %s", err)
 	}
 
 	var data map[string]interface{}
 	err = json.Unmarshal(config, &data)
 	if err != nil {
-		log.Fatalf("can't unmarshal JSON: %s", err)
+		log.Fatalf("[ERROR] can't unmarshal JSON: %s", err)
 	}
 
-	servers := make([]*protocol.Connection, len(data["servers"].([]interface{})))
-	for i, s := range data["servers"].([]interface{}) {
+	serversData, ok := data["servers"].([]interface{})
+	if !ok {
+		log.Fatalf("[ERROR] 'servers' key not found or invalid in config.")
+	}
+	servers := make([]*protocol.Connection, len(serversData))
+	for i, s := range serversData {
 		conn, ok := s.(map[string]interface{})
 		if !ok {
-			log.Fatalf("invalid server data at index %d", i)
+			log.Fatalf("[ERROR] invalid server data at index %d", i)
 		}
 
 		network, _ := conn["network"].(string)
@@ -48,11 +48,15 @@ func main() {
 		}
 	}
 
-	sequencers := make([]*protocol.Connection, len(data["sequencer"].([]interface{})))
-	for i, s := range data["sequencer"].([]interface{}) {
+	sequencersData, ok := data["sequencer"].([]interface{})
+	if !ok {
+		log.Fatalf("[ERROR] 'sequencer' key not found or invalid in config.")
+	}
+	sequencers := make([]*protocol.Connection, len(sequencersData))
+	for i, s := range sequencersData {
 		conn, ok := s.(map[string]interface{})
 		if !ok {
-			log.Fatalf("invalid server data at index %d", i)
+			log.Fatalf("[ERROR] invalid sequencer data at index %d", i)
 		}
 
 		network, _ := conn["network"].(string)
@@ -65,22 +69,40 @@ func main() {
 	}
 
 	if len(os.Args) < 3 {
-		log.Fatalf("usage: %s [client|server] [id]", os.Args[0])
+		log.Fatalf("[ERROR] usage: %s [client|server|sequencer] [id]", os.Args[0])
 	}
 
 	id, err := strconv.ParseUint(os.Args[2], 10, 64)
 	if err != nil {
-		log.Fatalf("can't convert %s to int: %s", os.Args[2], err)
+		log.Fatalf("[ERROR] can't convert %s to int: %s", os.Args[2], err)
 	}
 
 	switch os.Args[1] {
 	case "client":
-		client.New(id, servers, sequencers).Start() // TODO: make the servers available to client match the config
+		log.Printf("[INFO] Starting client %d", id)
+		err := client.New(id, servers, sequencers).Start()
+		if err != nil {
+			log.Printf("[ERROR] Client %d failed: %v", id, err)
+		}
 	case "server":
-		server.New(id, servers[id], servers).Start()
+		if int(id) >= len(servers) {
+			log.Fatalf("[ERROR] Invalid server ID: %d", id)
+		}
+		log.Printf("[INFO] Starting server %d at %s", id, servers[id].Address)
+		err := server.New(id, servers[id], servers).Start()
+		if err != nil {
+			log.Printf("[ERROR] Server %d failed: %v", id, err)
+		}
 	case "sequencer":
-		sequencer.New(sequencers[id]).Start()
+		if int(id) >= len(sequencers) {
+			log.Fatalf("[ERROR] Invalid sequencer ID: %d", id)
+		}
+		log.Printf("[INFO] Starting sequencer %d at %s", id, sequencers[id].Address)
+		err := sequencer.New(sequencers[id]).Start()
+		if err != nil {
+			log.Printf("[ERROR] Sequencer %d failed: %v", id, err)
+		}
 	default:
-		log.Fatalf("unknown command: %s", os.Args[1])
+		log.Fatalf("[ERROR] unknown command: %s", os.Args[1])
 	}
 }

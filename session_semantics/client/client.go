@@ -3,18 +3,18 @@ package client
 import (
 	"encoding/json"
 	"fmt"
+	"log"
 	"math/rand"
 	"os"
 	"time"
 
 	"github.com/alanwang67/distributed_registers/session_semantics/protocol"
 	"github.com/alanwang67/distributed_registers/session_semantics/server"
-	"github.com/charmbracelet/log"
 )
 
 // New creates and initializes a new Client instance.
 func New(id uint64, servers []*protocol.Connection) *Client {
-	log.Debugf("client %d created", id)
+	log.Printf("[DEBUG] client %d created", id)
 	return &Client{
 		Id:          id,
 		Servers:     servers,
@@ -25,12 +25,12 @@ func New(id uint64, servers []*protocol.Connection) *Client {
 
 // Start executes client operations defined in the workload configuration file.
 func (c *Client) Start(configPath string) error {
-	log.Debugf("starting client %d", c.Id)
+	log.Printf("[DEBUG] starting client %d", c.Id)
 
 	// Load configuration file
 	config, err := loadConfig(configPath)
 	if err != nil {
-		log.Errorf("Failed to load config file: %v", err)
+		log.Printf("[ERROR] Failed to load config file: %v", err)
 		return err
 	}
 
@@ -45,7 +45,7 @@ func (c *Client) Start(configPath string) error {
 			resp := c.WriteToServer(op.Value, server.Causal)
 			fmt.Printf("Client %d performed write operation with value %d: Response = %v\n", c.Id, op.Value, resp)
 		default:
-			log.Warnf("Unknown operation type: %s", op.Type)
+			log.Printf("[WARN] Unknown operation type: %s", op.Type)
 		}
 		c.mu.Unlock()
 
@@ -72,7 +72,6 @@ func (c *Client) Start(configPath string) error {
 
 // loadConfig reads and parses the workload configuration from a JSON file.
 func loadConfig(configPath string) (*Config, error) {
-	// Using os.ReadFile instead of ioutil.ReadFile (deprecated in Go 1.16)
 	data, err := os.ReadFile(configPath)
 	if err != nil {
 		return nil, fmt.Errorf("could not read config file: %w", err)
@@ -88,8 +87,8 @@ func loadConfig(configPath string) (*Config, error) {
 
 // WriteToServer performs a write operation on a server with the specified session type.
 func (c *Client) WriteToServer(value uint64, sessionSemantic server.SessionType) uint64 {
-	c.mu.Lock()         // Lock the mutex to ensure thread-safe access
-	defer c.mu.Unlock() // Ensure the mutex is unlocked once the function exits, even on error
+	c.mu.Lock()
+	defer c.mu.Unlock()
 
 	order := rand.Perm(len(c.Servers))
 	for _, v := range order {
@@ -120,8 +119,8 @@ func (c *Client) WriteToServer(value uint64, sessionSemantic server.SessionType)
 
 // ReadFromServer performs a read operation on a server with the specified session type.
 func (c *Client) ReadFromServer(sessionSemantic server.SessionType) uint64 {
-	c.mu.Lock()         // Lock the mutex to ensure thread-safe access
-	defer c.mu.Unlock() // Ensure the mutex is unlocked once the function exits, even on error
+	c.mu.Lock()
+	defer c.mu.Unlock()
 
 	order := rand.Perm(len(c.Servers))
 	for _, v := range order {
