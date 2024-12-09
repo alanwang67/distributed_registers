@@ -1,7 +1,6 @@
 package main
 
 import (
-	"encoding/csv"
 	"encoding/json"
 	"fmt"
 	"os"
@@ -12,6 +11,9 @@ import (
 	"github.com/alanwang67/distributed_registers/abd/client"
 	"github.com/alanwang67/distributed_registers/abd/protocol"
 	"github.com/alanwang67/distributed_registers/abd/server"
+	"gonum.org/v1/plot"
+	"gonum.org/v1/plot/plotter"
+	"gonum.org/v1/plot/vg"
 )
 
 // Config structure for parsing the `config.json` file.
@@ -139,7 +141,7 @@ func startClient(id int, config Config, resultsDir string, interactive bool) {
 }
 
 func executeWorkload(cli *client.Client, clientServers []client.ServerConfig, workload []client.Instruction, resultsDir string) {
-	var throughputData, latencyData []CSVPoint
+	var throughputData, latencyData plotter.XYs
 	start := time.Now()
 
 	fmt.Println("Client: Starting workload execution...")
@@ -155,7 +157,7 @@ func executeWorkload(cli *client.Client, clientServers []client.ServerConfig, wo
 
 		// Measure latency
 		latency := float64(time.Since(operationStart).Milliseconds())
-		latencyData = append(latencyData, CSVPoint{
+		latencyData = append(latencyData, plotter.XY{
 			X: float64(i + 1),
 			Y: latency,
 		})
@@ -163,7 +165,7 @@ func executeWorkload(cli *client.Client, clientServers []client.ServerConfig, wo
 		// Measure throughput
 		elapsed := time.Since(start).Seconds()
 		throughput := float64(i+1) / elapsed
-		throughputData = append(throughputData, CSVPoint{
+		throughputData = append(throughputData, plotter.XY{
 			X: elapsed,
 			Y: throughput,
 		})
@@ -177,44 +179,25 @@ func executeWorkload(cli *client.Client, clientServers []client.ServerConfig, wo
 	}
 
 	fmt.Println("Client: Workload execution completed.")
-	saveDataToCSV("Throughput", throughputData, filepath.Join(resultsDir, "throughput.csv"))
-	saveDataToCSV("Latency", latencyData, filepath.Join(resultsDir, "latency.csv"))
+	generateChart("Throughput", "Time (s)", "Throughput (operations/s)", throughputData, filepath.Join(resultsDir, "throughput.png"))
+	generateChart("Latency", "Operation", "Latency (ms)", latencyData, filepath.Join(resultsDir, "latency.png"))
 }
 
-// CSVPoint represents a data point for CSV output.
-type CSVPoint struct {
-	X float64
-	Y float64
-}
+// generateChart creates and saves a PNG chart.
+func generateChart(title, xLabel, yLabel string, data plotter.XYs, filepath string) {
+	p := plot.New()
+	p.Title.Text = title
+	p.X.Label.Text = xLabel
+	p.Y.Label.Text = yLabel
 
-// saveDataToCSV writes data points to a CSV file.
-func saveDataToCSV(title string, data []CSVPoint, filepath string) {
-	file, err := os.Create(filepath)
+	line, err := plotter.NewLine(data)
 	if err != nil {
-		fmt.Printf("Error creating CSV file: %v\n", err)
+		fmt.Printf("Error creating line plot: %v\n", err)
 		return
 	}
-	defer file.Close()
+	p.Add(line)
 
-	writer := csv.NewWriter(file)
-	defer writer.Flush()
-
-	// Write headers
-	if err := writer.Write([]string{"X", "Y"}); err != nil {
-		fmt.Printf("Error writing headers to CSV file: %v\n", err)
-		return
+	if err := p.Save(10*vg.Inch, 4*vg.Inch, filepath); err != nil {
+		fmt.Printf("Error saving plot: %v\n", err)
 	}
-
-	// Write data points
-	for _, point := range data {
-		if err := writer.Write([]string{
-			fmt.Sprintf("%f", point.X),
-			fmt.Sprintf("%f", point.Y),
-		}); err != nil {
-			fmt.Printf("Error writing data point to CSV file: %v\n", err)
-			return
-		}
-	}
-
-	fmt.Printf("Data saved to CSV file: %s\n", filepath)
 }
