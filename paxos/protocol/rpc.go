@@ -17,19 +17,18 @@ type ClientReply struct {
 }
 
 type PeerRequest struct{}
-
 type PeerReply struct{}
 
+// Invoke performs an RPC call to the given method on the specified connection.
 func Invoke(conn Connection, method string, args, reply any) error {
 	c, err := rpc.Dial(conn.Network, conn.Address)
 	if err != nil {
-		// log.Fatalf("trouble dialing %s: %s", conn.Address, err)
 		return err
 	}
 
 	err = c.Call(method, args, reply)
 	if err != nil {
-		// log.Fatalf("trouble calling %s: %s", method, err)
+		return err
 	}
 
 	return nil
