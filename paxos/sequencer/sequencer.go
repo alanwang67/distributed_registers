@@ -1,8 +1,6 @@
 package sequencer
 
 import (
-	"fmt"
-
 	"github.com/alanwang67/distributed_registers/paxos/protocol"
 )
 
@@ -19,7 +17,6 @@ func (s *Sequencer) GetProposalNumber(_, reply *ReplyProposalNum) error {
 	s.mu.Lock()
 	reply.Count = s.Count
 	s.Count += 1
-	fmt.Print(s.Count, "\n")
 	s.mu.Unlock()
 	return nil
 }

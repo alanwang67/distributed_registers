@@ -30,6 +30,13 @@
       "servers": [0, 1, 2]
     }
   ],
+  "sequencer": [
+    {
+      "id": 0,
+      "network": "tcp",
+      "address": "0.0.0.0:10003"
+    }
+  ],
   "workloads": [
     {
       "Type": "read",

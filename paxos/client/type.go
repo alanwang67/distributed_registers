@@ -29,17 +29,25 @@ func (c *Client) Start() error {
 	log.Debugf("starting client %d", c.Id)
 	rc := uint64(0)
 
-	for rc < 100 {
+	for rc < 100000 {
 		req := sequencer.ReqProposalNum{}
 		rep := sequencer.ReplyProposalNum{}
 		protocol.Invoke(*c.Sequencers[0], "Sequencer.GetProposalNumber", &req, &rep)
-		fmt.Print(rep)
+
+		for rep.Count == 0 {
+			panic("network timed out")
+		}
+
 		// send rpc to someone to get proposal number
 		resp := c.writeOperation(rep.Count, rc)
-		fmt.Print("proposal number: ", rep.Count, "value written: ", resp, "\n")
-		read := c.readOperation()
-		fmt.Print("value read: ", read, "\n")
+
+		go func() {
+			read := c.readOperation()
+			fmt.Print("value read: ", read, "\n")
+
+		}()
 		rc += 1
+		time.Sleep(100 * time.Millisecond)
 	}
 	for {
 		time.Sleep(100 * time.Millisecond)
