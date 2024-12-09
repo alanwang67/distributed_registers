@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/csv"
 	"encoding/json"
 	"os"
 	"path/filepath"
@@ -11,9 +12,6 @@ import (
 	"github.com/alanwang67/distributed_registers/session_semantics/protocol"
 	"github.com/alanwang67/distributed_registers/session_semantics/server"
 	"github.com/charmbracelet/log"
-	"gonum.org/v1/plot"
-	"gonum.org/v1/plot/plotter"
-	"gonum.org/v1/plot/vg"
 )
 
 // Metric represents a single performance metric
@@ -52,28 +50,18 @@ type WorkloadConfig struct {
 }
 
 func main() {
-	// Set log level to debug
 	log.SetLevel(log.DebugLevel)
 
-	// Log command-line arguments
-	log.Infof("Arguments: %v", os.Args)
-
-	// Check for correct number of arguments
 	if len(os.Args) < 3 {
 		log.Fatalf("Usage: %s [client|server] [id]", os.Args[0])
 	}
 
-	// Get the current working directory
 	exeDir, err := os.Getwd()
 	if err != nil {
 		log.Fatalf("Error getting current directory: %v", err)
 	}
-	log.Debugf("Current directory: %s", exeDir)
 
-	// Construct the path to config.json in the same directory as main.go
 	configFile := filepath.Join(exeDir, "config.json")
-
-	// Read the config file
 	configData, err := os.ReadFile(configFile)
 	if err != nil {
 		log.Fatalf("Can't read config.json: %s", err)
@@ -85,7 +73,6 @@ func main() {
 		log.Fatalf("Can't unmarshal JSON: %s", err)
 	}
 
-	// Initialize servers from the config
 	servers := make([]*protocol.Connection, len(config.Servers))
 	for i, s := range config.Servers {
 		servers[i] = &protocol.Connection{
@@ -94,7 +81,6 @@ func main() {
 		}
 	}
 
-	// Parse the ID from command-line arguments
 	id, err := strconv.ParseUint(os.Args[2], 10, 64)
 	if err != nil {
 		log.Fatalf("Can't convert %s to int: %s", os.Args[2], err)
@@ -102,19 +88,14 @@ func main() {
 
 	switch os.Args[1] {
 	case "client":
-		// Run the client and collect metrics
 		metrics := runClientWithMetrics(id, servers, config.Workload)
-
-		// Save metrics and generate charts
 		saveMetrics(metrics, "metrics.json")
-		generateChart(metrics, "latency_chart.png")
-		generateThroughputChart(metrics, "throughput_chart.png")
+		saveMetricsToCSV(metrics, "latency.csv", "throughput.csv")
 
 	case "server":
 		if id >= uint64(len(servers)) {
 			log.Fatalf("Invalid server id %d", id)
 		}
-		// Start the server for the given id
 		err := server.New(id, servers[id], servers).Start()
 		if err != nil {
 			log.Fatalf("Server %d encountered an error: %v", id, err)
@@ -125,7 +106,6 @@ func main() {
 	}
 }
 
-// runClientWithMetrics executes the workload and tracks performance metrics
 func runClientWithMetrics(id uint64, servers []*protocol.Connection, workload []WorkloadConfig) []Metric {
 	c := client.New(id, servers)
 
@@ -166,7 +146,6 @@ func runClientWithMetrics(id uint64, servers []*protocol.Connection, workload []
 	return metrics
 }
 
-// saveMetrics writes the collected metrics to a JSON file
 func saveMetrics(metrics []Metric, filename string) {
 	data, err := json.MarshalIndent(metrics, "", "  ")
 	if err != nil {
@@ -178,53 +157,42 @@ func saveMetrics(metrics []Metric, filename string) {
 	log.Infof("Metrics saved to %s", filename)
 }
 
-// generateChart creates a latency chart and saves it to a file
-func generateChart(metrics []Metric, filename string) {
-	points := make(plotter.XYs, len(metrics))
-	for i, metric := range metrics {
-		points[i].X = float64(metric.OperationIndex)
-		points[i].Y = metric.Latency
-	}
-
-	p := plot.New()
-	p.Title.Text = "Operation Latency"
-	p.X.Label.Text = "Operation Index"
-	p.Y.Label.Text = "Latency (s)"
-
-	line, err := plotter.NewLine(points)
+func saveMetricsToCSV(metrics []Metric, latencyFile, throughputFile string) {
+	// Save latency data
+	latencyCSV, err := os.Create(latencyFile)
 	if err != nil {
-		log.Fatalf("Failed to create plot line: %v", err)
+		log.Fatalf("Failed to create latency CSV: %v", err)
 	}
-	p.Add(line)
+	defer latencyCSV.Close()
+	latencyWriter := csv.NewWriter(latencyCSV)
+	defer latencyWriter.Flush()
 
-	if err := p.Save(8*vg.Inch, 4*vg.Inch, filename); err != nil {
-		log.Fatalf("Failed to save chart: %v", err)
-	}
-	log.Infof("Latency chart saved to %s", filename)
-}
-
-// generateThroughputChart creates a throughput chart and saves it to a file
-func generateThroughputChart(metrics []Metric, filename string) {
-	points := make(plotter.XYs, len(metrics))
-	for i, metric := range metrics {
-		throughput := float64(metric.OperationIndex) / metric.Timestamp // Throughput = operations / time
-		points[i].X = metric.Timestamp
-		points[i].Y = throughput
+	latencyWriter.Write([]string{"OperationIndex", "Latency"})
+	for _, metric := range metrics {
+		latencyWriter.Write([]string{
+			strconv.Itoa(metric.OperationIndex),
+			strconv.FormatFloat(metric.Latency, 'f', 6, 64),
+		})
 	}
 
-	p := plot.New()
-	p.Title.Text = "Operation Throughput"
-	p.X.Label.Text = "Time (s)"
-	p.Y.Label.Text = "Throughput (ops/s)"
-
-	line, err := plotter.NewLine(points)
+	// Save throughput data
+	throughputCSV, err := os.Create(throughputFile)
 	if err != nil {
-		log.Fatalf("Failed to create plot line: %v", err)
+		log.Fatalf("Failed to create throughput CSV: %v", err)
 	}
-	p.Add(line)
+	defer throughputCSV.Close()
+	throughputWriter := csv.NewWriter(throughputCSV)
+	defer throughputWriter.Flush()
 
-	if err := p.Save(8*vg.Inch, 4*vg.Inch, filename); err != nil {
-		log.Fatalf("Failed to save chart: %v", err)
+	throughputWriter.Write([]string{"Timestamp", "Throughput"})
+	for _, metric := range metrics {
+		throughput := float64(metric.OperationIndex) / metric.Timestamp
+		throughputWriter.Write([]string{
+			strconv.FormatFloat(metric.Timestamp, 'f', 6, 64),
+			strconv.FormatFloat(throughput, 'f', 6, 64),
+		})
 	}
-	log.Infof("Throughput chart saved to %s", filename)
+
+	log.Infof("Latency data saved to %s", latencyFile)
+	log.Infof("Throughput data saved to %s", throughputFile)
 }
