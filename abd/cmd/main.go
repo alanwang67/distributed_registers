@@ -139,9 +139,8 @@ func startClient(id int, config Config, resultsDir string, interactive bool) {
 }
 
 func executeWorkload(cli *client.Client, clientServers []client.ServerConfig, workload []client.Instruction, resultsDir string) {
-	// We'll store data points in slices for throughput and latency.
-	var latencyX, latencyY []float64
-	var throughputX, throughputY []float64
+	// Use data points for throughput and latency as defined in paxos_dh
+	var latencyX, latencyY, throughputX, throughputY []float64
 
 	start := time.Now()
 
@@ -177,36 +176,24 @@ func executeWorkload(cli *client.Client, clientServers []client.ServerConfig, wo
 
 	fmt.Println("Client: Workload execution completed.")
 
-	// Generate charts using go-chart
-	generateChart(
-		"Throughput",
-		"Time (s)",
-		"Throughput (operations/s)",
-		throughputX,
-		throughputY,
-		filepath.Join(resultsDir, "throughput.png"),
-	)
+	generateChart("Throughput", "Time (s)", "Throughput (operations/s)",
+		throughputX, throughputY, filepath.Join(resultsDir, "throughput.png"))
 
-	generateChart(
-		"Latency",
-		"Operation",
-		"Latency (ms)",
-		latencyX,
-		latencyY,
-		filepath.Join(resultsDir, "latency.png"),
-	)
+	generateChart("Latency", "Operation", "Latency (ms)",
+		latencyX, latencyY, filepath.Join(resultsDir, "latency.png"))
 }
 
-// generateChart uses go-chart to create and save a PNG chart.
-func generateChart(title, xLabel, yLabel string, xData, yData []float64, filepath string) {
-	// Convert the slices into a ContinuousSeries
+// generateChart creates and saves a PNG chart using go-chart.
+func generateChart(title, xLabel, yLabel string, xData, yData []float64, outPath string) {
+	// Create a continuous series
 	series := chart.ContinuousSeries{
 		Name:    title,
 		XValues: xData,
 		YValues: yData,
 	}
 
-	graph := chart.Chart{
+	// Build the chart
+	c := chart.Chart{
 		Title: title,
 		XAxis: chart.XAxis{
 			Name: xLabel,
@@ -214,18 +201,21 @@ func generateChart(title, xLabel, yLabel string, xData, yData []float64, filepat
 		YAxis: chart.YAxis{
 			Name: yLabel,
 		},
-		Series: []chart.Series{series},
+		Series: []chart.Series{
+			series,
+		},
 	}
 
-	f, err := os.Create(filepath)
+	// Create the file
+	f, err := os.Create(outPath)
 	if err != nil {
 		fmt.Printf("Error creating chart file: %v\n", err)
 		return
 	}
 	defer f.Close()
 
-	err = graph.Render(chart.PNG, f)
-	if err != nil {
+	// Render the chart as PNG
+	if err := c.Render(chart.PNG, f); err != nil {
 		fmt.Printf("Error rendering chart: %v\n", err)
 	}
 }
