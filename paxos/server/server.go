@@ -1,13 +1,13 @@
 package server
 
 import (
-	"math/rand/v2"
+	"log"
+	"math/rand"
 	"net"
 	"net/rpc"
 	"sync"
 
 	"github.com/alanwang67/distributed_registers/paxos/protocol"
-	"github.com/charmbracelet/log"
 )
 
 type Server struct {
@@ -63,13 +63,13 @@ func New(id uint64, self *protocol.Connection, peers []*protocol.Connection) *Se
 }
 
 func (s *Server) HandleClientRequest(req *protocol.ClientRequest, reply *protocol.ClientReply) error {
-	log.Debugf("server %d handling client request %d", s.Id, req.Id)
+	log.Printf("[DEBUG] server %d handling client request %d", s.Id, req.Id)
 
 	*reply = protocol.ClientReply{
 		ServerId:  s.Id,
 		SessionId: uint64(rand.Uint32())<<32 + uint64(rand.Uint32()),
 	}
-	log.Debugf("server %d replied to client %d with session %d", s.Id, req.Id, reply.SessionId)
+	log.Printf("[DEBUG] server %d replied to client %d with session %d", s.Id, req.Id, reply.SessionId)
 
 	return nil
 }
@@ -93,7 +93,7 @@ func (s *Server) PrepareRequest(request *PrepareRequest, reply *PrepareReply) er
 
 func (s *Server) AcceptProposal(request *AcceptRequest, reply *AcceptReply) error {
 	s.mu.Lock()
-	log.Debugf("Server %d received AcceptProposal (N=%d, value=%d)", s.Id, request.ProposalNumber, request.Value)
+	log.Printf("[DEBUG] Server %d received AcceptProposal (N=%d, value=%d)", s.Id, request.ProposalNumber, request.Value)
 	if s.LowestN <= request.ProposalNumber {
 		s.LatestAcceptedProposalNumber = request.ProposalNumber
 		s.LatestAcceptedProposalData = request.Value
@@ -101,7 +101,7 @@ func (s *Server) AcceptProposal(request *AcceptRequest, reply *AcceptReply) erro
 	s.Accepted = true
 	reply.Succeeded = true
 	s.mu.Unlock()
-	log.Debugf("Server %d accepted proposal %d with value %d", s.Id, request.ProposalNumber, request.Value)
+	log.Printf("[DEBUG] Server %d accepted proposal %d with value %d", s.Id, request.ProposalNumber, request.Value)
 	return nil
 }
 
@@ -117,14 +117,14 @@ func (s *Server) QuorumRead(request *ReadRequest, reply *ReadReply) error {
 }
 
 func (s *Server) Start() error {
-	log.Debugf("starting server %d", s.Id)
+	log.Printf("[DEBUG] starting server %d", s.Id)
 
 	l, err := net.Listen(s.Self.Network, s.Self.Address)
 	if err != nil {
 		return err
 	}
 	defer l.Close()
-	log.Debugf("server %d listening on %s", s.Id, s.Self.Address)
+	log.Printf("[DEBUG] server %d listening on %s", s.Id, s.Self.Address)
 
 	rpc.Register(s)
 

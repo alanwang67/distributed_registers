@@ -200,29 +200,42 @@ func (c *Client) abdWrite(value uint64) error {
 		Value:   value,
 	}
 
-	// Process each server sequentially
+	var wg sync.WaitGroup
+	errors := make(chan error, len(c.Servers)) // Collect errors from goroutines
+
+	// Propagate write to all servers concurrently
 	for _, srv := range c.Servers {
-		// Acquire the mutex to safely check and use the connection
-		c.mutex.Lock()
-		conn, exists := c.Connections[srv.Address]
-		c.mutex.Unlock()
+		wg.Add(1)
+		go func(srv *ServerConfig) {
+			defer wg.Done()
 
-		if !exists {
-			fmt.Printf("Client: No active connection to server %s\n", srv.Address)
-			continue
-		}
+			c.mutex.Lock()
+			conn, exists := c.Connections[srv.Address]
+			c.mutex.Unlock()
 
-		var reply struct{}
-		err := conn.Call("Server.HandleWriteRequest", writeReq, &reply)
-		if err != nil {
-			// If an error occurs, remove the connection and log it
-			c.removeConnection(srv.Address)
-			fmt.Printf("Client: ABD Write Error - Server %s: %v\n", srv.Address, err)
-			continue
-		}
+			if !exists {
+				errors <- fmt.Errorf("no active connection to server %s", srv.Address)
+				return
+			}
 
-		fmt.Printf("Client: WRITE propagated to server %s - Version: %d, Value: %d\n",
-			srv.Address, version, value)
+			var reply struct{}
+			err := conn.Call("Server.HandleWriteRequest", writeReq, &reply)
+			if err != nil {
+				c.removeConnection(srv.Address)
+				errors <- fmt.Errorf("write failed to server %s: %v", srv.Address, err)
+				return
+			}
+
+			fmt.Printf("Client: WRITE propagated to server %s - Version: %d, Value: %d\n", srv.Address, version, value)
+		}(srv)
+	}
+
+	wg.Wait()
+	close(errors)
+
+	// Log and handle any errors
+	for err := range errors {
+		fmt.Printf("Client: ABD Write Error - %v\n", err)
 	}
 
 	fmt.Printf("Client: ABD Write completed - Version: %d, Value: %d\n", version, value)

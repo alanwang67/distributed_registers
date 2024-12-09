@@ -2,10 +2,9 @@ package client
 
 import (
 	"fmt"
+	"log"
 	"sync"
 	"time"
-
-	"github.com/charmbracelet/log"
 
 	"github.com/alanwang67/distributed_registers/paxos/protocol"
 	"github.com/alanwang67/distributed_registers/paxos/sequencer"
@@ -22,7 +21,7 @@ type Client struct {
 }
 
 func New(id uint64, servers []*protocol.Connection, sequencers []*protocol.Connection) *Client {
-	log.Debugf("client %d created", id)
+	log.Printf("[DEBUG] client %d created", id)
 	return &Client{
 		Id:         id,
 		Servers:    servers,
@@ -37,16 +36,16 @@ func invokeSafe(conn protocol.Connection, method string, args, reply any) error 
 	err := protocol.Invoke(conn, method, args, reply)
 	elapsed := time.Since(start)
 	if err != nil {
-		log.Errorf("RPC call %s to %s failed (took %v): %v", method, conn.Address, elapsed, err)
+		log.Printf("[ERROR] RPC call %s to %s failed (took %v): %v", method, conn.Address, elapsed, err)
 	} else {
-		log.Debugf("RPC call %s to %s succeeded (took %v)", method, conn.Address, elapsed)
+		log.Printf("[DEBUG] RPC call %s to %s succeeded (took %v)", method, conn.Address, elapsed)
 	}
 	return err
 }
 
 func (c *Client) Start() error {
 	time.Sleep(500 * time.Millisecond)
-	log.Infof("starting client %d", c.Id)
+	log.Printf("[INFO] starting client %d", c.Id)
 
 	maxWrites := 10
 	retries := 0
@@ -58,39 +57,39 @@ func (c *Client) Start() error {
 
 		getPropStart := time.Now()
 		err := invokeSafe(*c.Sequencers[0], "Sequencer.GetProposalNumber", &req, &rep)
-		log.Debugf("Client %d: GetProposalNumber took %v", c.Id, time.Since(getPropStart))
+		log.Printf("[DEBUG] Client %d: GetProposalNumber took %v", c.Id, time.Since(getPropStart))
 		if err != nil || rep.Count == 0 {
-			log.Errorf("failed to get valid proposal number, retrying...")
+			log.Printf("[ERROR] failed to get valid proposal number, retrying...")
 			time.Sleep(100 * time.Millisecond)
 			continue
 		}
 
-		log.Infof("Client %d attempting write with proposal %d, value %d", c.Id, rep.Count, valueToWrite)
+		log.Printf("[INFO] Client %d attempting write with proposal %d, value %d", c.Id, rep.Count, valueToWrite)
 		writeStart := time.Now()
 		if !c.writeOperation(rep.Count, valueToWrite) {
-			log.Warnf("Client %d: writeOperation failed, took %v", c.Id, time.Since(writeStart))
+			log.Printf("[WARN] Client %d: writeOperation failed, took %v", c.Id, time.Since(writeStart))
 			retries++
 			if retries >= 3 {
-				log.Errorf("Client %d: writeOperation failed after 3 attempts, aborting writes.", c.Id)
+				log.Printf("[ERROR] Client %d: writeOperation failed after 3 attempts, aborting writes.", c.Id)
 				break
 			}
-			log.Warnf("writeOperation failed, retrying... (%d/3)", retries)
+			log.Printf("[WARN] writeOperation failed, retrying... (%d/3)", retries)
 			time.Sleep(200 * time.Millisecond)
 			continue
 		}
-		log.Infof("Client %d: writeOperation succeeded in %v", c.Id, time.Since(writeStart))
+		log.Printf("[INFO] Client %d: writeOperation succeeded in %v", c.Id, time.Since(writeStart))
 
 		// Write succeeded
 		retries = 0
 		c.chosen = true
 		c.chosenVal = valueToWrite
-		log.Infof("Client %d: Value %d chosen!", c.Id, c.chosenVal)
+		log.Printf("[INFO] Client %d: Value %d chosen!", c.Id, c.chosenVal)
 
 		// Perform a few reads to check the stable majority
 		for j := 0; j < 3; j++ {
 			readStart := time.Now()
 			val := c.readOperation()
-			log.Infof("Client %d read quorum value: %d (took %v)", c.Id, val, time.Since(readStart))
+			log.Printf("[INFO] Client %d read quorum value: %d (took %v)", c.Id, val, time.Since(readStart))
 			fmt.Printf("value read: %d\n", val)
 			time.Sleep(200 * time.Millisecond)
 		}
@@ -115,7 +114,7 @@ func (c *Client) writeOperation(ProposalNumber uint64, value uint64) bool {
 	var l sync.Mutex
 	cond := sync.NewCond(&l)
 
-	log.Debugf("Client %d: Starting writeOperation with ProposalNumber=%d, Value=%d", c.Id, ProposalNumber, value)
+	log.Printf("[DEBUG] Client %d: Starting writeOperation with ProposalNumber=%d, Value=%d", c.Id, ProposalNumber, value)
 	prepareStart := time.Now()
 
 	// Prepare phase
@@ -143,7 +142,7 @@ func (c *Client) writeOperation(ProposalNumber uint64, value uint64) bool {
 		remaining := time.Until(deadline)
 		if remaining <= 0 {
 			l.Unlock()
-			log.Errorf("writeOperation timed out waiting for prepare majority (proposal %d)", ProposalNumber)
+			log.Printf("[ERROR] writeOperation timed out waiting for prepare majority (proposal %d)", ProposalNumber)
 			return false
 		}
 		cond.Wait()
@@ -151,10 +150,10 @@ func (c *Client) writeOperation(ProposalNumber uint64, value uint64) bool {
 	l.Unlock()
 
 	if voted < majority {
-		log.Errorf("writeOperation: no majority in prepare phase for proposal %d", ProposalNumber)
+		log.Printf("[ERROR] writeOperation: no majority in prepare phase for proposal %d", ProposalNumber)
 		return false
 	}
-	log.Debugf("writeOperation: prepare majority reached for proposal %d, proposing value %d (prepare took %v)",
+	log.Printf("[DEBUG] writeOperation: prepare majority reached for proposal %d, proposing value %d (prepare took %v)",
 		ProposalNumber, latestAcceptedProposalData, time.Since(prepareStart))
 
 	// Accept phase
@@ -181,12 +180,12 @@ func (c *Client) writeOperation(ProposalNumber uint64, value uint64) bool {
 
 	wg.Wait()
 	if acceptCount < majority {
-		log.Errorf("writeOperation: no majority in accept phase for proposal %d (needed %d got %d)",
+		log.Printf("[ERROR] writeOperation: no majority in accept phase for proposal %d (needed %d got %d)",
 			ProposalNumber, majority, acceptCount)
 		return false
 	}
 
-	log.Debugf("writeOperation: accept majority reached for proposal %d (accept took %v)", ProposalNumber, time.Since(acceptStart))
+	log.Printf("[DEBUG] writeOperation: accept majority reached for proposal %d (accept took %v)", ProposalNumber, time.Since(acceptStart))
 	return true
 }
 
@@ -229,7 +228,7 @@ func (c *Client) readOperation() uint64 {
 	var l sync.Mutex
 	cond := sync.NewCond(&l)
 
-	log.Debugf("Client %d: Starting readOperation", c.Id)
+	log.Printf("[DEBUG] Client %d: Starting readOperation", c.Id)
 	for i := range c.Servers {
 		i := i
 		go func() {
@@ -256,7 +255,7 @@ func (c *Client) readOperation() uint64 {
 		remaining := time.Until(deadline)
 		if remaining <= 0 {
 			l.Unlock()
-			log.Errorf("readOperation: timed out waiting for majority read (took %v)", time.Since(readStart))
+			log.Printf("[ERROR] readOperation: timed out waiting for majority read (took %v)", time.Since(readStart))
 			return 0
 		}
 		cond.Wait()
@@ -269,7 +268,7 @@ func (c *Client) readOperation() uint64 {
 
 	if !b {
 		// No stable majority: attempt stabilization
-		log.Debugf("readOperation: no stable majority found, attempting stabilization write with value %d (read took %v so far)",
+		log.Printf("[DEBUG] readOperation: no stable majority found, attempting stabilization write with value %d (read took %v so far)",
 			retValue, time.Since(readStart))
 		req := sequencer.ReqProposalNum{}
 		rep := sequencer.ReplyProposalNum{}
@@ -277,16 +276,16 @@ func (c *Client) readOperation() uint64 {
 		if err == nil {
 			stabStart := time.Now()
 			if !c.writeOperation(rep.Count, retValue) {
-				log.Errorf("readOperation: stabilization write failed (attempted after %v total read time)", time.Since(readStart))
+				log.Printf("[ERROR] readOperation: stabilization write failed (attempted after %v total read time)", time.Since(readStart))
 			} else {
-				log.Debugf("readOperation: stabilization write succeeded (stabilization took %v, total read time %v)",
+				log.Printf("[DEBUG] readOperation: stabilization write succeeded (stabilization took %v, total read time %v)",
 					time.Since(stabStart), time.Since(readStart))
 			}
 		} else {
-			log.Errorf("readOperation: failed to get new proposal number for stabilization: %v", err)
+			log.Printf("[ERROR] readOperation: failed to get new proposal number for stabilization: %v", err)
 		}
 	} else {
-		log.Debugf("readOperation: stable majority read with value %d (took %v)", retValue, time.Since(readStart))
+		log.Printf("[DEBUG] readOperation: stable majority read with value %d (took %v)", retValue, time.Since(readStart))
 	}
 
 	return retValue
