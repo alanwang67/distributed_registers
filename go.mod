@@ -9,6 +9,8 @@ require (
 
 require golang.org/x/exp v0.0.0-20241009180824-f66d83c29e7c // indirect
 
+require github.com/wcharczuk/go-chart/v2 v2.1.2
+
 require (
 	git.sr.ht/~sbinet/gg v0.6.0 // indirect
 	github.com/ajstarks/svgo v0.0.0-20211024235047-1546f124cd8b // indirect

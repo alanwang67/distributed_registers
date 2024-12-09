@@ -11,9 +11,7 @@ import (
 	"github.com/alanwang67/distributed_registers/abd/client"
 	"github.com/alanwang67/distributed_registers/abd/protocol"
 	"github.com/alanwang67/distributed_registers/abd/server"
-	"gonum.org/v1/plot"
-	"gonum.org/v1/plot/plotter"
-	"gonum.org/v1/plot/vg"
+	"github.com/wcharczuk/go-chart/v2"
 )
 
 // Config structure for parsing the `config.json` file.
@@ -141,7 +139,7 @@ func startClient(id int, config Config, resultsDir string, interactive bool) {
 }
 
 func executeWorkload(cli *client.Client, clientServers []client.ServerConfig, workload []client.Instruction, resultsDir string) {
-	var throughputData, latencyData plotter.XYs
+	var latencyX, latencyY, throughputX, throughputY []float64
 	start := time.Now()
 
 	fmt.Println("Client: Starting workload execution...")
@@ -155,20 +153,16 @@ func executeWorkload(cli *client.Client, clientServers []client.ServerConfig, wo
 			continue
 		}
 
-		// Measure latency
+		// Measure latency in ms
 		latency := float64(time.Since(operationStart).Milliseconds())
-		latencyData = append(latencyData, plotter.XY{
-			X: float64(i + 1),
-			Y: latency,
-		})
+		latencyX = append(latencyX, float64(i+1))
+		latencyY = append(latencyY, latency)
 
-		// Measure throughput
+		// Measure throughput (operations/sec)
 		elapsed := time.Since(start).Seconds()
 		throughput := float64(i+1) / elapsed
-		throughputData = append(throughputData, plotter.XY{
-			X: elapsed,
-			Y: throughput,
-		})
+		throughputX = append(throughputX, elapsed)
+		throughputY = append(throughputY, throughput)
 
 		// Apply delay
 		if instr.Delay > 0 {
@@ -179,25 +173,47 @@ func executeWorkload(cli *client.Client, clientServers []client.ServerConfig, wo
 	}
 
 	fmt.Println("Client: Workload execution completed.")
-	generateChart("Throughput", "Time (s)", "Throughput (operations/s)", throughputData, filepath.Join(resultsDir, "throughput.png"))
-	generateChart("Latency", "Operation", "Latency (ms)", latencyData, filepath.Join(resultsDir, "latency.png"))
+
+	generateChart("Throughput", "Time (s)", "Throughput (operations/s)",
+		throughputX, throughputY, filepath.Join(resultsDir, "throughput.png"))
+
+	generateChart("Latency", "Operation", "Latency (ms)",
+		latencyX, latencyY, filepath.Join(resultsDir, "latency.png"))
 }
 
-// generateChart creates and saves a PNG chart.
-func generateChart(title, xLabel, yLabel string, data plotter.XYs, filepath string) {
-	p := plot.New()
-	p.Title.Text = title
-	p.X.Label.Text = xLabel
-	p.Y.Label.Text = yLabel
+// generateChart creates and saves a PNG chart using go-chart.
+func generateChart(title, xLabel, yLabel string, xData, yData []float64, outPath string) {
+	// Create a continuous series
+	series := chart.ContinuousSeries{
+		Name:    title,
+		XValues: xData,
+		YValues: yData,
+	}
 
-	line, err := plotter.NewLine(data)
+	// Build the chart
+	c := chart.Chart{
+		Title: title,
+		XAxis: chart.XAxis{
+			Name: xLabel,
+		},
+		YAxis: chart.YAxis{
+			Name: yLabel,
+		},
+		Series: []chart.Series{
+			series,
+		},
+	}
+
+	// Create the file
+	f, err := os.Create(outPath)
 	if err != nil {
-		fmt.Printf("Error creating line plot: %v\n", err)
+		fmt.Printf("Error creating chart file: %v\n", err)
 		return
 	}
-	p.Add(line)
+	defer f.Close()
 
-	if err := p.Save(10*vg.Inch, 4*vg.Inch, filepath); err != nil {
-		fmt.Printf("Error saving plot: %v\n", err)
+	// Render the chart as PNG (width=1000px, height=400px)
+	if err := c.Render(chart.PNG, f); err != nil {
+		fmt.Printf("Error rendering chart: %v\n", err)
 	}
 }
