@@ -78,11 +78,14 @@ func (s *Server) HandleReadConfirm(req *protocol.ReadConfirmRequest, reply *prot
 	defer s.mutex.Unlock()
 
 	if req.Version > s.Version {
+		oldVersion, oldValue := s.Version, s.Value
 		s.Version = req.Version
 		s.Value = req.Value
-		log.Printf("Server %d: ReadConfirm - Updated Version: %d, Value: %d", s.ID, req.Version, req.Value)
+		log.Printf("Server %d: ReadConfirm - Updated from (V:%d,Val:%d) to (V:%d,Val:%d)",
+			s.ID, oldVersion, oldValue, s.Version, s.Value)
 	} else {
-		log.Printf("Server %d: ReadConfirm Ignored - Incoming Version: %d <= Current Version: %d", s.ID, req.Version, s.Version)
+		log.Printf("Server %d: ReadConfirm Ignored - Incoming Version: %d <= Current Version: %d",
+			s.ID, req.Version, s.Version)
 	}
 
 	reply.Acknowledged = true
@@ -95,33 +98,50 @@ func (s *Server) HandleWriteRequest(req *protocol.WriteRequest, reply *protocol.
 	defer s.mutex.Unlock()
 
 	if req.Version >= s.Version {
+		oldVersion, oldValue := s.Version, s.Value
 		s.Version = req.Version
 		s.Value = req.Value
 		go s.PropagateWrite(req.Version, req.Value)
-		log.Printf("Server %d: Client WRITE - Updated Version: %d, Value: %d", s.ID, s.Version, s.Value)
+		log.Printf("Server %d: Client WRITE - Updated from (V:%d,Val:%d) to (V:%d,Val:%d)",
+			s.ID, oldVersion, oldValue, s.Version, s.Value)
 	} else {
-		log.Printf("Server %d: Client WRITE Ignored - Incoming Version: %d < Current Version: %d", s.ID, req.Version, s.Version)
+		log.Printf("Server %d: Client WRITE Ignored - Incoming Version: %d < Current Version: %d",
+			s.ID, req.Version, s.Version)
 	}
 	return nil
 }
 
-// PropagateWrite sends write updates to peer servers.
+// PropagateWrite sends write updates to peer servers, aggregating results and logging a summary.
 func (s *Server) PropagateWrite(version uint64, value uint64) {
+	var wg sync.WaitGroup
+	var mu sync.Mutex
+	successes := 0
+	failures := 0
+
 	for _, peer := range s.Peers {
+		wg.Add(1)
 		go func(peer *protocol.Connection) {
+			defer wg.Done()
 			writeReq := protocol.WriteRequest{Version: version, Value: value}
 			var reply protocol.WriteReply
 			err := protocol.Invoke(*peer, "Server.HandleWriteRequest", &writeReq, &reply)
+			mu.Lock()
+			defer mu.Unlock()
 			if err != nil {
-				log.Printf("Server %d: Write Propagation to %s failed: %v", s.ID, peer.Address, err)
+				failures++
 			} else {
-				log.Printf("Server %d: Write Propagated to %s - Version: %d, Value: %d", s.ID, peer.Address, version, value)
+				successes++
 			}
 		}(peer)
 	}
+
+	wg.Wait()
+	// Log a single summary line
+	log.Printf("Server %d: Write Propagation Complete - Version: %d, Value: %d, Successes: %d, Failures: %d",
+		s.ID, version, value, successes, failures)
 }
 
-// SendHeartbeat sends periodic heartbeat messages to all peers and logs the server's state.
+// SendHeartbeat sends periodic heartbeat messages to all peers and logs a summarized state.
 func (s *Server) SendHeartbeat() {
 	ticker := time.NewTicker(5 * time.Second)
 	defer ticker.Stop()
@@ -134,31 +154,31 @@ func (s *Server) SendHeartbeat() {
 		s.mutex.RLock()
 		version := s.Version
 		value := s.Value
-		aliveStatus := make(map[string]bool, len(s.Alive))
-		for addr, status := range s.Alive {
-			aliveStatus[addr] = status
+
+		// Count how many are alive vs down
+		totalPeers := len(s.Alive)
+		aliveCount := 0
+		for _, status := range s.Alive {
+			if status {
+				aliveCount++
+			}
 		}
 		s.mutex.RUnlock()
 
-		log.Printf("==== Server %d: Heartbeat Timeout %d ====", s.ID, timeoutCount)
+		log.Printf("==== Server %d: Heartbeat %d ====", s.ID, timeoutCount)
 		log.Printf("Current State: Version: %d, Value: %d", version, value)
+		log.Printf("Peers: %d total, %d alive, %d down", totalPeers, aliveCount, totalPeers-aliveCount)
 
-		for addr, status := range aliveStatus {
-			if status {
-				log.Printf("Peer %s: LIVE", addr)
-			} else {
-				log.Printf("Peer %s: DOWN", addr)
-			}
-		}
-
+		var wg sync.WaitGroup
 		for _, peer := range s.Peers {
+			wg.Add(1)
 			go func(peer *protocol.Connection) {
+				defer wg.Done()
 				client, err := s.getConnection(peer)
 				if err != nil {
 					s.mutex.Lock()
 					s.Alive[peer.Address] = false
 					s.mutex.Unlock()
-					log.Printf("Heartbeat to %s failed: %v", peer.Address, err)
 					return
 				}
 				heartbeat := protocol.Heartbeat{Version: version, Value: value}
@@ -168,17 +188,16 @@ func (s *Server) SendHeartbeat() {
 					s.mutex.Lock()
 					s.Alive[peer.Address] = false
 					s.mutex.Unlock()
-					log.Printf("Heartbeat to %s failed: %v", peer.Address, err)
 				} else {
 					s.mutex.Lock()
 					s.Alive[peer.Address] = true
 					s.mutex.Unlock()
-					log.Printf("Heartbeat to %s successful.", peer.Address)
 				}
 			}(peer)
 		}
+		wg.Wait()
 
-		log.Printf("==== End of Heartbeat Timeout %d ====", timeoutCount)
+		log.Printf("==== End of Heartbeat %d ====", timeoutCount)
 	}
 }
 
@@ -188,9 +207,11 @@ func (s *Server) ReceiveHeartbeat(req *protocol.Heartbeat, reply *protocol.Heart
 	defer s.mutex.Unlock()
 
 	if req.Version > s.Version {
+		oldVersion, oldValue := s.Version, s.Value
 		s.Version = req.Version
 		s.Value = req.Value
-		log.Printf("Server %d: Heartbeat Update - Version: %d, Value: %d", s.ID, req.Version, req.Value)
+		log.Printf("Server %d: Heartbeat Update - from (V:%d,Val:%d) to (V:%d,Val:%d)",
+			s.ID, oldVersion, oldValue, s.Version, s.Value)
 	}
 	reply.Acknowledged = true
 	return nil
@@ -223,7 +244,7 @@ func (s *Server) Start() error {
 	for {
 		conn, err := listener.Accept()
 		if err != nil {
-			log.Printf("Connection error: %v", err)
+			log.Printf("Server %d: Connection error: %v", s.ID, err)
 			continue
 		}
 		log.Printf("Server %d: New client connected from %s", s.ID, conn.RemoteAddr())
