@@ -121,10 +121,10 @@ func runClientWithMetrics(id uint64, servers []*protocol.Connection, workload []
 
 		switch op.Type {
 		case "read":
-			resp := c.ReadFromServer(server.MonotonicWrites)
+			resp := c.ReadFromServer(server.ReadYourWrites)
 			log.Printf("[INFO] Client %d performed read operation: Response = %v", id, resp)
 		case "write":
-			resp := c.WriteToServer(op.Value, server.MonotonicWrites)
+			resp := c.WriteToServer(op.Value, server.ReadYourWrites)
 			log.Printf("[INFO] Client %d performed write operation with value %d: Response = %v", id, op.Value, resp)
 		default:
 			log.Printf("[WARN] Client %d encountered unknown operation type: %s", id, op.Type)
