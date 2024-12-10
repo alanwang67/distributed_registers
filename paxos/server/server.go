@@ -97,9 +97,9 @@ func (s *Server) AcceptProposal(request *AcceptRequest, reply *AcceptReply) erro
 	if s.LowestN <= request.ProposalNumber {
 		s.LatestAcceptedProposalNumber = request.ProposalNumber
 		s.LatestAcceptedProposalData = request.Value
+		s.Accepted = true
+		reply.Succeeded = true
 	}
-	s.Accepted = true
-	reply.Succeeded = true
 	s.mu.Unlock()
 	log.Printf("[DEBUG] Server %d accepted proposal %d with value %d", s.Id, request.ProposalNumber, request.Value)
 	return nil
