@@ -119,7 +119,7 @@ func runClient(id int, config Config) {
 
 	// Execute the workload
 	log.Printf("[Client %d] Starting workload execution.", id)
-	for idx, task := range config.Workload {
+	for _, task := range config.Workload {
 		operationStart := time.Now()
 		switch task.Type {
 		case "read":
@@ -131,7 +131,7 @@ func runClient(id int, config Config) {
 				continue
 			}
 			log.Printf("[Client %d] Executing write operation with value=%d.", id, *task.Value)
-			cli.Write(*task.Value, idx+1) // Use index+1 as version
+			cli.Write(*task.Value)
 		default:
 			log.Printf("[Client %d] Unknown task type: %s", id, task.Type)
 		}
