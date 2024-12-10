@@ -23,28 +23,27 @@ func (c *Client) Read() (int, int) {
 	quorum := len(c.Servers)/2 + 1
 	responses := 0
 
-	// Phase 1: Get phase - Fetch value and version from all servers
 	for _, server := range c.Servers {
-		log.Printf("Client %d fetching current state from server %v", c.ID, server)
 		conn, err := net.Dial("tcp", server["address"].(string))
 		if err != nil {
-			log.Printf("Client %d failed to connect to server %v: %v", c.ID, server, err)
+			log.Printf("Failed to connect to server %v: %v", server, err)
 			continue
 		}
 
 		request := map[string]interface{}{"type": "read"}
 		if err := json.NewEncoder(conn).Encode(request); err != nil {
-			log.Printf("Client %d failed to send read request to server %v: %v", c.ID, server, err)
+			log.Printf("Failed to send read request to server %v: %v", server, err)
 			conn.Close()
 			continue
 		}
 
 		var response map[string]interface{}
 		if err := json.NewDecoder(conn).Decode(&response); err != nil {
-			log.Printf("Client %d failed to decode read response from server %v: %v", c.ID, server, err)
+			log.Printf("Failed to decode read response from server %v: %v", server, err)
 			conn.Close()
 			continue
 		}
+
 		conn.Close()
 
 		version := int(response["version"].(float64))
@@ -56,73 +55,101 @@ func (c *Client) Read() (int, int) {
 		responses++
 	}
 
-	// Ensure quorum was reached
 	if responses < quorum {
-		log.Printf("Client %d could not achieve quorum for read operation", c.ID)
+		log.Printf("Read failed: insufficient responses to achieve quorum.")
 		return latestValue, maxVersion
 	}
 
-	// Phase 2: Write-back phase - Broadcast the latest value and version to all servers
-	for _, server := range c.Servers {
-		log.Printf("Client %d attempting to set phase on server %v", c.ID, server)
-		conn, err := net.Dial("tcp", server["address"].(string))
-		if err != nil {
-			log.Printf("Client %d failed to connect to server %v: %v", c.ID, server, err)
-			continue
-		}
-
-		request := map[string]interface{}{
-			"type":    "write",
-			"value":   latestValue,
-			"version": maxVersion,
-		}
-		if err := json.NewEncoder(conn).Encode(request); err != nil {
-			log.Printf("Client %d failed to send set phase to server %v: %v", c.ID, server, err)
-			conn.Close()
-			continue
-		}
-		conn.Close()
-		log.Printf("Client %d completed set phase on server %v", c.ID, server)
-	}
-
+	log.Printf("Read successful: Value=%d, Version=%d", latestValue, maxVersion)
 	return latestValue, maxVersion
 }
 
 // Write performs the ABD write operation in two phases:
 // 1. Fetch the current state (optional for generating unique version numbers).
 // 2. Broadcast the new (value, version) pair to all servers.
-func (c *Client) Write(value int, version int) {
-	responses := 0
+func (c *Client) Write(value int) (bool, int) {
 	quorum := len(c.Servers)/2 + 1
+	maxVersion := 0
+	responses := 0
 
-	// Broadcast new (value, version) to all servers
+	// Phase 1: Fetch current version from servers
 	for _, server := range c.Servers {
 		conn, err := net.Dial("tcp", server["address"].(string))
 		if err != nil {
-			log.Printf("Client %d failed to connect to server %v: %v", c.ID, server, err)
+			log.Printf("Failed to connect to server %v: %v", server, err)
 			continue
 		}
 
-		// Send write request
-		request := map[string]interface{}{
-			"type":    "write",
-			"value":   value,
-			"version": version,
-		}
+		request := map[string]interface{}{"type": "read"}
 		if err := json.NewEncoder(conn).Encode(request); err != nil {
-			log.Printf("Client %d failed to send write request to server %v: %v", c.ID, server, err)
+			log.Printf("Failed to send read request to server %v: %v", server, err)
+			conn.Close()
+			continue
+		}
+
+		var response map[string]interface{}
+		if err := json.NewDecoder(conn).Decode(&response); err != nil {
+			log.Printf("Failed to decode read response from server %v: %v", server, err)
 			conn.Close()
 			continue
 		}
 
 		conn.Close()
+
+		version := int(response["version"].(float64))
+		if version > maxVersion {
+			maxVersion = version
+		}
 		responses++
 	}
 
-	// Ensure quorum was reached
 	if responses < quorum {
-		log.Printf("Client %d failed to achieve quorum for write operation", c.ID)
-	} else {
-		log.Printf("Client %d successfully wrote value %d with version %d to quorum", c.ID, value, version)
+		log.Printf("Write aborted: insufficient responses during version fetch.")
+		return false, maxVersion
 	}
+
+	// Phase 2: Write the new value with incremented version
+	successfulWrites := 0
+	newVersion := maxVersion + 1
+
+	for _, server := range c.Servers {
+		conn, err := net.Dial("tcp", server["address"].(string))
+		if err != nil {
+			log.Printf("Failed to connect to server %v: %v", server, err)
+			continue
+		}
+
+		request := map[string]interface{}{
+			"type":    "write",
+			"value":   value,
+			"version": newVersion,
+		}
+
+		if err := json.NewEncoder(conn).Encode(request); err != nil {
+			log.Printf("Failed to send write request to server %v: %v", server, err)
+			conn.Close()
+			continue
+		}
+
+		var response map[string]interface{}
+		if err := json.NewDecoder(conn).Decode(&response); err != nil {
+			log.Printf("Failed to decode response from server %v: %v", server, err)
+			conn.Close()
+			continue
+		}
+
+		conn.Close()
+
+		if response["status"] == "ok" {
+			successfulWrites++
+		}
+	}
+
+	if successfulWrites >= quorum {
+		log.Printf("Write successful: Value=%d, Version=%d", value, newVersion)
+		return true, newVersion
+	}
+
+	log.Printf("Write failed to achieve quorum: Value=%d, Version=%d", value, maxVersion)
+	return false, maxVersion
 }
