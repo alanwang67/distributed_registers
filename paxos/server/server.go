@@ -97,6 +97,7 @@ func (s *Server) AcceptProposal(request *AcceptRequest, reply *AcceptReply) erro
 	if s.LowestN <= request.ProposalNumber {
 		s.LatestAcceptedProposalNumber = request.ProposalNumber
 		s.LatestAcceptedProposalData = request.Value
+		s.LowestN = max(s.LowestN, request.ProposalNumber)
 		s.Accepted = true
 		reply.Succeeded = true
 	}
