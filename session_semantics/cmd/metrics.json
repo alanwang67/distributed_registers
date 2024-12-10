@@ -2,6001 +2,6001 @@
   {
     "operation_index": 1,
     "operation_type": "read",
-    "latency": 0.0010322,
-    "timestamp": 0.0010322
+    "latency": 0.006087531,
+    "timestamp": 0.006088184
   },
   {
     "operation_index": 2,
     "operation_type": "read",
-    "latency": 0.0005219,
-    "timestamp": 0.0015541
+    "latency": 0.004616114,
+    "timestamp": 0.010705884
   },
   {
     "operation_index": 3,
     "operation_type": "write",
-    "latency": 0.0005094,
-    "timestamp": 0.0020635
+    "latency": 0.000665268,
+    "timestamp": 0.011372842
   },
   {
     "operation_index": 4,
     "operation_type": "write",
-    "latency": 0.0010331,
-    "timestamp": 0.0030966
+    "latency": 0.003917856,
+    "timestamp": 0.015292431
   },
   {
     "operation_index": 5,
     "operation_type": "write",
-    "latency": 0.0005184,
-    "timestamp": 0.003615
+    "latency": 0.000644186,
+    "timestamp": 0.015937714
   },
   {
     "operation_index": 6,
     "operation_type": "read",
-    "latency": 0.0005189,
-    "timestamp": 0.0041339
+    "latency": 0.000569188,
+    "timestamp": 0.016508882
   },
   {
     "operation_index": 7,
     "operation_type": "write",
-    "latency": 0.0006349,
-    "timestamp": 0.0047688
+    "latency": 0.001665996,
+    "timestamp": 0.018176108
   },
   {
     "operation_index": 8,
     "operation_type": "read",
-    "latency": 0.0005239,
-    "timestamp": 0.0052927
+    "latency": 0.00048578,
+    "timestamp": 0.01866295
   },
   {
     "operation_index": 9,
     "operation_type": "read",
-    "latency": 0.0010348,
-    "timestamp": 0.0063275
+    "latency": 0.001219227,
+    "timestamp": 0.019884475
   },
   {
     "operation_index": 10,
     "operation_type": "read",
-    "latency": 0.0015542,
-    "timestamp": 0.0078817
+    "latency": 0.000475342,
+    "timestamp": 0.020363523
   },
   {
     "operation_index": 11,
     "operation_type": "read",
-    "latency": 0.0005261,
-    "timestamp": 0.0084078
+    "latency": 0.001181729,
+    "timestamp": 0.021546077
   },
   {
     "operation_index": 12,
     "operation_type": "read",
-    "latency": 0.000527,
-    "timestamp": 0.0089348
+    "latency": 0.00104667,
+    "timestamp": 0.022593484
   },
   {
     "operation_index": 13,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.0089348
+    "latency": 0.001560802,
+    "timestamp": 0.024154922
   },
   {
     "operation_index": 14,
     "operation_type": "read",
-    "latency": 0.0010375,
-    "timestamp": 0.0099723
+    "latency": 0.001062314,
+    "timestamp": 0.02521769
   },
   {
     "operation_index": 15,
     "operation_type": "read",
-    "latency": 0.0005182,
-    "timestamp": 0.0104905
+    "latency": 0.000508693,
+    "timestamp": 0.025727564
   },
   {
     "operation_index": 16,
     "operation_type": "read",
-    "latency": 0.0005179,
-    "timestamp": 0.0110084
+    "latency": 0.001650534,
+    "timestamp": 0.027379339
   },
   {
     "operation_index": 17,
     "operation_type": "read",
-    "latency": 0.0010362,
-    "timestamp": 0.0120446
+    "latency": 0.00182304,
+    "timestamp": 0.02920348
   },
   {
     "operation_index": 18,
     "operation_type": "read",
-    "latency": 0.0005459,
-    "timestamp": 0.0125905
+    "latency": 0.000506079,
+    "timestamp": 0.0297105
   },
   {
     "operation_index": 19,
     "operation_type": "read",
-    "latency": 0.0010293,
-    "timestamp": 0.0136198
+    "latency": 0.001554287,
+    "timestamp": 0.03126624
   },
   {
     "operation_index": 20,
     "operation_type": "read",
-    "latency": 0.0010425,
-    "timestamp": 0.0146623
+    "latency": 0.00109042,
+    "timestamp": 0.032357913
   },
   {
     "operation_index": 21,
     "operation_type": "read",
-    "latency": 0.0005195,
-    "timestamp": 0.0151818
+    "latency": 0.001064743,
+    "timestamp": 0.033423464
   },
   {
     "operation_index": 22,
     "operation_type": "write",
-    "latency": 0,
-    "timestamp": 0.0151818
+    "latency": 0.001618786,
+    "timestamp": 0.035044887
   },
   {
     "operation_index": 23,
     "operation_type": "read",
-    "latency": 0.001045,
-    "timestamp": 0.0162268
+    "latency": 0.001520807,
+    "timestamp": 0.036566771
   },
   {
     "operation_index": 24,
     "operation_type": "read",
-    "latency": 0.0005202,
-    "timestamp": 0.016747
+    "latency": 0.001584489,
+    "timestamp": 0.038152894
   },
   {
     "operation_index": 25,
     "operation_type": "read",
-    "latency": 0.0005261,
-    "timestamp": 0.0172731
+    "latency": 0.000523199,
+    "timestamp": 0.038677119
   },
   {
     "operation_index": 26,
     "operation_type": "read",
-    "latency": 0.0005197,
-    "timestamp": 0.0177928
+    "latency": 0.001627931,
+    "timestamp": 0.040306363
   },
   {
     "operation_index": 27,
     "operation_type": "read",
-    "latency": 0.0005267,
-    "timestamp": 0.0183195
+    "latency": 0.001122605,
+    "timestamp": 0.041429903
   },
   {
     "operation_index": 28,
     "operation_type": "read",
-    "latency": 0.0005262,
-    "timestamp": 0.0188457
+    "latency": 0.001587747,
+    "timestamp": 0.043019538
   },
   {
     "operation_index": 29,
     "operation_type": "read",
-    "latency": 0.0011638,
-    "timestamp": 0.0200095
+    "latency": 0.000572179,
+    "timestamp": 0.043592865
   },
   {
     "operation_index": 30,
     "operation_type": "read",
-    "latency": 0.0005159,
-    "timestamp": 0.0205254
+    "latency": 0.000548121,
+    "timestamp": 0.044141932
   },
   {
     "operation_index": 31,
     "operation_type": "read",
-    "latency": 0.0005183,
-    "timestamp": 0.0210437
+    "latency": 0.00047905,
+    "timestamp": 0.044622061
   },
   {
     "operation_index": 32,
     "operation_type": "write",
-    "latency": 0.0005194,
-    "timestamp": 0.0215631
+    "latency": 0.001077687,
+    "timestamp": 0.04570142
   },
   {
     "operation_index": 33,
     "operation_type": "read",
-    "latency": 0.0005102,
-    "timestamp": 0.0220733
+    "latency": 0.001223312,
+    "timestamp": 0.046925745
   },
   {
     "operation_index": 34,
     "operation_type": "read",
-    "latency": 0.0005198,
-    "timestamp": 0.0225931
+    "latency": 0.000585152,
+    "timestamp": 0.047511947
   },
   {
     "operation_index": 35,
     "operation_type": "read",
-    "latency": 0.0005156,
-    "timestamp": 0.0231087
+    "latency": 0.000639494,
+    "timestamp": 0.048152614
   },
   {
     "operation_index": 36,
     "operation_type": "read",
-    "latency": 0.0005235,
-    "timestamp": 0.0236322
+    "latency": 0.000549293,
+    "timestamp": 0.048703659
   },
   {
     "operation_index": 37,
     "operation_type": "write",
-    "latency": 0.0005201,
-    "timestamp": 0.0241523
+    "latency": 0.000544681,
+    "timestamp": 0.049252638
   },
   {
     "operation_index": 38,
     "operation_type": "read",
-    "latency": 0.0005166,
-    "timestamp": 0.0246689
+    "latency": 0.001104739,
+    "timestamp": 0.050358236
   },
   {
     "operation_index": 39,
     "operation_type": "read",
-    "latency": 0.0011055,
-    "timestamp": 0.0257744
+    "latency": 0.001060784,
+    "timestamp": 0.051419733
   },
   {
     "operation_index": 40,
     "operation_type": "read",
-    "latency": 0.0005201,
-    "timestamp": 0.0262945
+    "latency": 0.000522999,
+    "timestamp": 0.051943278
   },
   {
     "operation_index": 41,
     "operation_type": "read",
-    "latency": 0.0005174,
-    "timestamp": 0.0268119
+    "latency": 0.00154622,
+    "timestamp": 0.053490552
   },
   {
     "operation_index": 42,
     "operation_type": "read",
-    "latency": 0.0005155,
-    "timestamp": 0.0273274
+    "latency": 0.001588739,
+    "timestamp": 0.055080444
   },
   {
     "operation_index": 43,
     "operation_type": "write",
-    "latency": 0.0010349,
-    "timestamp": 0.0283623
+    "latency": 0.001585055,
+    "timestamp": 0.056667808
   },
   {
     "operation_index": 44,
     "operation_type": "read",
-    "latency": 0.0005229,
-    "timestamp": 0.0288852
+    "latency": 0.000557433,
+    "timestamp": 0.057226289
   },
   {
     "operation_index": 45,
     "operation_type": "read",
-    "latency": 0.0010437,
-    "timestamp": 0.0299289
+    "latency": 0.001631279,
+    "timestamp": 0.05885864
   },
   {
     "operation_index": 46,
     "operation_type": "write",
-    "latency": 0.0005215,
-    "timestamp": 0.0304504
+    "latency": 0.001049752,
+    "timestamp": 0.059909707
   },
   {
     "operation_index": 47,
     "operation_type": "write",
-    "latency": 0.0005166,
-    "timestamp": 0.030967
+    "latency": 0.00100626,
+    "timestamp": 0.060916782
   },
   {
     "operation_index": 48,
     "operation_type": "read",
-    "latency": 0.0005197,
-    "timestamp": 0.0314867
+    "latency": 0.001514292,
+    "timestamp": 0.062432097
   },
   {
     "operation_index": 49,
     "operation_type": "write",
-    "latency": 0.0005201,
-    "timestamp": 0.0320068
+    "latency": 0.002236902,
+    "timestamp": 0.064669489
   },
   {
     "operation_index": 50,
     "operation_type": "read",
-    "latency": 0.0005213,
-    "timestamp": 0.0325281
+    "latency": 0.001592481,
+    "timestamp": 0.066262808
   },
   {
     "operation_index": 51,
     "operation_type": "read",
-    "latency": 0.0005191,
-    "timestamp": 0.0330472
+    "latency": 0.00055334,
+    "timestamp": 0.066817068
   },
   {
     "operation_index": 52,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.0330472
+    "latency": 0.001989458,
+    "timestamp": 0.068807675
   },
   {
     "operation_index": 53,
     "operation_type": "write",
-    "latency": 0.00052,
-    "timestamp": 0.0335672
+    "latency": 0.002257298,
+    "timestamp": 0.0710665
   },
   {
     "operation_index": 54,
     "operation_type": "read",
-    "latency": 0.0016639,
-    "timestamp": 0.0352311
+    "latency": 0.00051948,
+    "timestamp": 0.071586962
   },
   {
     "operation_index": 55,
     "operation_type": "read",
-    "latency": 0.0005172,
-    "timestamp": 0.0357483
+    "latency": 0.001083184,
+    "timestamp": 0.072671046
   },
   {
     "operation_index": 56,
     "operation_type": "read",
-    "latency": 0.0005302,
-    "timestamp": 0.0362785
+    "latency": 0.001091839,
+    "timestamp": 0.073764135
   },
   {
     "operation_index": 57,
     "operation_type": "read",
-    "latency": 0.0005096,
-    "timestamp": 0.0367881
+    "latency": 0.001147243,
+    "timestamp": 0.074912585
   },
   {
     "operation_index": 58,
     "operation_type": "read",
-    "latency": 0.0010999,
-    "timestamp": 0.037888
+    "latency": 0.000578652,
+    "timestamp": 0.075492444
   },
   {
     "operation_index": 59,
     "operation_type": "write",
-    "latency": 0.0005217,
-    "timestamp": 0.0384097
+    "latency": 0.00051733,
+    "timestamp": 0.076010702
   },
   {
     "operation_index": 60,
     "operation_type": "read",
-    "latency": 0.0005085,
-    "timestamp": 0.0389182
+    "latency": 0.001021096,
+    "timestamp": 0.077032717
   },
   {
     "operation_index": 61,
     "operation_type": "read",
-    "latency": 0.000516,
-    "timestamp": 0.0394342
+    "latency": 0.001023997,
+    "timestamp": 0.078057508
   },
   {
     "operation_index": 62,
     "operation_type": "write",
-    "latency": 0.0010368,
-    "timestamp": 0.040471
+    "latency": 0.000996269,
+    "timestamp": 0.079054835
   },
   {
     "operation_index": 63,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.040471
+    "latency": 0.002132996,
+    "timestamp": 0.081188814
   },
   {
     "operation_index": 64,
     "operation_type": "read",
-    "latency": 0.0010424,
-    "timestamp": 0.0415134
+    "latency": 0.000673485,
+    "timestamp": 0.081863257
   },
   {
     "operation_index": 65,
     "operation_type": "read",
-    "latency": 0.0005158,
-    "timestamp": 0.0420292
+    "latency": 0.00133897,
+    "timestamp": 0.083203143
   },
   {
     "operation_index": 66,
     "operation_type": "read",
-    "latency": 0.001032,
-    "timestamp": 0.0430612
+    "latency": 0.000515217,
+    "timestamp": 0.08371971
   },
   {
     "operation_index": 67,
     "operation_type": "write",
-    "latency": 0.0005141,
-    "timestamp": 0.0435753
+    "latency": 0.000565192,
+    "timestamp": 0.084285957
   },
   {
     "operation_index": 68,
     "operation_type": "read",
-    "latency": 0.0005142,
-    "timestamp": 0.0440895
+    "latency": 0.001037471,
+    "timestamp": 0.08532385
   },
   {
     "operation_index": 69,
     "operation_type": "write",
-    "latency": 0.0005106,
-    "timestamp": 0.0446001
+    "latency": 0.001140878,
+    "timestamp": 0.08646508
   },
   {
     "operation_index": 70,
     "operation_type": "write",
-    "latency": 0.0005103,
-    "timestamp": 0.0451104
+    "latency": 0.000481562,
+    "timestamp": 0.086947528
   },
   {
     "operation_index": 71,
     "operation_type": "read",
-    "latency": 0.000514,
-    "timestamp": 0.0456244
+    "latency": 0.001057217,
+    "timestamp": 0.088005503
   },
   {
     "operation_index": 72,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.0456244
+    "latency": 0.000498632,
+    "timestamp": 0.088504992
   },
   {
     "operation_index": 73,
     "operation_type": "write",
-    "latency": 0.0010181,
-    "timestamp": 0.0466425
+    "latency": 0.000562909,
+    "timestamp": 0.089070243
   },
   {
     "operation_index": 74,
     "operation_type": "write",
-    "latency": 0.0005205,
-    "timestamp": 0.047163
+    "latency": 0.000536929,
+    "timestamp": 0.089607818
   },
   {
     "operation_index": 75,
     "operation_type": "read",
-    "latency": 0.001029,
-    "timestamp": 0.048192
+    "latency": 0.001478181,
+    "timestamp": 0.091086776
   },
   {
     "operation_index": 76,
     "operation_type": "read",
-    "latency": 0.0005255,
-    "timestamp": 0.0487175
+    "latency": 0.000488395,
+    "timestamp": 0.091575973
   },
   {
     "operation_index": 77,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.0487175
+    "latency": 0.000465164,
+    "timestamp": 0.092041873
   },
   {
     "operation_index": 78,
     "operation_type": "read",
-    "latency": 0.0006304,
-    "timestamp": 0.0493479
+    "latency": 0.001524209,
+    "timestamp": 0.093568764
   },
   {
     "operation_index": 79,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.0493479
+    "latency": 0.001886049,
+    "timestamp": 0.095455634
   },
   {
     "operation_index": 80,
     "operation_type": "read",
-    "latency": 0.0006093,
-    "timestamp": 0.0499572
+    "latency": 0.000525676,
+    "timestamp": 0.095982227
   },
   {
     "operation_index": 81,
     "operation_type": "write",
-    "latency": 0,
-    "timestamp": 0.0499572
+    "latency": 0.001270529,
+    "timestamp": 0.097253581
   },
   {
     "operation_index": 82,
     "operation_type": "read",
-    "latency": 0.0005169,
-    "timestamp": 0.0504741
+    "latency": 0.000987375,
+    "timestamp": 0.098241665
   },
   {
     "operation_index": 83,
     "operation_type": "read",
-    "latency": 0.0005152,
-    "timestamp": 0.0509893
+    "latency": 0.000991495,
+    "timestamp": 0.099235246
   },
   {
     "operation_index": 84,
     "operation_type": "read",
-    "latency": 0.0005628,
-    "timestamp": 0.0515521
+    "latency": 0.000468997,
+    "timestamp": 0.099705113
   },
   {
     "operation_index": 85,
     "operation_type": "read",
-    "latency": 0.0005145,
-    "timestamp": 0.0520666
+    "latency": 0.000538418,
+    "timestamp": 0.100245618
   },
   {
     "operation_index": 86,
     "operation_type": "read",
-    "latency": 0.0005188,
-    "timestamp": 0.0525854
+    "latency": 0.000527177,
+    "timestamp": 0.100773648
   },
   {
     "operation_index": 87,
     "operation_type": "read",
-    "latency": 0.0005154,
-    "timestamp": 0.0531008
+    "latency": 0.000499098,
+    "timestamp": 0.101273665
   },
   {
     "operation_index": 88,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.0531008
+    "latency": 0.000506524,
+    "timestamp": 0.101781017
   },
   {
     "operation_index": 89,
     "operation_type": "read",
-    "latency": 0.0005174,
-    "timestamp": 0.0536182
+    "latency": 0.000488166,
+    "timestamp": 0.102271228
   },
   {
     "operation_index": 90,
     "operation_type": "read",
-    "latency": 0.0010465,
-    "timestamp": 0.0546647
+    "latency": 0.000511873,
+    "timestamp": 0.10278398
   },
   {
     "operation_index": 91,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.0546647
+    "latency": 0.000472622,
+    "timestamp": 0.103257409
   },
   {
     "operation_index": 92,
     "operation_type": "write",
-    "latency": 0.000517,
-    "timestamp": 0.0551817
+    "latency": 0.000538077,
+    "timestamp": 0.103796278
   },
   {
     "operation_index": 93,
     "operation_type": "read",
-    "latency": 0.0005163,
-    "timestamp": 0.055698
+    "latency": 0.000498652,
+    "timestamp": 0.104295675
   },
   {
     "operation_index": 94,
     "operation_type": "read",
-    "latency": 0.0005196,
-    "timestamp": 0.0562176
+    "latency": 0.000478597,
+    "timestamp": 0.104774948
   },
   {
     "operation_index": 95,
     "operation_type": "write",
-    "latency": 0.0010437,
-    "timestamp": 0.0572613
+    "latency": 0.000943185,
+    "timestamp": 0.10571883
   },
   {
     "operation_index": 96,
     "operation_type": "read",
-    "latency": 0.0005213,
-    "timestamp": 0.0577826
+    "latency": 0.0004607,
+    "timestamp": 0.106180258
   },
   {
     "operation_index": 97,
     "operation_type": "read",
-    "latency": 0.0005333,
-    "timestamp": 0.0583159
+    "latency": 0.0014503,
+    "timestamp": 0.107631216
   },
   {
     "operation_index": 98,
     "operation_type": "read",
-    "latency": 0.0010463,
-    "timestamp": 0.0593622
+    "latency": 0.00142375,
+    "timestamp": 0.109055742
   },
   {
     "operation_index": 99,
     "operation_type": "read",
-    "latency": 0.0010313,
-    "timestamp": 0.0603935
+    "latency": 0.00147922,
+    "timestamp": 0.110535645
   },
   {
     "operation_index": 100,
     "operation_type": "read",
-    "latency": 0.0010306,
-    "timestamp": 0.0614241
+    "latency": 0.001490184,
+    "timestamp": 0.112026512
   },
   {
     "operation_index": 101,
     "operation_type": "read",
-    "latency": 0.0005189,
-    "timestamp": 0.061943
+    "latency": 0.000448785,
+    "timestamp": 0.112475973
   },
   {
     "operation_index": 102,
     "operation_type": "read",
-    "latency": 0.0005188,
-    "timestamp": 0.0624618
+    "latency": 0.00099682,
+    "timestamp": 0.113473501
   },
   {
     "operation_index": 103,
     "operation_type": "write",
-    "latency": 0.0005184,
-    "timestamp": 0.0629802
+    "latency": 0.000499539,
+    "timestamp": 0.113973866
   },
   {
     "operation_index": 104,
     "operation_type": "read",
-    "latency": 0.0005173,
-    "timestamp": 0.0634975
+    "latency": 0.000522408,
+    "timestamp": 0.114497082
   },
   {
     "operation_index": 105,
     "operation_type": "read",
-    "latency": 0.0005184,
-    "timestamp": 0.0640159
+    "latency": 0.001478108,
+    "timestamp": 0.115975868
   },
   {
     "operation_index": 106,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.0640159
+    "latency": 0.000497694,
+    "timestamp": 0.116474379
   },
   {
     "operation_index": 107,
     "operation_type": "read",
-    "latency": 0.0005243,
-    "timestamp": 0.0645402
+    "latency": 0.001486576,
+    "timestamp": 0.117961643
   },
   {
     "operation_index": 108,
     "operation_type": "read",
-    "latency": 0.0006789,
-    "timestamp": 0.0652191
+    "latency": 0.000919491,
+    "timestamp": 0.118881984
   },
   {
     "operation_index": 109,
     "operation_type": "read",
-    "latency": 0.0010368,
-    "timestamp": 0.0662559
+    "latency": 0.001066455,
+    "timestamp": 0.119949277
   },
   {
     "operation_index": 110,
     "operation_type": "read",
-    "latency": 0.0010467,
-    "timestamp": 0.0673026
+    "latency": 0.000482426,
+    "timestamp": 0.120432407
   },
   {
     "operation_index": 111,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.0673026
+    "latency": 0.000543164,
+    "timestamp": 0.120976279
   },
   {
     "operation_index": 112,
     "operation_type": "read",
-    "latency": 0.0010412,
-    "timestamp": 0.0683438
+    "latency": 0.000504815,
+    "timestamp": 0.12148179
   },
   {
     "operation_index": 113,
     "operation_type": "read",
-    "latency": 0.0005216,
-    "timestamp": 0.0688654
+    "latency": 0.000497377,
+    "timestamp": 0.12197997
   },
   {
     "operation_index": 114,
     "operation_type": "read",
-    "latency": 0.0010406,
-    "timestamp": 0.069906
+    "latency": 0.000502381,
+    "timestamp": 0.122483054
   },
   {
     "operation_index": 115,
     "operation_type": "write",
-    "latency": 0.0005178,
-    "timestamp": 0.0704238
+    "latency": 0.000489268,
+    "timestamp": 0.122973065
   },
   {
     "operation_index": 116,
     "operation_type": "read",
-    "latency": 0.0005234,
-    "timestamp": 0.0709472
+    "latency": 0.00053389,
+    "timestamp": 0.123507643
   },
   {
     "operation_index": 117,
     "operation_type": "read",
-    "latency": 0.0010263,
-    "timestamp": 0.0719735
+    "latency": 0.00050226,
+    "timestamp": 0.124011062
   },
   {
     "operation_index": 118,
     "operation_type": "read",
-    "latency": 0.0005181,
-    "timestamp": 0.0724916
+    "latency": 0.001474063,
+    "timestamp": 0.125485828
   },
   {
     "operation_index": 119,
     "operation_type": "read",
-    "latency": 0.0010313,
-    "timestamp": 0.0735229
+    "latency": 0.000993731,
+    "timestamp": 0.126480518
   },
   {
     "operation_index": 120,
     "operation_type": "read",
-    "latency": 0.0005231,
-    "timestamp": 0.074046
+    "latency": 0.001474794,
+    "timestamp": 0.127956109
   },
   {
     "operation_index": 121,
     "operation_type": "read",
-    "latency": 0.0005228,
-    "timestamp": 0.0745688
+    "latency": 0.000500731,
+    "timestamp": 0.128457699
   },
   {
     "operation_index": 122,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.0745688
+    "latency": 0.000963099,
+    "timestamp": 0.129421653
   },
   {
     "operation_index": 123,
     "operation_type": "read",
-    "latency": 0.0010438,
-    "timestamp": 0.0756126
+    "latency": 0.001460025,
+    "timestamp": 0.130882353
   },
   {
     "operation_index": 124,
     "operation_type": "write",
-    "latency": 0,
-    "timestamp": 0.0756126
+    "latency": 0.000503091,
+    "timestamp": 0.131386233
   },
   {
     "operation_index": 125,
     "operation_type": "read",
-    "latency": 0.0010409,
-    "timestamp": 0.0766535
+    "latency": 0.001024649,
+    "timestamp": 0.132411572
   },
   {
     "operation_index": 126,
     "operation_type": "read",
-    "latency": 0.0015568,
-    "timestamp": 0.0782103
+    "latency": 0.000484383,
+    "timestamp": 0.132896629
   },
   {
     "operation_index": 127,
     "operation_type": "read",
-    "latency": 0.0005231,
-    "timestamp": 0.0787334
+    "latency": 0.000524698,
+    "timestamp": 0.133422119
   },
   {
     "operation_index": 128,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.0787334
+    "latency": 0.000546628,
+    "timestamp": 0.133969457
   },
   {
     "operation_index": 129,
     "operation_type": "read",
-    "latency": 0.001735,
-    "timestamp": 0.0804684
+    "latency": 0.000539269,
+    "timestamp": 0.134509437
   },
   {
     "operation_index": 130,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.0804684
+    "latency": 0.002144417,
+    "timestamp": 0.136654713
   },
   {
     "operation_index": 131,
     "operation_type": "write",
-    "latency": 0.0005228,
-    "timestamp": 0.0809912
+    "latency": 0.000909684,
+    "timestamp": 0.137565581
   },
   {
     "operation_index": 132,
     "operation_type": "read",
-    "latency": 0.0005193,
-    "timestamp": 0.0815105
+    "latency": 0.00077544,
+    "timestamp": 0.138341855
   },
   {
     "operation_index": 133,
     "operation_type": "read",
-    "latency": 0.0005157,
-    "timestamp": 0.0820262
+    "latency": 0.001011241,
+    "timestamp": 0.139354032
   },
   {
     "operation_index": 134,
     "operation_type": "read",
-    "latency": 0.0005103,
-    "timestamp": 0.0825365
+    "latency": 0.000556619,
+    "timestamp": 0.139911459
   },
   {
     "operation_index": 135,
     "operation_type": "read",
-    "latency": 0.0005108,
-    "timestamp": 0.0830473
+    "latency": 0.001089822,
+    "timestamp": 0.141001986
   },
   {
     "operation_index": 136,
     "operation_type": "read",
-    "latency": 0.0010552,
-    "timestamp": 0.0841025
+    "latency": 0.000520187,
+    "timestamp": 0.141522896
   },
   {
     "operation_index": 137,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.0841025
+    "latency": 0.000584125,
+    "timestamp": 0.142107838
   },
   {
     "operation_index": 138,
     "operation_type": "read",
-    "latency": 0.0015556,
-    "timestamp": 0.0856581
+    "latency": 0.000513202,
+    "timestamp": 0.142621704
   },
   {
     "operation_index": 139,
     "operation_type": "read",
-    "latency": 0.0005142,
-    "timestamp": 0.0861723
+    "latency": 0.001046884,
+    "timestamp": 0.143669381
   },
   {
     "operation_index": 140,
     "operation_type": "read",
-    "latency": 0.0005217,
-    "timestamp": 0.086694
+    "latency": 0.001558931,
+    "timestamp": 0.145229022
   },
   {
     "operation_index": 141,
     "operation_type": "write",
-    "latency": 0.0005236,
-    "timestamp": 0.0872176
+    "latency": 0.000983713,
+    "timestamp": 0.146213526
   },
   {
     "operation_index": 142,
     "operation_type": "read",
-    "latency": 0.0005179,
-    "timestamp": 0.0877355
+    "latency": 0.000518622,
+    "timestamp": 0.146732852
   },
   {
     "operation_index": 143,
     "operation_type": "read",
-    "latency": 0.0005236,
-    "timestamp": 0.0882591
+    "latency": 0.00118493,
+    "timestamp": 0.147918575
   },
   {
     "operation_index": 144,
     "operation_type": "read",
-    "latency": 0.000518,
-    "timestamp": 0.0887771
+    "latency": 0.000491376,
+    "timestamp": 0.148410635
   },
   {
     "operation_index": 145,
     "operation_type": "read",
-    "latency": 0.0005158,
-    "timestamp": 0.0892929
+    "latency": 0.001491821,
+    "timestamp": 0.149903145
   },
   {
     "operation_index": 146,
     "operation_type": "write",
-    "latency": 0.0005164,
-    "timestamp": 0.0898093
+    "latency": 0.001448853,
+    "timestamp": 0.151352772
   },
   {
     "operation_index": 147,
     "operation_type": "read",
-    "latency": 0.0005225,
-    "timestamp": 0.0903318
+    "latency": 0.007678975,
+    "timestamp": 0.159032483
   },
   {
     "operation_index": 148,
     "operation_type": "read",
-    "latency": 0.0005194,
-    "timestamp": 0.0908512
+    "latency": 0.000530999,
+    "timestamp": 0.159564396
   },
   {
     "operation_index": 149,
     "operation_type": "read",
-    "latency": 0.0005196,
-    "timestamp": 0.0913708
+    "latency": 0.000533975,
+    "timestamp": 0.16009908
   },
   {
     "operation_index": 150,
     "operation_type": "read",
-    "latency": 0.0005207,
-    "timestamp": 0.0918915
+    "latency": 0.000487577,
+    "timestamp": 0.160587343
   },
   {
     "operation_index": 151,
     "operation_type": "read",
-    "latency": 0.0005195,
-    "timestamp": 0.092411
+    "latency": 0.00087918,
+    "timestamp": 0.161466993
   },
   {
     "operation_index": 152,
     "operation_type": "read",
-    "latency": 0.0010454,
-    "timestamp": 0.0934564
+    "latency": 0.00057296,
+    "timestamp": 0.162040299
   },
   {
     "operation_index": 153,
     "operation_type": "write",
-    "latency": 0.0005182,
-    "timestamp": 0.0939746
+    "latency": 0.001084379,
+    "timestamp": 0.16312557
   },
   {
     "operation_index": 154,
     "operation_type": "write",
-    "latency": 0.000788,
-    "timestamp": 0.0947626
+    "latency": 0.000495669,
+    "timestamp": 0.163621954
   },
   {
     "operation_index": 155,
     "operation_type": "read",
-    "latency": 0.0005173,
-    "timestamp": 0.0952799
+    "latency": 0.000491219,
+    "timestamp": 0.164116485
   },
   {
     "operation_index": 156,
     "operation_type": "write",
-    "latency": 0.0007606,
-    "timestamp": 0.0960405
+    "latency": 0.001065355,
+    "timestamp": 0.165182625
   },
   {
     "operation_index": 157,
     "operation_type": "read",
-    "latency": 0.0005273,
-    "timestamp": 0.0965678
+    "latency": 0.000504673,
+    "timestamp": 0.165688168
   },
   {
     "operation_index": 158,
     "operation_type": "read",
-    "latency": 0.0005097,
-    "timestamp": 0.0970775
+    "latency": 0.00051391,
+    "timestamp": 0.166202869
   },
   {
     "operation_index": 159,
     "operation_type": "read",
-    "latency": 0.0005144,
-    "timestamp": 0.0975919
+    "latency": 0.001503751,
+    "timestamp": 0.167707464
   },
   {
     "operation_index": 160,
     "operation_type": "read",
-    "latency": 0.0005251,
-    "timestamp": 0.098117
+    "latency": 0.002141058,
+    "timestamp": 0.169849254
   },
   {
     "operation_index": 161,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.098117
+    "latency": 0.000965111,
+    "timestamp": 0.170815064
   },
   {
     "operation_index": 162,
     "operation_type": "read",
-    "latency": 0.0010275,
-    "timestamp": 0.0991445
+    "latency": 0.001503088,
+    "timestamp": 0.172318846
   },
   {
     "operation_index": 163,
     "operation_type": "read",
-    "latency": 0.0005225,
-    "timestamp": 0.099667
+    "latency": 0.001387427,
+    "timestamp": 0.173706953
   },
   {
     "operation_index": 164,
     "operation_type": "write",
-    "latency": 0,
-    "timestamp": 0.099667
+    "latency": 0.000520195,
+    "timestamp": 0.174227945
   },
   {
     "operation_index": 165,
     "operation_type": "read",
-    "latency": 0.0005225,
-    "timestamp": 0.1001895
+    "latency": 0.001555309,
+    "timestamp": 0.175784043
   },
   {
     "operation_index": 166,
     "operation_type": "write",
-    "latency": 0.0010351,
-    "timestamp": 0.1012246
+    "latency": 0.000493868,
+    "timestamp": 0.176278606
   },
   {
     "operation_index": 167,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.1012246
+    "latency": 0.001851365,
+    "timestamp": 0.178130765
   },
   {
     "operation_index": 168,
     "operation_type": "write",
-    "latency": 0.0010292,
-    "timestamp": 0.1022538
+    "latency": 0.000950752,
+    "timestamp": 0.179082293
   },
   {
     "operation_index": 169,
     "operation_type": "read",
-    "latency": 0.0005233,
-    "timestamp": 0.1027771
+    "latency": 0.000551336,
+    "timestamp": 0.179634297
   },
   {
     "operation_index": 170,
     "operation_type": "write",
-    "latency": 0.0005213,
-    "timestamp": 0.1032984
+    "latency": 0.001007461,
+    "timestamp": 0.180642454
   },
   {
     "operation_index": 171,
     "operation_type": "write",
-    "latency": 0.000518,
-    "timestamp": 0.1038164
+    "latency": 0.002234253,
+    "timestamp": 0.182877623
   },
   {
     "operation_index": 172,
     "operation_type": "read",
-    "latency": 0.0010284,
-    "timestamp": 0.1048448
+    "latency": 0.001644681,
+    "timestamp": 0.18452314
   },
   {
     "operation_index": 173,
     "operation_type": "read",
-    "latency": 0.0005136,
-    "timestamp": 0.1053584
+    "latency": 0.001522799,
+    "timestamp": 0.186046955
   },
   {
     "operation_index": 174,
     "operation_type": "write",
-    "latency": 0.0005191,
-    "timestamp": 0.1058775
+    "latency": 0.001026593,
+    "timestamp": 0.187074496
   },
   {
     "operation_index": 175,
     "operation_type": "read",
-    "latency": 0.0005104,
-    "timestamp": 0.1063879
+    "latency": 0.000546164,
+    "timestamp": 0.187621462
   },
   {
     "operation_index": 176,
     "operation_type": "read",
-    "latency": 0.0005177,
-    "timestamp": 0.1069056
+    "latency": 0.001542738,
+    "timestamp": 0.189165244
   },
   {
     "operation_index": 177,
     "operation_type": "read",
-    "latency": 0.0005226,
-    "timestamp": 0.1074282
+    "latency": 0.00103023,
+    "timestamp": 0.190195964
   },
   {
     "operation_index": 178,
     "operation_type": "read",
-    "latency": 0.0005234,
-    "timestamp": 0.1079516
+    "latency": 0.001535902,
+    "timestamp": 0.191732221
   },
   {
     "operation_index": 179,
     "operation_type": "write",
-    "latency": 0.0010356,
-    "timestamp": 0.1089872
+    "latency": 0.00101558,
+    "timestamp": 0.192748722
   },
   {
     "operation_index": 180,
     "operation_type": "read",
-    "latency": 0.000519,
-    "timestamp": 0.1095062
+    "latency": 0.001446153,
+    "timestamp": 0.194195681
   },
   {
     "operation_index": 181,
     "operation_type": "read",
-    "latency": 0.0005112,
-    "timestamp": 0.1100174
+    "latency": 0.00149764,
+    "timestamp": 0.195694168
   },
   {
     "operation_index": 182,
     "operation_type": "read",
-    "latency": 0.0011315,
-    "timestamp": 0.1111489
+    "latency": 0.000494246,
+    "timestamp": 0.196189197
   },
   {
     "operation_index": 183,
     "operation_type": "read",
-    "latency": 0.0005154,
-    "timestamp": 0.1116643
+    "latency": 0.001525515,
+    "timestamp": 0.197715488
   },
   {
     "operation_index": 184,
     "operation_type": "read",
-    "latency": 0.0010307,
-    "timestamp": 0.112695
+    "latency": 0.000520265,
+    "timestamp": 0.198236563
   },
   {
     "operation_index": 185,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.112695
+    "latency": 0.001505678,
+    "timestamp": 0.199742949
   },
   {
     "operation_index": 186,
     "operation_type": "write",
-    "latency": 0.0010319,
-    "timestamp": 0.1137269
+    "latency": 0.001461904,
+    "timestamp": 0.201205566
   },
   {
     "operation_index": 187,
     "operation_type": "read",
-    "latency": 0.0005147,
-    "timestamp": 0.1142416
+    "latency": 0.001012997,
+    "timestamp": 0.202219369
   },
   {
     "operation_index": 188,
     "operation_type": "write",
-    "latency": 0.0010408,
-    "timestamp": 0.1152824
+    "latency": 0.000489169,
+    "timestamp": 0.202709257
   },
   {
     "operation_index": 189,
     "operation_type": "read",
-    "latency": 0.0005212,
-    "timestamp": 0.1158036
+    "latency": 0.000595344,
+    "timestamp": 0.203305487
   },
   {
     "operation_index": 190,
     "operation_type": "read",
-    "latency": 0.0005177,
-    "timestamp": 0.1163213
+    "latency": 0.000543792,
+    "timestamp": 0.203850192
   },
   {
     "operation_index": 191,
     "operation_type": "read",
-    "latency": 0.0010281,
-    "timestamp": 0.1173494
+    "latency": 0.001435181,
+    "timestamp": 0.205286055
   },
   {
     "operation_index": 192,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.1173494
+    "latency": 0.000507974,
+    "timestamp": 0.205794718
   },
   {
     "operation_index": 193,
     "operation_type": "read",
-    "latency": 0.0005115,
-    "timestamp": 0.1178609
+    "latency": 0.000497185,
+    "timestamp": 0.206292667
   },
   {
     "operation_index": 194,
     "operation_type": "read",
-    "latency": 0.0005231,
-    "timestamp": 0.118384
+    "latency": 0.001114128,
+    "timestamp": 0.207407609
   },
   {
     "operation_index": 195,
     "operation_type": "read",
-    "latency": 0.000649,
-    "timestamp": 0.119033
+    "latency": 0.001155351,
+    "timestamp": 0.208563645
   },
   {
     "operation_index": 196,
     "operation_type": "read",
-    "latency": 0.0005193,
-    "timestamp": 0.1195523
+    "latency": 0.001029618,
+    "timestamp": 0.209594233
   },
   {
     "operation_index": 197,
     "operation_type": "read",
-    "latency": 0.0005101,
-    "timestamp": 0.1200624
+    "latency": 0.001122086,
+    "timestamp": 0.210717103
   },
   {
     "operation_index": 198,
     "operation_type": "read",
-    "latency": 0.0005174,
-    "timestamp": 0.1205798
+    "latency": 0.000996498,
+    "timestamp": 0.211714403
   },
   {
     "operation_index": 199,
     "operation_type": "read",
-    "latency": 0.0010355,
-    "timestamp": 0.1216153
+    "latency": 0.000485508,
+    "timestamp": 0.212200782
   },
   {
     "operation_index": 200,
     "operation_type": "write",
-    "latency": 0.000518,
-    "timestamp": 0.1221333
+    "latency": 0.000501793,
+    "timestamp": 0.212703251
   },
   {
     "operation_index": 201,
     "operation_type": "write",
-    "latency": 0.0005215,
-    "timestamp": 0.1226548
+    "latency": 0.001064638,
+    "timestamp": 0.213768618
   },
   {
     "operation_index": 202,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.1226548
+    "latency": 0.000551773,
+    "timestamp": 0.214321151
   },
   {
     "operation_index": 203,
     "operation_type": "write",
-    "latency": 0.0010312,
-    "timestamp": 0.123686
+    "latency": 0.001479609,
+    "timestamp": 0.215801542
   },
   {
     "operation_index": 204,
     "operation_type": "write",
-    "latency": 0.0005447,
-    "timestamp": 0.1242307
+    "latency": 0.001091256,
+    "timestamp": 0.216893534
   },
   {
     "operation_index": 205,
     "operation_type": "write",
-    "latency": 0.0005269,
-    "timestamp": 0.1247576
+    "latency": 0.000500488,
+    "timestamp": 0.217394821
   },
   {
     "operation_index": 206,
     "operation_type": "read",
-    "latency": 0.0010318,
-    "timestamp": 0.1257894
+    "latency": 0.000998608,
+    "timestamp": 0.218394121
   },
   {
     "operation_index": 207,
     "operation_type": "read",
-    "latency": 0.0006459,
-    "timestamp": 0.1264353
+    "latency": 0.000591797,
+    "timestamp": 0.218986706
   },
   {
     "operation_index": 208,
     "operation_type": "read",
-    "latency": 0.0005149,
-    "timestamp": 0.1269502
+    "latency": 0.000485778,
+    "timestamp": 0.219473172
   },
   {
     "operation_index": 209,
     "operation_type": "read",
-    "latency": 0.0005146,
-    "timestamp": 0.1274648
+    "latency": 0.000505307,
+    "timestamp": 0.219979154
   },
   {
     "operation_index": 210,
     "operation_type": "write",
-    "latency": 0.0005245,
-    "timestamp": 0.1279893
+    "latency": 0.001059225,
+    "timestamp": 0.221039121
   },
   {
     "operation_index": 211,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.1279893
+    "latency": 0.000496656,
+    "timestamp": 0.221536505
   },
   {
     "operation_index": 212,
     "operation_type": "read",
-    "latency": 0.0005167,
-    "timestamp": 0.128506
+    "latency": 0.001498148,
+    "timestamp": 0.223035408
   },
   {
     "operation_index": 213,
     "operation_type": "read",
-    "latency": 0.0010186,
-    "timestamp": 0.1295246
+    "latency": 0.001530099,
+    "timestamp": 0.224566243
   },
   {
     "operation_index": 214,
     "operation_type": "read",
-    "latency": 0.0005169,
-    "timestamp": 0.1300415
+    "latency": 0.00106155,
+    "timestamp": 0.225628505
   },
   {
     "operation_index": 215,
     "operation_type": "write",
-    "latency": 0.0005171,
-    "timestamp": 0.1305586
+    "latency": 0.000484815,
+    "timestamp": 0.226114025
   },
   {
     "operation_index": 216,
     "operation_type": "read",
-    "latency": 0.0010564,
-    "timestamp": 0.131615
+    "latency": 0.000552105,
+    "timestamp": 0.226666942
   },
   {
     "operation_index": 217,
     "operation_type": "read",
-    "latency": 0.0005258,
-    "timestamp": 0.1321408
+    "latency": 0.001553019,
+    "timestamp": 0.228220684
   },
   {
     "operation_index": 218,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.1321408
+    "latency": 0.00100172,
+    "timestamp": 0.229223141
   },
   {
     "operation_index": 219,
     "operation_type": "write",
-    "latency": 0.0005264,
-    "timestamp": 0.1326672
+    "latency": 0.000505842,
+    "timestamp": 0.229729782
   },
   {
     "operation_index": 220,
     "operation_type": "read",
-    "latency": 0.0005177,
-    "timestamp": 0.1331849
+    "latency": 0.000500544,
+    "timestamp": 0.230231113
   },
   {
     "operation_index": 221,
     "operation_type": "write",
-    "latency": 0.0005249,
-    "timestamp": 0.1337098
+    "latency": 0.000993362,
+    "timestamp": 0.23122513
   },
   {
     "operation_index": 222,
     "operation_type": "read",
-    "latency": 0.001028,
-    "timestamp": 0.1347378
+    "latency": 0.001013424,
+    "timestamp": 0.232239286
   },
   {
     "operation_index": 223,
     "operation_type": "read",
-    "latency": 0.0005212,
-    "timestamp": 0.135259
+    "latency": 0.001500723,
+    "timestamp": 0.233740687
   },
   {
     "operation_index": 224,
     "operation_type": "write",
-    "latency": 0.0010406,
-    "timestamp": 0.1362996
+    "latency": 0.00227633,
+    "timestamp": 0.236017729
   },
   {
     "operation_index": 225,
     "operation_type": "write",
-    "latency": 0.0005676,
-    "timestamp": 0.1368672
+    "latency": 0.000499039,
+    "timestamp": 0.236517498
   },
   {
     "operation_index": 226,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.1368672
+    "latency": 0.000511245,
+    "timestamp": 0.237029421
   },
   {
     "operation_index": 227,
     "operation_type": "read",
-    "latency": 0.0010286,
-    "timestamp": 0.1378958
+    "latency": 0.000538645,
+    "timestamp": 0.23756875
   },
   {
     "operation_index": 228,
     "operation_type": "read",
-    "latency": 0.0005188,
-    "timestamp": 0.1384146
+    "latency": 0.001046382,
+    "timestamp": 0.238615955
   },
   {
     "operation_index": 229,
     "operation_type": "write",
-    "latency": 0.0005203,
-    "timestamp": 0.1389349
+    "latency": 0.001018546,
+    "timestamp": 0.239635205
   },
   {
     "operation_index": 230,
     "operation_type": "read",
-    "latency": 0.0005148,
-    "timestamp": 0.1394497
+    "latency": 0.001487269,
+    "timestamp": 0.241123512
   },
   {
     "operation_index": 231,
     "operation_type": "read",
-    "latency": 0.0010354,
-    "timestamp": 0.1404851
+    "latency": 0.000990074,
+    "timestamp": 0.242114297
   },
   {
     "operation_index": 232,
     "operation_type": "write",
-    "latency": 0.0005201,
-    "timestamp": 0.1410052
+    "latency": 0.001438781,
+    "timestamp": 0.243553773
   },
   {
     "operation_index": 233,
     "operation_type": "read",
-    "latency": 0.0006274,
-    "timestamp": 0.1416326
+    "latency": 0.00622835,
+    "timestamp": 0.24978297
   },
   {
     "operation_index": 234,
     "operation_type": "read",
-    "latency": 0.0011606,
-    "timestamp": 0.1427932
+    "latency": 0.000626558,
+    "timestamp": 0.250410513
   },
   {
     "operation_index": 235,
     "operation_type": "write",
-    "latency": 0.0005309,
-    "timestamp": 0.1433241
+    "latency": 0.001395286,
+    "timestamp": 0.251806585
   },
   {
     "operation_index": 236,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.1433241
+    "latency": 0.000677985,
+    "timestamp": 0.252485535
   },
   {
     "operation_index": 237,
     "operation_type": "read",
-    "latency": 0.0005328,
-    "timestamp": 0.1438569
+    "latency": 0.001094139,
+    "timestamp": 0.253580494
   },
   {
     "operation_index": 238,
     "operation_type": "read",
-    "latency": 0.0010437,
-    "timestamp": 0.1449006
+    "latency": 0.00046832,
+    "timestamp": 0.254049654
   },
   {
     "operation_index": 239,
     "operation_type": "read",
-    "latency": 0.0005172,
-    "timestamp": 0.1454178
+    "latency": 0.001037529,
+    "timestamp": 0.255087888
   },
   {
     "operation_index": 240,
     "operation_type": "read",
-    "latency": 0.0005362,
-    "timestamp": 0.145954
+    "latency": 0.000518389,
+    "timestamp": 0.255607179
   },
   {
     "operation_index": 241,
     "operation_type": "read",
-    "latency": 0.0010294,
-    "timestamp": 0.1469834
+    "latency": 0.000450434,
+    "timestamp": 0.256058422
   },
   {
     "operation_index": 242,
     "operation_type": "read",
-    "latency": 0.0010337,
-    "timestamp": 0.1480171
+    "latency": 0.000506142,
+    "timestamp": 0.256565254
   },
   {
     "operation_index": 243,
     "operation_type": "read",
-    "latency": 0.0005124,
-    "timestamp": 0.1485295
+    "latency": 0.000532971,
+    "timestamp": 0.257098892
   },
   {
     "operation_index": 244,
     "operation_type": "read",
-    "latency": 0.0010258,
-    "timestamp": 0.1495553
+    "latency": 0.00049631,
+    "timestamp": 0.257596064
   },
   {
     "operation_index": 245,
     "operation_type": "write",
-    "latency": 0.0005233,
-    "timestamp": 0.1500786
+    "latency": 0.000567103,
+    "timestamp": 0.258163858
   },
   {
     "operation_index": 246,
     "operation_type": "read",
-    "latency": 0.000524,
-    "timestamp": 0.1506026
+    "latency": 0.000472422,
+    "timestamp": 0.258636947
   },
   {
     "operation_index": 247,
     "operation_type": "read",
-    "latency": 0.0005335,
-    "timestamp": 0.1511361
+    "latency": 0.001149246,
+    "timestamp": 0.259786993
   },
   {
     "operation_index": 248,
     "operation_type": "read",
-    "latency": 0.0010421,
-    "timestamp": 0.1521782
+    "latency": 0.000985715,
+    "timestamp": 0.260773414
   },
   {
     "operation_index": 249,
     "operation_type": "read",
-    "latency": 0.0005245,
-    "timestamp": 0.1527027
+    "latency": 0.001465347,
+    "timestamp": 0.262239465
   },
   {
     "operation_index": 250,
     "operation_type": "read",
-    "latency": 0.0005093,
-    "timestamp": 0.153212
+    "latency": 0.000455052,
+    "timestamp": 0.262695273
   },
   {
     "operation_index": 251,
     "operation_type": "read",
-    "latency": 0.0005896,
-    "timestamp": 0.1538016
+    "latency": 0.000565615,
+    "timestamp": 0.263261545
   },
   {
     "operation_index": 252,
     "operation_type": "write",
-    "latency": 0.0005163,
-    "timestamp": 0.1543179
+    "latency": 0.000944118,
+    "timestamp": 0.264206327
   },
   {
     "operation_index": 253,
     "operation_type": "read",
-    "latency": 0.0010286,
-    "timestamp": 0.1553465
+    "latency": 0.000517856,
+    "timestamp": 0.26472499
   },
   {
     "operation_index": 254,
     "operation_type": "read",
-    "latency": 0.0005194,
-    "timestamp": 0.1558659
+    "latency": 0.001521521,
+    "timestamp": 0.266247202
   },
   {
     "operation_index": 255,
     "operation_type": "read",
-    "latency": 0.0005173,
-    "timestamp": 0.1563832
+    "latency": 0.001526073,
+    "timestamp": 0.267773974
   },
   {
     "operation_index": 256,
     "operation_type": "read",
-    "latency": 0.0006295,
-    "timestamp": 0.1570127
+    "latency": 0.000495518,
+    "timestamp": 0.268270376
   },
   {
     "operation_index": 257,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.1570127
+    "latency": 0.001476263,
+    "timestamp": 0.269747374
   },
   {
     "operation_index": 258,
     "operation_type": "read",
-    "latency": 0.0011026,
-    "timestamp": 0.1581153
+    "latency": 0.000561956,
+    "timestamp": 0.270310129
   },
   {
     "operation_index": 259,
     "operation_type": "read",
-    "latency": 0.0005233,
-    "timestamp": 0.1586386
+    "latency": 0.001497065,
+    "timestamp": 0.271807921
   },
   {
     "operation_index": 260,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.1586386
+    "latency": 0.000486731,
+    "timestamp": 0.272295344
   },
   {
     "operation_index": 261,
     "operation_type": "read",
-    "latency": 0.0005182,
-    "timestamp": 0.1591568
+    "latency": 0.001530755,
+    "timestamp": 0.273826893
   },
   {
     "operation_index": 262,
     "operation_type": "read",
-    "latency": 0.0010366,
-    "timestamp": 0.1601934
+    "latency": 0.001295835,
+    "timestamp": 0.27512361
   },
   {
     "operation_index": 263,
     "operation_type": "write",
-    "latency": 0.0005202,
-    "timestamp": 0.1607136
+    "latency": 0.000547241,
+    "timestamp": 0.275671592
   },
   {
     "operation_index": 264,
     "operation_type": "read",
-    "latency": 0.0005199,
-    "timestamp": 0.1612335
+    "latency": 0.001700822,
+    "timestamp": 0.277373217
   },
   {
     "operation_index": 265,
     "operation_type": "read",
-    "latency": 0.0005189,
-    "timestamp": 0.1617524
+    "latency": 0.001159844,
+    "timestamp": 0.278533776
   },
   {
     "operation_index": 266,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.1617524
+    "latency": 0.001037061,
+    "timestamp": 0.279571517
   },
   {
     "operation_index": 267,
     "operation_type": "read",
-    "latency": 0.0010366,
-    "timestamp": 0.162789
+    "latency": 0.001017689,
+    "timestamp": 0.280590036
   },
   {
     "operation_index": 268,
     "operation_type": "read",
-    "latency": 0.0015721,
-    "timestamp": 0.1643611
+    "latency": 0.001063021,
+    "timestamp": 0.281653745
   },
   {
     "operation_index": 269,
     "operation_type": "read",
-    "latency": 0.0010304,
-    "timestamp": 0.1653915
+    "latency": 0.000545726,
+    "timestamp": 0.282200267
   },
   {
     "operation_index": 270,
     "operation_type": "read",
-    "latency": 0.0005188,
-    "timestamp": 0.1659103
+    "latency": 0.00051534,
+    "timestamp": 0.282716426
   },
   {
     "operation_index": 271,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.1659103
+    "latency": 0.000505434,
+    "timestamp": 0.283222588
   },
   {
     "operation_index": 272,
     "operation_type": "read",
-    "latency": 0.0005141,
-    "timestamp": 0.1664244
+    "latency": 0.001510657,
+    "timestamp": 0.284733959
   },
   {
     "operation_index": 273,
     "operation_type": "read",
-    "latency": 0.0010344,
-    "timestamp": 0.1674588
+    "latency": 0.001000636,
+    "timestamp": 0.285735456
   },
   {
     "operation_index": 274,
     "operation_type": "read",
-    "latency": 0.0010444,
-    "timestamp": 0.1685032
+    "latency": 0.001013598,
+    "timestamp": 0.286749847
   },
   {
     "operation_index": 275,
     "operation_type": "read",
-    "latency": 0.0005225,
-    "timestamp": 0.1690257
+    "latency": 0.00046684,
+    "timestamp": 0.287217554
   },
   {
     "operation_index": 276,
     "operation_type": "read",
-    "latency": 0.0005183,
-    "timestamp": 0.169544
+    "latency": 0.000993306,
+    "timestamp": 0.288211588
   },
   {
     "operation_index": 277,
     "operation_type": "read",
-    "latency": 0.0005173,
-    "timestamp": 0.1700613
+    "latency": 0.001488416,
+    "timestamp": 0.289700814
   },
   {
     "operation_index": 278,
     "operation_type": "read",
-    "latency": 0.0005178,
-    "timestamp": 0.1705791
+    "latency": 0.000516183,
+    "timestamp": 0.29021781
   },
   {
     "operation_index": 279,
     "operation_type": "write",
-    "latency": 0.0005172,
-    "timestamp": 0.1710963
+    "latency": 0.001528254,
+    "timestamp": 0.29174675
   },
   {
     "operation_index": 280,
     "operation_type": "read",
-    "latency": 0.0005208,
-    "timestamp": 0.1716171
+    "latency": 0.00096661,
+    "timestamp": 0.292714055
   },
   {
     "operation_index": 281,
     "operation_type": "write",
-    "latency": 0.0012259,
-    "timestamp": 0.172843
+    "latency": 0.001516858,
+    "timestamp": 0.294231725
   },
   {
     "operation_index": 282,
     "operation_type": "read",
-    "latency": 0.0010551,
-    "timestamp": 0.1738981
+    "latency": 0.001497704,
+    "timestamp": 0.295730228
   },
   {
     "operation_index": 283,
     "operation_type": "read",
-    "latency": 0.0005169,
-    "timestamp": 0.174415
+    "latency": 0.001485041,
+    "timestamp": 0.297215984
   },
   {
     "operation_index": 284,
     "operation_type": "write",
-    "latency": 0.0010462,
-    "timestamp": 0.1754612
+    "latency": 0.001530069,
+    "timestamp": 0.298746809
   },
   {
     "operation_index": 285,
     "operation_type": "write",
-    "latency": 0.0005191,
-    "timestamp": 0.1759803
+    "latency": 0.008380476,
+    "timestamp": 0.307127983
   },
   {
     "operation_index": 286,
     "operation_type": "read",
-    "latency": 0.0005115,
-    "timestamp": 0.1764918
+    "latency": 0.00110609,
+    "timestamp": 0.30823492
   },
   {
     "operation_index": 287,
     "operation_type": "read",
-    "latency": 0.0005255,
-    "timestamp": 0.1770173
+    "latency": 0.000515591,
+    "timestamp": 0.308751228
   },
   {
     "operation_index": 288,
     "operation_type": "read",
-    "latency": 0.0005213,
-    "timestamp": 0.1775386
+    "latency": 0.000989199,
+    "timestamp": 0.309741127
   },
   {
     "operation_index": 289,
     "operation_type": "read",
-    "latency": 0.0005206,
-    "timestamp": 0.1780592
+    "latency": 0.000571775,
+    "timestamp": 0.310313755
   },
   {
     "operation_index": 290,
     "operation_type": "write",
-    "latency": 0.0010413,
-    "timestamp": 0.1791005
+    "latency": 0.001037737,
+    "timestamp": 0.311352194
   },
   {
     "operation_index": 291,
     "operation_type": "read",
-    "latency": 0.0005152,
-    "timestamp": 0.1796157
+    "latency": 0.001117697,
+    "timestamp": 0.312470605
   },
   {
     "operation_index": 292,
     "operation_type": "write",
-    "latency": 0.0005192,
-    "timestamp": 0.1801349
+    "latency": 0.000585397,
+    "timestamp": 0.313056679
   },
   {
     "operation_index": 293,
     "operation_type": "write",
-    "latency": 0.0005293,
-    "timestamp": 0.1806642
+    "latency": 0.000516217,
+    "timestamp": 0.313573719
   },
   {
     "operation_index": 294,
     "operation_type": "write",
-    "latency": 0,
-    "timestamp": 0.1806642
+    "latency": 0.000527524,
+    "timestamp": 0.314102027
   },
   {
     "operation_index": 295,
     "operation_type": "read",
-    "latency": 0.0010328,
-    "timestamp": 0.181697
+    "latency": 0.000508018,
+    "timestamp": 0.31461071
   },
   {
     "operation_index": 296,
     "operation_type": "read",
-    "latency": 0.0015527,
-    "timestamp": 0.1832497
+    "latency": 0.000550301,
+    "timestamp": 0.315161696
   },
   {
     "operation_index": 297,
     "operation_type": "read",
-    "latency": 0.0010292,
-    "timestamp": 0.1842789
+    "latency": 0.000523528,
+    "timestamp": 0.315686002
   },
   {
     "operation_index": 298,
     "operation_type": "read",
-    "latency": 0.0005197,
-    "timestamp": 0.1847986
+    "latency": 0.000545833,
+    "timestamp": 0.31623258
   },
   {
     "operation_index": 299,
     "operation_type": "read",
-    "latency": 0.0005159,
-    "timestamp": 0.1853145
+    "latency": 0.0004975,
+    "timestamp": 0.31673077
   },
   {
     "operation_index": 300,
     "operation_type": "write",
-    "latency": 0.000517,
-    "timestamp": 0.1858315
+    "latency": 0.001596053,
+    "timestamp": 0.31832761
   },
   {
     "operation_index": 301,
     "operation_type": "read",
-    "latency": 0.0005185,
-    "timestamp": 0.18635
+    "latency": 0.00148156,
+    "timestamp": 0.319809927
   },
   {
     "operation_index": 302,
     "operation_type": "read",
-    "latency": 0.0005188,
-    "timestamp": 0.1868688
+    "latency": 0.009433028,
+    "timestamp": 0.32924362
   },
   {
     "operation_index": 303,
     "operation_type": "read",
-    "latency": 0.0006775,
-    "timestamp": 0.1875463
+    "latency": 0.0005282,
+    "timestamp": 0.329772631
   },
   {
     "operation_index": 304,
     "operation_type": "read",
-    "latency": 0.0005159,
-    "timestamp": 0.1880622
+    "latency": 0.00048343,
+    "timestamp": 0.330256732
   },
   {
     "operation_index": 305,
     "operation_type": "read",
-    "latency": 0.0010372,
-    "timestamp": 0.1890994
+    "latency": 0.000580708,
+    "timestamp": 0.330838227
   },
   {
     "operation_index": 306,
     "operation_type": "read",
-    "latency": 0.0010362,
-    "timestamp": 0.1901356
+    "latency": 0.000569083,
+    "timestamp": 0.331408119
   },
   {
     "operation_index": 307,
     "operation_type": "read",
-    "latency": 0.0005232,
-    "timestamp": 0.1906588
+    "latency": 0.00158922,
+    "timestamp": 0.332998034
   },
   {
     "operation_index": 308,
     "operation_type": "read",
-    "latency": 0.0010501,
-    "timestamp": 0.1917089
+    "latency": 0.002233079,
+    "timestamp": 0.335231818
   },
   {
     "operation_index": 309,
     "operation_type": "read",
-    "latency": 0.0005219,
-    "timestamp": 0.1922308
+    "latency": 0.001124939,
+    "timestamp": 0.336362689
   },
   {
     "operation_index": 310,
     "operation_type": "read",
-    "latency": 0.0010391,
-    "timestamp": 0.1932699
+    "latency": 0.000993972,
+    "timestamp": 0.337357523
   },
   {
     "operation_index": 311,
     "operation_type": "read",
-    "latency": 0.0005205,
-    "timestamp": 0.1937904
+    "latency": 0.001554989,
+    "timestamp": 0.338913232
   },
   {
     "operation_index": 312,
     "operation_type": "read",
-    "latency": 0.0010284,
-    "timestamp": 0.1948188
+    "latency": 0.001116883,
+    "timestamp": 0.340030974
   },
   {
     "operation_index": 313,
     "operation_type": "read",
-    "latency": 0.0005393,
-    "timestamp": 0.1953581
+    "latency": 0.000516847,
+    "timestamp": 0.340548524
   },
   {
     "operation_index": 314,
     "operation_type": "read",
-    "latency": 0.0005284,
-    "timestamp": 0.1958865
+    "latency": 0.000520023,
+    "timestamp": 0.34106932
   },
   {
     "operation_index": 315,
     "operation_type": "write",
-    "latency": 0,
-    "timestamp": 0.1958865
+    "latency": 0.000502097,
+    "timestamp": 0.34157216
   },
   {
     "operation_index": 316,
     "operation_type": "write",
-    "latency": 0.0010412,
-    "timestamp": 0.1969277
+    "latency": 0.001034599,
+    "timestamp": 0.34260758
   },
   {
     "operation_index": 317,
     "operation_type": "read",
-    "latency": 0.0005633,
-    "timestamp": 0.197491
+    "latency": 0.001011239,
+    "timestamp": 0.343619538
   },
   {
     "operation_index": 318,
     "operation_type": "write",
-    "latency": 0.0005217,
-    "timestamp": 0.1980127
+    "latency": 0.001016962,
+    "timestamp": 0.344637248
   },
   {
     "operation_index": 319,
     "operation_type": "read",
-    "latency": 0.0005208,
-    "timestamp": 0.1985335
+    "latency": 0.001192271,
+    "timestamp": 0.345830244
   },
   {
     "operation_index": 320,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.1985335
+    "latency": 0.001010942,
+    "timestamp": 0.346842037
   },
   {
     "operation_index": 321,
     "operation_type": "read",
-    "latency": 0.0010262,
-    "timestamp": 0.1995597
+    "latency": 0.000501033,
+    "timestamp": 0.347344033
   },
   {
     "operation_index": 322,
     "operation_type": "read",
-    "latency": 0.0010314,
-    "timestamp": 0.2005911
+    "latency": 0.001034972,
+    "timestamp": 0.348379752
   },
   {
     "operation_index": 323,
     "operation_type": "read",
-    "latency": 0.0005216,
-    "timestamp": 0.2011127
+    "latency": 0.000542756,
+    "timestamp": 0.348923378
   },
   {
     "operation_index": 324,
     "operation_type": "read",
-    "latency": 0.0005176,
-    "timestamp": 0.2016303
+    "latency": 0.001101268,
+    "timestamp": 0.350025528
   },
   {
     "operation_index": 325,
     "operation_type": "read",
-    "latency": 0.0005209,
-    "timestamp": 0.2021512
+    "latency": 0.001495649,
+    "timestamp": 0.351521888
   },
   {
     "operation_index": 326,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.2021512
+    "latency": 0.001010999,
+    "timestamp": 0.352533602
   },
   {
     "operation_index": 327,
     "operation_type": "read",
-    "latency": 0.0006358,
-    "timestamp": 0.202787
+    "latency": 0.001537725,
+    "timestamp": 0.354072123
   },
   {
     "operation_index": 328,
     "operation_type": "read",
-    "latency": 0.0005213,
-    "timestamp": 0.2033083
+    "latency": 0.001622397,
+    "timestamp": 0.355695248
   },
   {
     "operation_index": 329,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.2033083
+    "latency": 0.000539868,
+    "timestamp": 0.356235948
   },
   {
     "operation_index": 330,
     "operation_type": "read",
-    "latency": 0.0005169,
-    "timestamp": 0.2038252
+    "latency": 0.001468424,
+    "timestamp": 0.357705094
   },
   {
     "operation_index": 331,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.2038252
+    "latency": 0.000523564,
+    "timestamp": 0.358229471
   },
   {
     "operation_index": 332,
     "operation_type": "read",
-    "latency": 0.0005192,
-    "timestamp": 0.2043444
+    "latency": 0.001067876,
+    "timestamp": 0.359298047
   },
   {
     "operation_index": 333,
     "operation_type": "read",
-    "latency": 0.0005146,
-    "timestamp": 0.204859
+    "latency": 0.000818991,
+    "timestamp": 0.360117864
   },
   {
     "operation_index": 334,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.204859
+    "latency": 0.000503257,
+    "timestamp": 0.360621832
   },
   {
     "operation_index": 335,
     "operation_type": "read",
-    "latency": 0.0005167,
-    "timestamp": 0.2053757
+    "latency": 0.000561667,
+    "timestamp": 0.361184164
   },
   {
     "operation_index": 336,
     "operation_type": "read",
-    "latency": 0.0005164,
-    "timestamp": 0.2058921
+    "latency": 0.000521064,
+    "timestamp": 0.361705965
   },
   {
     "operation_index": 337,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.2058921
+    "latency": 0.000482304,
+    "timestamp": 0.362189108
   },
   {
     "operation_index": 338,
     "operation_type": "write",
-    "latency": 0.0005168,
-    "timestamp": 0.2064089
+    "latency": 0.000505461,
+    "timestamp": 0.362695466
   },
   {
     "operation_index": 339,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.2064089
+    "latency": 0.000517408,
+    "timestamp": 0.363213617
   },
   {
     "operation_index": 340,
     "operation_type": "read",
-    "latency": 0.0005105,
-    "timestamp": 0.2069194
+    "latency": 0.000523084,
+    "timestamp": 0.363737417
   },
   {
     "operation_index": 341,
     "operation_type": "read",
-    "latency": 0.0005159,
-    "timestamp": 0.2074353
+    "latency": 0.000528364,
+    "timestamp": 0.36426668
   },
   {
     "operation_index": 342,
     "operation_type": "read",
-    "latency": 0.0005224,
-    "timestamp": 0.2079577
+    "latency": 0.001027646,
+    "timestamp": 0.365295327
   },
   {
     "operation_index": 343,
     "operation_type": "read",
-    "latency": 0.0005169,
-    "timestamp": 0.2084746
+    "latency": 0.001010845,
+    "timestamp": 0.366306934
   },
   {
     "operation_index": 344,
     "operation_type": "read",
-    "latency": 0.0010393,
-    "timestamp": 0.2095139
+    "latency": 0.000989502,
+    "timestamp": 0.367297263
   },
   {
     "operation_index": 345,
     "operation_type": "read",
-    "latency": 0.0005211,
-    "timestamp": 0.210035
+    "latency": 0.001022407,
+    "timestamp": 0.368320444
   },
   {
     "operation_index": 346,
     "operation_type": "read",
-    "latency": 0.0005181,
-    "timestamp": 0.2105531
+    "latency": 0.001483953,
+    "timestamp": 0.369805095
   },
   {
     "operation_index": 347,
     "operation_type": "read",
-    "latency": 0.0005284,
-    "timestamp": 0.2110815
+    "latency": 0.001520063,
+    "timestamp": 0.371325886
   },
   {
     "operation_index": 348,
     "operation_type": "read",
-    "latency": 0.0005097,
-    "timestamp": 0.2115912
+    "latency": 0.001003403,
+    "timestamp": 0.37233011
   },
   {
     "operation_index": 349,
     "operation_type": "read",
-    "latency": 0.00064,
-    "timestamp": 0.2122312
+    "latency": 0.000490783,
+    "timestamp": 0.37282163
   },
   {
     "operation_index": 350,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.2122312
+    "latency": 0.001541764,
+    "timestamp": 0.374364225
   },
   {
     "operation_index": 351,
     "operation_type": "read",
-    "latency": 0.0010359,
-    "timestamp": 0.2132671
+    "latency": 0.000509772,
+    "timestamp": 0.374874745
   },
   {
     "operation_index": 352,
     "operation_type": "read",
-    "latency": 0.0010382,
-    "timestamp": 0.2143053
+    "latency": 0.000523351,
+    "timestamp": 0.375398801
   },
   {
     "operation_index": 353,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.2143053
+    "latency": 0.001471713,
+    "timestamp": 0.376871345
   },
   {
     "operation_index": 354,
     "operation_type": "read",
-    "latency": 0.000519,
-    "timestamp": 0.2148243
+    "latency": 0.002222568,
+    "timestamp": 0.379094702
   },
   {
     "operation_index": 355,
     "operation_type": "read",
-    "latency": 0.0005214,
-    "timestamp": 0.2153457
+    "latency": 0.000500326,
+    "timestamp": 0.379595741
   },
   {
     "operation_index": 356,
     "operation_type": "read",
-    "latency": 0.0010419,
-    "timestamp": 0.2163876
+    "latency": 0.001589051,
+    "timestamp": 0.381185522
   },
   {
     "operation_index": 357,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.2163876
+    "latency": 0.000509575,
+    "timestamp": 0.381695919
   },
   {
     "operation_index": 358,
     "operation_type": "read",
-    "latency": 0.0005191,
-    "timestamp": 0.2169067
+    "latency": 0.001525873,
+    "timestamp": 0.383222593
   },
   {
     "operation_index": 359,
     "operation_type": "write",
-    "latency": 0.0006843,
-    "timestamp": 0.217591
+    "latency": 0.000473798,
+    "timestamp": 0.383697185
   },
   {
     "operation_index": 360,
     "operation_type": "read",
-    "latency": 0.000525,
-    "timestamp": 0.218116
+    "latency": 0.002111845,
+    "timestamp": 0.385809728
   },
   {
     "operation_index": 361,
     "operation_type": "write",
-    "latency": 0.0010389,
-    "timestamp": 0.2191549
+    "latency": 0.000467401,
+    "timestamp": 0.386277871
   },
   {
     "operation_index": 362,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.2191549
+    "latency": 0.001466076,
+    "timestamp": 0.387744845
   },
   {
     "operation_index": 363,
     "operation_type": "write",
-    "latency": 0.0005199,
-    "timestamp": 0.2196748
+    "latency": 0.001030299,
+    "timestamp": 0.38877595
   },
   {
     "operation_index": 364,
     "operation_type": "write",
-    "latency": 0.0005248,
-    "timestamp": 0.2201996
+    "latency": 0.002463089,
+    "timestamp": 0.391239877
   },
   {
     "operation_index": 365,
     "operation_type": "read",
-    "latency": 0.0010362,
-    "timestamp": 0.2212358
+    "latency": 0.001078452,
+    "timestamp": 0.392319127
   },
   {
     "operation_index": 366,
     "operation_type": "write",
-    "latency": 0,
-    "timestamp": 0.2212358
+    "latency": 0.000496929,
+    "timestamp": 0.392816776
   },
   {
     "operation_index": 367,
     "operation_type": "read",
-    "latency": 0.0010312,
-    "timestamp": 0.222267
+    "latency": 0.000689056,
+    "timestamp": 0.393506609
   },
   {
     "operation_index": 368,
     "operation_type": "read",
-    "latency": 0.0005293,
-    "timestamp": 0.2227963
+    "latency": 0.001615905,
+    "timestamp": 0.395123309
   },
   {
     "operation_index": 369,
     "operation_type": "read",
-    "latency": 0.0010327,
-    "timestamp": 0.223829
+    "latency": 0.00051997,
+    "timestamp": 0.395644119
   },
   {
     "operation_index": 370,
     "operation_type": "write",
-    "latency": 0.0005183,
-    "timestamp": 0.2243473
+    "latency": 0.000998038,
+    "timestamp": 0.396642919
   },
   {
     "operation_index": 371,
     "operation_type": "read",
-    "latency": 0.0005195,
-    "timestamp": 0.2248668
+    "latency": 0.000489213,
+    "timestamp": 0.397132884
   },
   {
     "operation_index": 372,
     "operation_type": "read",
-    "latency": 0.00104,
-    "timestamp": 0.2259068
+    "latency": 0.001006289,
+    "timestamp": 0.398139978
   },
   {
     "operation_index": 373,
     "operation_type": "write",
-    "latency": 0.0010309,
-    "timestamp": 0.2269377
+    "latency": 0.001040918,
+    "timestamp": 0.399181755
   },
   {
     "operation_index": 374,
     "operation_type": "read",
-    "latency": 0.000518,
-    "timestamp": 0.2274557
+    "latency": 0.000500569,
+    "timestamp": 0.399683172
   },
   {
     "operation_index": 375,
     "operation_type": "write",
-    "latency": 0.0005408,
-    "timestamp": 0.2279965
+    "latency": 0.000490032,
+    "timestamp": 0.40017392
   },
   {
     "operation_index": 376,
     "operation_type": "read",
-    "latency": 0.0010421,
-    "timestamp": 0.2290386
+    "latency": 0.000501473,
+    "timestamp": 0.400676236
   },
   {
     "operation_index": 377,
     "operation_type": "read",
-    "latency": 0.0010343,
-    "timestamp": 0.2300729
+    "latency": 0.001476555,
+    "timestamp": 0.402153555
   },
   {
     "operation_index": 378,
     "operation_type": "write",
-    "latency": 0.0010403,
-    "timestamp": 0.2311132
+    "latency": 0.000478563,
+    "timestamp": 0.402632853
   },
   {
     "operation_index": 379,
     "operation_type": "read",
-    "latency": 0.0005147,
-    "timestamp": 0.2316279
+    "latency": 0.000483449,
+    "timestamp": 0.403117019
   },
   {
     "operation_index": 380,
     "operation_type": "read",
-    "latency": 0.0011706,
-    "timestamp": 0.2327985
+    "latency": 0.001511166,
+    "timestamp": 0.404628982
   },
   {
     "operation_index": 381,
     "operation_type": "read",
-    "latency": 0.0010377,
-    "timestamp": 0.2338362
+    "latency": 0.000988769,
+    "timestamp": 0.405618481
   },
   {
     "operation_index": 382,
     "operation_type": "write",
-    "latency": 0.0005204,
-    "timestamp": 0.2343566
+    "latency": 0.011020054,
+    "timestamp": 0.416639389
   },
   {
     "operation_index": 383,
     "operation_type": "read",
-    "latency": 0.0010282,
-    "timestamp": 0.2353848
+    "latency": 0.000558606,
+    "timestamp": 0.417198736
   },
   {
     "operation_index": 384,
     "operation_type": "read",
-    "latency": 0.000635,
-    "timestamp": 0.2360198
+    "latency": 0.00245348,
+    "timestamp": 0.419654223
   },
   {
     "operation_index": 385,
     "operation_type": "write",
-    "latency": 0.0005158,
-    "timestamp": 0.2365356
+    "latency": 0.001710579,
+    "timestamp": 0.421365857
   },
   {
     "operation_index": 386,
     "operation_type": "read",
-    "latency": 0.001038,
-    "timestamp": 0.2375736
+    "latency": 0.001130237,
+    "timestamp": 0.42249707
   },
   {
     "operation_index": 387,
     "operation_type": "write",
-    "latency": 0,
-    "timestamp": 0.2375736
+    "latency": 0.001564816,
+    "timestamp": 0.424062952
   },
   {
     "operation_index": 388,
     "operation_type": "write",
-    "latency": 0.00052,
-    "timestamp": 0.2380936
+    "latency": 0.001605431,
+    "timestamp": 0.425669453
   },
   {
     "operation_index": 389,
     "operation_type": "read",
-    "latency": 0.0010525,
-    "timestamp": 0.2391461
+    "latency": 0.001630356,
+    "timestamp": 0.427300678
   },
   {
     "operation_index": 390,
     "operation_type": "write",
-    "latency": 0.0010332,
-    "timestamp": 0.2401793
+    "latency": 0.001764869,
+    "timestamp": 0.429066613
   },
   {
     "operation_index": 391,
     "operation_type": "read",
-    "latency": 0.0005137,
-    "timestamp": 0.240693
+    "latency": 0.00053317,
+    "timestamp": 0.429600759
   },
   {
     "operation_index": 392,
     "operation_type": "read",
-    "latency": 0.0005266,
-    "timestamp": 0.2412196
+    "latency": 0.001077654,
+    "timestamp": 0.430679442
   },
   {
     "operation_index": 393,
     "operation_type": "write",
-    "latency": 0.0005177,
-    "timestamp": 0.2417373
+    "latency": 0.001102019,
+    "timestamp": 0.431782568
   },
   {
     "operation_index": 394,
     "operation_type": "read",
-    "latency": 0.0005251,
-    "timestamp": 0.2422624
+    "latency": 0.001677066,
+    "timestamp": 0.433460386
   },
   {
     "operation_index": 395,
     "operation_type": "read",
-    "latency": 0.0010357,
-    "timestamp": 0.2432981
+    "latency": 0.001112966,
+    "timestamp": 0.434574378
   },
   {
     "operation_index": 396,
     "operation_type": "write",
-    "latency": 0.0005278,
-    "timestamp": 0.2438259
+    "latency": 0.001632725,
+    "timestamp": 0.436207103
   },
   {
     "operation_index": 397,
     "operation_type": "read",
-    "latency": 0.0005242,
-    "timestamp": 0.2443501
+    "latency": 0.001063107,
+    "timestamp": 0.43727066
   },
   {
     "operation_index": 398,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.2443501
+    "latency": 0.001609394,
+    "timestamp": 0.438881009
   },
   {
     "operation_index": 399,
     "operation_type": "read",
-    "latency": 0.0010333,
-    "timestamp": 0.2453834
+    "latency": 0.000517318,
+    "timestamp": 0.439399358
   },
   {
     "operation_index": 400,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.2453834
+    "latency": 0.001615785,
+    "timestamp": 0.441016022
   },
   {
     "operation_index": 401,
     "operation_type": "read",
-    "latency": 0.0010293,
-    "timestamp": 0.2464127
+    "latency": 0.001623185,
+    "timestamp": 0.442640097
   },
   {
     "operation_index": 402,
     "operation_type": "read",
-    "latency": 0.0011322,
-    "timestamp": 0.2475449
+    "latency": 0.000613458,
+    "timestamp": 0.443254735
   },
   {
     "operation_index": 403,
     "operation_type": "read",
-    "latency": 0.0010325,
-    "timestamp": 0.2485774
+    "latency": 0.000576727,
+    "timestamp": 0.44383239
   },
   {
     "operation_index": 404,
     "operation_type": "read",
-    "latency": 0.0010347,
-    "timestamp": 0.2496121
+    "latency": 0.000538517,
+    "timestamp": 0.4443719
   },
   {
     "operation_index": 405,
     "operation_type": "read",
-    "latency": 0.0010349,
-    "timestamp": 0.250647
+    "latency": 0.000552487,
+    "timestamp": 0.444925039
   },
   {
     "operation_index": 406,
     "operation_type": "read",
-    "latency": 0.0005268,
-    "timestamp": 0.2511738
+    "latency": 0.000590129,
+    "timestamp": 0.445515493
   },
   {
     "operation_index": 407,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.2511738
+    "latency": 0.000561097,
+    "timestamp": 0.446077534
   },
   {
     "operation_index": 408,
     "operation_type": "read",
-    "latency": 0.0005129,
-    "timestamp": 0.2516867
+    "latency": 0.00100519,
+    "timestamp": 0.447083757
   },
   {
     "operation_index": 409,
     "operation_type": "read",
-    "latency": 0.0005272,
-    "timestamp": 0.2522139
+    "latency": 0.000566584,
+    "timestamp": 0.447651237
   },
   {
     "operation_index": 410,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.2522139
+    "latency": 0.000571736,
+    "timestamp": 0.44822402
   },
   {
     "operation_index": 411,
     "operation_type": "write",
-    "latency": 0.0005243,
-    "timestamp": 0.2527382
+    "latency": 0.000967462,
+    "timestamp": 0.449192638
   },
   {
     "operation_index": 412,
     "operation_type": "write",
-    "latency": 0.0005177,
-    "timestamp": 0.2532559
+    "latency": 0.000778223,
+    "timestamp": 0.449971924
   },
   {
     "operation_index": 413,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.2532559
+    "latency": 0.000568703,
+    "timestamp": 0.450541487
   },
   {
     "operation_index": 414,
     "operation_type": "read",
-    "latency": 0.0010479,
-    "timestamp": 0.2543038
+    "latency": 0.001097447,
+    "timestamp": 0.451641304
   },
   {
     "operation_index": 415,
     "operation_type": "read",
-    "latency": 0.0010387,
-    "timestamp": 0.2553425
+    "latency": 0.001162104,
+    "timestamp": 0.452804362
   },
   {
     "operation_index": 416,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.2553425
+    "latency": 0.000533175,
+    "timestamp": 0.453338465
   },
   {
     "operation_index": 417,
     "operation_type": "write",
-    "latency": 0.0005161,
-    "timestamp": 0.2558586
+    "latency": 0.001073825,
+    "timestamp": 0.45441284
   },
   {
     "operation_index": 418,
     "operation_type": "read",
-    "latency": 0.0005146,
-    "timestamp": 0.2563732
+    "latency": 0.001718221,
+    "timestamp": 0.456131939
   },
   {
     "operation_index": 419,
     "operation_type": "write",
-    "latency": 0.000517,
-    "timestamp": 0.2568902
+    "latency": 0.001218413,
+    "timestamp": 0.457351374
   },
   {
     "operation_index": 420,
     "operation_type": "read",
-    "latency": 0.0010503,
-    "timestamp": 0.2579405
+    "latency": 0.001652755,
+    "timestamp": 0.459005084
   },
   {
     "operation_index": 421,
     "operation_type": "read",
-    "latency": 0.0010451,
-    "timestamp": 0.2589856
+    "latency": 0.001860929,
+    "timestamp": 0.460867002
   },
   {
     "operation_index": 422,
     "operation_type": "write",
-    "latency": 0.0010433,
-    "timestamp": 0.2600289
+    "latency": 0.00174769,
+    "timestamp": 0.462615798
   },
   {
     "operation_index": 423,
     "operation_type": "read",
-    "latency": 0.0010378,
-    "timestamp": 0.2610667
+    "latency": 0.001401855,
+    "timestamp": 0.464018637
   },
   {
     "operation_index": 424,
     "operation_type": "write",
-    "latency": 0.0005168,
-    "timestamp": 0.2615835
+    "latency": 0.001887995,
+    "timestamp": 0.465907511
   },
   {
     "operation_index": 425,
     "operation_type": "write",
-    "latency": 0,
-    "timestamp": 0.2615835
+    "latency": 0.002291657,
+    "timestamp": 0.468201559
   },
   {
     "operation_index": 426,
     "operation_type": "read",
-    "latency": 0.0011329,
-    "timestamp": 0.2627164
+    "latency": 0.000665692,
+    "timestamp": 0.468867731
   },
   {
     "operation_index": 427,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.2627164
+    "latency": 0.000618991,
+    "timestamp": 0.469488551
   },
   {
     "operation_index": 428,
     "operation_type": "read",
-    "latency": 0.0010277,
-    "timestamp": 0.2637441
+    "latency": 0.000618154,
+    "timestamp": 0.47010713
   },
   {
     "operation_index": 429,
     "operation_type": "write",
-    "latency": 0.001609,
-    "timestamp": 0.2653531
+    "latency": 0.001143812,
+    "timestamp": 0.471251954
   },
   {
     "operation_index": 430,
     "operation_type": "write",
-    "latency": 0.0010394,
-    "timestamp": 0.2663925
+    "latency": 0.000581066,
+    "timestamp": 0.471833922
   },
   {
     "operation_index": 431,
     "operation_type": "read",
-    "latency": 0.0010454,
-    "timestamp": 0.2674379
+    "latency": 0.001140329,
+    "timestamp": 0.472976124
   },
   {
     "operation_index": 432,
     "operation_type": "read",
-    "latency": 0.0010321,
-    "timestamp": 0.26847
+    "latency": 0.000557553,
+    "timestamp": 0.47353576
   },
   {
     "operation_index": 433,
     "operation_type": "read",
-    "latency": 0.0015482,
-    "timestamp": 0.2700182
+    "latency": 0.000563005,
+    "timestamp": 0.474099679
   },
   {
     "operation_index": 434,
     "operation_type": "read",
-    "latency": 0.0005186,
-    "timestamp": 0.2705368
+    "latency": 0.001706326,
+    "timestamp": 0.47580695
   },
   {
     "operation_index": 435,
     "operation_type": "read",
-    "latency": 0.0010373,
-    "timestamp": 0.2715741
+    "latency": 0.001681678,
+    "timestamp": 0.477490114
   },
   {
     "operation_index": 436,
     "operation_type": "read",
-    "latency": 0.0015592,
-    "timestamp": 0.2731333
+    "latency": 0.001674273,
+    "timestamp": 0.479165449
   },
   {
     "operation_index": 437,
     "operation_type": "read",
-    "latency": 0.0010293,
-    "timestamp": 0.2741626
+    "latency": 0.001629077,
+    "timestamp": 0.480795994
   },
   {
     "operation_index": 438,
     "operation_type": "read",
-    "latency": 0.001051,
-    "timestamp": 0.2752136
+    "latency": 0.00116065,
+    "timestamp": 0.481957451
   },
   {
     "operation_index": 439,
     "operation_type": "read",
-    "latency": 0.0005199,
-    "timestamp": 0.2757335
+    "latency": 0.001683436,
+    "timestamp": 0.48364202
   },
   {
     "operation_index": 440,
     "operation_type": "read",
-    "latency": 0.0015536,
-    "timestamp": 0.2772871
+    "latency": 0.000602873,
+    "timestamp": 0.484245969
   },
   {
     "operation_index": 441,
     "operation_type": "read",
-    "latency": 0.0006728,
-    "timestamp": 0.2779599
+    "latency": 0.001140069,
+    "timestamp": 0.485387373
   },
   {
     "operation_index": 442,
     "operation_type": "read",
-    "latency": 0.00052,
-    "timestamp": 0.2784799
+    "latency": 0.000581026,
+    "timestamp": 0.485969267
   },
   {
     "operation_index": 443,
     "operation_type": "read",
-    "latency": 0.0005225,
-    "timestamp": 0.2790024
+    "latency": 0.000562228,
+    "timestamp": 0.486532667
   },
   {
     "operation_index": 444,
     "operation_type": "write",
-    "latency": 0.0010488,
-    "timestamp": 0.2800512
+    "latency": 0.000572729,
+    "timestamp": 0.487106361
   },
   {
     "operation_index": 445,
     "operation_type": "read",
-    "latency": 0.0005187,
-    "timestamp": 0.2805699
+    "latency": 0.000570897,
+    "timestamp": 0.487679746
   },
   {
     "operation_index": 446,
     "operation_type": "read",
-    "latency": 0.0015752,
-    "timestamp": 0.2821451
+    "latency": 0.001107438,
+    "timestamp": 0.488789379
   },
   {
     "operation_index": 447,
     "operation_type": "read",
-    "latency": 0.0010455,
-    "timestamp": 0.2831906
+    "latency": 0.001632294,
+    "timestamp": 0.49042256
   },
   {
     "operation_index": 448,
     "operation_type": "read",
-    "latency": 0.0005107,
-    "timestamp": 0.2837013
+    "latency": 0.001163348,
+    "timestamp": 0.491587162
   },
   {
     "operation_index": 449,
     "operation_type": "read",
-    "latency": 0.0005183,
-    "timestamp": 0.2842196
+    "latency": 0.001690321,
+    "timestamp": 0.493278377
   },
   {
     "operation_index": 450,
     "operation_type": "write",
-    "latency": 0,
-    "timestamp": 0.2842196
+    "latency": 0.000587233,
+    "timestamp": 0.493866626
   },
   {
     "operation_index": 451,
     "operation_type": "read",
-    "latency": 0.0005267,
-    "timestamp": 0.2847463
+    "latency": 0.000559117,
+    "timestamp": 0.494426638
   },
   {
     "operation_index": 452,
     "operation_type": "write",
-    "latency": 0.0010433,
-    "timestamp": 0.2857896
+    "latency": 0.001747843,
+    "timestamp": 0.496175308
   },
   {
     "operation_index": 453,
     "operation_type": "read",
-    "latency": 0.0005091,
-    "timestamp": 0.2862987
+    "latency": 0.013627314,
+    "timestamp": 0.509803516
   },
   {
     "operation_index": 454,
     "operation_type": "write",
-    "latency": 0.0011619,
-    "timestamp": 0.2874606
+    "latency": 0.001305772,
+    "timestamp": 0.511110176
   },
   {
     "operation_index": 455,
     "operation_type": "read",
-    "latency": 0.0005159,
-    "timestamp": 0.2879765
+    "latency": 0.001286356,
+    "timestamp": 0.512397511
   },
   {
     "operation_index": 456,
     "operation_type": "read",
-    "latency": 0.0005181,
-    "timestamp": 0.2884946
+    "latency": 0.000670087,
+    "timestamp": 0.513068781
   },
   {
     "operation_index": 457,
     "operation_type": "write",
-    "latency": 0.0005152,
-    "timestamp": 0.2890098
+    "latency": 0.001202547,
+    "timestamp": 0.514272356
   },
   {
     "operation_index": 458,
     "operation_type": "write",
-    "latency": 0.001033,
-    "timestamp": 0.2900428
+    "latency": 0.000571944,
+    "timestamp": 0.514844893
   },
   {
     "operation_index": 459,
     "operation_type": "read",
-    "latency": 0.001035,
-    "timestamp": 0.2910778
+    "latency": 0.001661592,
+    "timestamp": 0.516507121
   },
   {
     "operation_index": 460,
     "operation_type": "read",
-    "latency": 0.0005273,
-    "timestamp": 0.2916051
+    "latency": 0.001645843,
+    "timestamp": 0.518153959
   },
   {
     "operation_index": 461,
     "operation_type": "read",
-    "latency": 0.00052,
-    "timestamp": 0.2921251
+    "latency": 0.002357555,
+    "timestamp": 0.520512235
   },
   {
     "operation_index": 462,
     "operation_type": "read",
-    "latency": 0.0005165,
-    "timestamp": 0.2926416
+    "latency": 0.000548585,
+    "timestamp": 0.521061025
   },
   {
     "operation_index": 463,
     "operation_type": "read",
-    "latency": 0.0011945,
-    "timestamp": 0.2938361
+    "latency": 0.00057137,
+    "timestamp": 0.521632765
   },
   {
     "operation_index": 464,
     "operation_type": "read",
-    "latency": 0.0010492,
-    "timestamp": 0.2948853
+    "latency": 0.000574066,
+    "timestamp": 0.522207792
   },
   {
     "operation_index": 465,
     "operation_type": "read",
-    "latency": 0.0010411,
-    "timestamp": 0.2959264
+    "latency": 0.000561105,
+    "timestamp": 0.522770071
   },
   {
     "operation_index": 466,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.2959264
+    "latency": 0.000577062,
+    "timestamp": 0.523347727
   },
   {
     "operation_index": 467,
     "operation_type": "write",
-    "latency": 0.0010425,
-    "timestamp": 0.2969689
+    "latency": 0.00051461,
+    "timestamp": 0.523863205
   },
   {
     "operation_index": 468,
     "operation_type": "write",
-    "latency": 0.0010345,
-    "timestamp": 0.2980034
+    "latency": 0.000567337,
+    "timestamp": 0.524431631
   },
   {
     "operation_index": 469,
     "operation_type": "read",
-    "latency": 0.0022415,
-    "timestamp": 0.3002449
+    "latency": 0.000521411,
+    "timestamp": 0.524954038
   },
   {
     "operation_index": 470,
     "operation_type": "read",
-    "latency": 0.0010265,
-    "timestamp": 0.3012714
+    "latency": 0.001134533,
+    "timestamp": 0.526089553
   },
   {
     "operation_index": 471,
     "operation_type": "write",
-    "latency": 0.0010521,
-    "timestamp": 0.3023235
+    "latency": 0.001048241,
+    "timestamp": 0.527138686
   },
   {
     "operation_index": 472,
     "operation_type": "read",
-    "latency": 0.0005109,
-    "timestamp": 0.3028344
+    "latency": 0.001668844,
+    "timestamp": 0.528808762
   },
   {
     "operation_index": 473,
     "operation_type": "read",
-    "latency": 0.000524,
-    "timestamp": 0.3033584
+    "latency": 0.000523133,
+    "timestamp": 0.529332939
   },
   {
     "operation_index": 474,
     "operation_type": "read",
-    "latency": 0.0005438,
-    "timestamp": 0.3039022
+    "latency": 0.000564846,
+    "timestamp": 0.529898731
   },
   {
     "operation_index": 475,
     "operation_type": "write",
-    "latency": 0.0005175,
-    "timestamp": 0.3044197
+    "latency": 0.00111193,
+    "timestamp": 0.53101191
   },
   {
     "operation_index": 476,
     "operation_type": "write",
-    "latency": 0.0010252,
-    "timestamp": 0.3054449
+    "latency": 0.001095072,
+    "timestamp": 0.532108069
   },
   {
     "operation_index": 477,
     "operation_type": "read",
-    "latency": 0.0005193,
-    "timestamp": 0.3059642
+    "latency": 0.001610514,
+    "timestamp": 0.533719532
   },
   {
     "operation_index": 478,
     "operation_type": "read",
-    "latency": 0.0005189,
-    "timestamp": 0.3064831
+    "latency": 0.001625755,
+    "timestamp": 0.535346581
   },
   {
     "operation_index": 479,
     "operation_type": "read",
-    "latency": 0.0010241,
-    "timestamp": 0.3075072
+    "latency": 0.001102208,
+    "timestamp": 0.536449851
   },
   {
     "operation_index": 480,
     "operation_type": "write",
-    "latency": 0.001175,
-    "timestamp": 0.3086822
+    "latency": 0.000533829,
+    "timestamp": 0.536984914
   },
   {
     "operation_index": 481,
     "operation_type": "read",
-    "latency": 0.0010188,
-    "timestamp": 0.309701
+    "latency": 0.000528018,
+    "timestamp": 0.537514115
   },
   {
     "operation_index": 482,
     "operation_type": "read",
-    "latency": 0.0005234,
-    "timestamp": 0.3102244
+    "latency": 0.000530738,
+    "timestamp": 0.538045844
   },
   {
     "operation_index": 483,
     "operation_type": "read",
-    "latency": 0.0005248,
-    "timestamp": 0.3107492
+    "latency": 0.000542442,
+    "timestamp": 0.538589594
   },
   {
     "operation_index": 484,
     "operation_type": "read",
-    "latency": 0.001134,
-    "timestamp": 0.3118832
+    "latency": 0.000541735,
+    "timestamp": 0.53913235
   },
   {
     "operation_index": 485,
     "operation_type": "read",
-    "latency": 0.0010344,
-    "timestamp": 0.3129176
+    "latency": 0.000549098,
+    "timestamp": 0.539682541
   },
   {
     "operation_index": 486,
     "operation_type": "read",
-    "latency": 0.0005091,
-    "timestamp": 0.3134267
+    "latency": 0.000560383,
+    "timestamp": 0.540244257
   },
   {
     "operation_index": 487,
     "operation_type": "write",
-    "latency": 0.0010222,
-    "timestamp": 0.3144489
+    "latency": 0.000552278,
+    "timestamp": 0.540797975
   },
   {
     "operation_index": 488,
     "operation_type": "read",
-    "latency": 0.0010417,
-    "timestamp": 0.3154906
+    "latency": 0.000573698,
+    "timestamp": 0.541372887
   },
   {
     "operation_index": 489,
     "operation_type": "read",
-    "latency": 0.0010355,
-    "timestamp": 0.3165261
+    "latency": 0.000554121,
+    "timestamp": 0.541928486
   },
   {
     "operation_index": 490,
     "operation_type": "read",
-    "latency": 0.0005104,
-    "timestamp": 0.3170365
+    "latency": 0.000545592,
+    "timestamp": 0.542475091
   },
   {
     "operation_index": 491,
     "operation_type": "write",
-    "latency": 0.001041,
-    "timestamp": 0.3180775
+    "latency": 0.00053202,
+    "timestamp": 0.543008434
   },
   {
     "operation_index": 492,
     "operation_type": "read",
-    "latency": 0.0005184,
-    "timestamp": 0.3185959
+    "latency": 0.000553505,
+    "timestamp": 0.543563091
   },
   {
     "operation_index": 493,
     "operation_type": "write",
-    "latency": 0.0010462,
-    "timestamp": 0.3196421
+    "latency": 0.001730488,
+    "timestamp": 0.545294653
   },
   {
     "operation_index": 494,
     "operation_type": "read",
-    "latency": 0.0005188,
-    "timestamp": 0.3201609
+    "latency": 0.001219594,
+    "timestamp": 0.546515377
   },
   {
     "operation_index": 495,
     "operation_type": "read",
-    "latency": 0.0005177,
-    "timestamp": 0.3206786
+    "latency": 0.003404698,
+    "timestamp": 0.549920964
   },
   {
     "operation_index": 496,
     "operation_type": "read",
-    "latency": 0.0010352,
-    "timestamp": 0.3217138
+    "latency": 0.001183617,
+    "timestamp": 0.551105731
   },
   {
     "operation_index": 497,
     "operation_type": "read",
-    "latency": 0.0010364,
-    "timestamp": 0.3227502
+    "latency": 0.001715705,
+    "timestamp": 0.552822297
   },
   {
     "operation_index": 498,
     "operation_type": "write",
-    "latency": 0.0005244,
-    "timestamp": 0.3232746
+    "latency": 0.001179349,
+    "timestamp": 0.554002762
   },
   {
     "operation_index": 499,
     "operation_type": "read",
-    "latency": 0.0006651,
-    "timestamp": 0.3239397
+    "latency": 0.000576288,
+    "timestamp": 0.554579929
   },
   {
     "operation_index": 500,
     "operation_type": "read",
-    "latency": 0.001653,
-    "timestamp": 0.3255927
+    "latency": 0.001749856,
+    "timestamp": 0.556331299
   },
   {
     "operation_index": 501,
     "operation_type": "write",
-    "latency": 0.0005326,
-    "timestamp": 0.3261253
+    "latency": 0.000558396,
+    "timestamp": 0.556890789
   },
   {
     "operation_index": 502,
     "operation_type": "write",
-    "latency": 0.0015795,
-    "timestamp": 0.3277048
+    "latency": 0.000579722,
+    "timestamp": 0.557471762
   },
   {
     "operation_index": 503,
     "operation_type": "read",
-    "latency": 0.0010793,
-    "timestamp": 0.3287841
+    "latency": 0.001184114,
+    "timestamp": 0.558656911
   },
   {
     "operation_index": 504,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.3287841
+    "latency": 0.002664447,
+    "timestamp": 0.561322615
   },
   {
     "operation_index": 505,
     "operation_type": "read",
-    "latency": 0.0015784,
-    "timestamp": 0.3303625
+    "latency": 0.00054661,
+    "timestamp": 0.561870451
   },
   {
     "operation_index": 506,
     "operation_type": "read",
-    "latency": 0.0005203,
-    "timestamp": 0.3308828
+    "latency": 0.000781084,
+    "timestamp": 0.562652685
   },
   {
     "operation_index": 507,
     "operation_type": "read",
-    "latency": 0.0005268,
-    "timestamp": 0.3314096
+    "latency": 0.001205917,
+    "timestamp": 0.563859799
   },
   {
     "operation_index": 508,
     "operation_type": "read",
-    "latency": 0.0005246,
-    "timestamp": 0.3319342
+    "latency": 0.000642085,
+    "timestamp": 0.564502825
   },
   {
     "operation_index": 509,
     "operation_type": "read",
-    "latency": 0.0010433,
-    "timestamp": 0.3329775
+    "latency": 0.002073168,
+    "timestamp": 0.566577182
   },
   {
     "operation_index": 510,
     "operation_type": "read",
-    "latency": 0.0010405,
-    "timestamp": 0.334018
+    "latency": 0.001921433,
+    "timestamp": 0.568499714
   },
   {
     "operation_index": 511,
     "operation_type": "write",
-    "latency": 0.0010221,
-    "timestamp": 0.3350401
+    "latency": 0.001308063,
+    "timestamp": 0.569809048
   },
   {
     "operation_index": 512,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.3350401
+    "latency": 0.001808171,
+    "timestamp": 0.571618271
   },
   {
     "operation_index": 513,
     "operation_type": "read",
-    "latency": 0.0005279,
-    "timestamp": 0.335568
+    "latency": 0.000600858,
+    "timestamp": 0.572220651
   },
   {
     "operation_index": 514,
     "operation_type": "read",
-    "latency": 0.0010352,
-    "timestamp": 0.3366032
+    "latency": 0.000601641,
+    "timestamp": 0.572823379
   },
   {
     "operation_index": 515,
     "operation_type": "write",
-    "latency": 0.0005174,
-    "timestamp": 0.3371206
+    "latency": 0.000580879,
+    "timestamp": 0.573405445
   },
   {
     "operation_index": 516,
     "operation_type": "read",
-    "latency": 0.0005193,
-    "timestamp": 0.3376399
+    "latency": 0.000562713,
+    "timestamp": 0.57396923
   },
   {
     "operation_index": 517,
     "operation_type": "read",
-    "latency": 0.0005167,
-    "timestamp": 0.3381566
+    "latency": 0.001768933,
+    "timestamp": 0.575739265
   },
   {
     "operation_index": 518,
     "operation_type": "write",
-    "latency": 0.0011575,
-    "timestamp": 0.3393141
+    "latency": 0.001689242,
+    "timestamp": 0.57742911
   },
   {
     "operation_index": 519,
     "operation_type": "write",
-    "latency": 0.0010359,
-    "timestamp": 0.34035
+    "latency": 0.001804289,
+    "timestamp": 0.579233881
   },
   {
     "operation_index": 520,
     "operation_type": "read",
-    "latency": 0.0005168,
-    "timestamp": 0.3408668
+    "latency": 0.000528126,
+    "timestamp": 0.579763316
   },
   {
     "operation_index": 521,
     "operation_type": "read",
-    "latency": 0.0010566,
-    "timestamp": 0.3419234
+    "latency": 0.000562636,
+    "timestamp": 0.580326949
   },
   {
     "operation_index": 522,
     "operation_type": "read",
-    "latency": 0.0010388,
-    "timestamp": 0.3429622
+    "latency": 0.001199129,
+    "timestamp": 0.581527528
   },
   {
     "operation_index": 523,
     "operation_type": "write",
-    "latency": 0.000515,
-    "timestamp": 0.3434772
+    "latency": 0.001931651,
+    "timestamp": 0.58346079
   },
   {
     "operation_index": 524,
     "operation_type": "read",
-    "latency": 0.0005186,
-    "timestamp": 0.3439958
+    "latency": 0.002053429,
+    "timestamp": 0.585515661
   },
   {
     "operation_index": 525,
     "operation_type": "read",
-    "latency": 0.0010294,
-    "timestamp": 0.3450252
+    "latency": 0.001232733,
+    "timestamp": 0.586749674
   },
   {
     "operation_index": 526,
     "operation_type": "write",
-    "latency": 0.0010584,
-    "timestamp": 0.3460836
+    "latency": 0.00060779,
+    "timestamp": 0.58735895
   },
   {
     "operation_index": 527,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.3460836
+    "latency": 0.000545609,
+    "timestamp": 0.587905505
   },
   {
     "operation_index": 528,
     "operation_type": "read",
-    "latency": 0.0015935,
-    "timestamp": 0.3476771
+    "latency": 0.000677924,
+    "timestamp": 0.588584629
   },
   {
     "operation_index": 529,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.3476771
+    "latency": 0.000612196,
+    "timestamp": 0.589198343
   },
   {
     "operation_index": 530,
     "operation_type": "read",
-    "latency": 0.0010459,
-    "timestamp": 0.348723
+    "latency": 0.001705243,
+    "timestamp": 0.590904727
   },
   {
     "operation_index": 531,
     "operation_type": "read",
-    "latency": 0.0005186,
-    "timestamp": 0.3492416
+    "latency": 0.00119184,
+    "timestamp": 0.592097699
   },
   {
     "operation_index": 532,
     "operation_type": "write",
-    "latency": 0.000517,
-    "timestamp": 0.3497586
+    "latency": 0.000631064,
+    "timestamp": 0.592730095
   },
   {
     "operation_index": 533,
     "operation_type": "read",
-    "latency": 0.0005179,
-    "timestamp": 0.3502765
+    "latency": 0.001394689,
+    "timestamp": 0.594126049
   },
   {
     "operation_index": 534,
     "operation_type": "read",
-    "latency": 0.0010256,
-    "timestamp": 0.3513021
+    "latency": 0.00059685,
+    "timestamp": 0.594723837
   },
   {
     "operation_index": 535,
     "operation_type": "read",
-    "latency": 0.000511,
-    "timestamp": 0.3518131
+    "latency": 0.000596079,
+    "timestamp": 0.595321396
   },
   {
     "operation_index": 536,
     "operation_type": "write",
-    "latency": 0.0005221,
-    "timestamp": 0.3523352
+    "latency": 0.001742844,
+    "timestamp": 0.59706533
   },
   {
     "operation_index": 537,
     "operation_type": "write",
-    "latency": 0.0006131,
-    "timestamp": 0.3529483
+    "latency": 0.002566417,
+    "timestamp": 0.599633009
   },
   {
     "operation_index": 538,
     "operation_type": "write",
-    "latency": 0.0005389,
-    "timestamp": 0.3534872
+    "latency": 0.001719691,
+    "timestamp": 0.601353865
   },
   {
     "operation_index": 539,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.3534872
+    "latency": 0.001192942,
+    "timestamp": 0.602547804
   },
   {
     "operation_index": 540,
     "operation_type": "read",
-    "latency": 0.0011451,
-    "timestamp": 0.3546323
+    "latency": 0.001135681,
+    "timestamp": 0.603684307
   },
   {
     "operation_index": 541,
     "operation_type": "read",
-    "latency": 0.0010378,
-    "timestamp": 0.3556701
+    "latency": 0.001651766,
+    "timestamp": 0.605337143
   },
   {
     "operation_index": 542,
     "operation_type": "read",
-    "latency": 0.0010365,
-    "timestamp": 0.3567066
+    "latency": 0.00061114,
+    "timestamp": 0.605949598
   },
   {
     "operation_index": 543,
     "operation_type": "read",
-    "latency": 0.001032,
-    "timestamp": 0.3577386
+    "latency": 0.001141997,
+    "timestamp": 0.607092392
   },
   {
     "operation_index": 544,
     "operation_type": "read",
-    "latency": 0.0010911,
-    "timestamp": 0.3588297
+    "latency": 0.001103016,
+    "timestamp": 0.608196738
   },
   {
     "operation_index": 545,
     "operation_type": "read",
-    "latency": 0.0005183,
-    "timestamp": 0.359348
+    "latency": 0.000577297,
+    "timestamp": 0.608775472
   },
   {
     "operation_index": 546,
     "operation_type": "write",
-    "latency": 0.0005222,
-    "timestamp": 0.3598702
+    "latency": 0.001977809,
+    "timestamp": 0.610753932
   },
   {
     "operation_index": 547,
     "operation_type": "read",
-    "latency": 0.0010359,
-    "timestamp": 0.3609061
+    "latency": 0.001711767,
+    "timestamp": 0.612466573
   },
   {
     "operation_index": 548,
     "operation_type": "read",
-    "latency": 0.0005211,
-    "timestamp": 0.3614272
+    "latency": 0.000571022,
+    "timestamp": 0.613038897
   },
   {
     "operation_index": 549,
     "operation_type": "read",
-    "latency": 0.0015655,
-    "timestamp": 0.3629927
+    "latency": 0.001130568,
+    "timestamp": 0.614170381
   },
   {
     "operation_index": 550,
     "operation_type": "read",
-    "latency": 0.0005157,
-    "timestamp": 0.3635084
+    "latency": 0.001197253,
+    "timestamp": 0.615368672
   },
   {
     "operation_index": 551,
     "operation_type": "read",
-    "latency": 0.0010445,
-    "timestamp": 0.3645529
+    "latency": 0.000628169,
+    "timestamp": 0.615998361
   },
   {
     "operation_index": 552,
     "operation_type": "read",
-    "latency": 0.0010607,
-    "timestamp": 0.3656136
+    "latency": 0.000602054,
+    "timestamp": 0.616601495
   },
   {
     "operation_index": 553,
     "operation_type": "write",
-    "latency": 0.0005187,
-    "timestamp": 0.3661323
+    "latency": 0.001250708,
+    "timestamp": 0.617853402
   },
   {
     "operation_index": 554,
     "operation_type": "read",
-    "latency": 0.0005169,
-    "timestamp": 0.3666492
+    "latency": 0.000572506,
+    "timestamp": 0.618427131
   },
   {
     "operation_index": 555,
     "operation_type": "read",
-    "latency": 0.0010403,
-    "timestamp": 0.3676895
+    "latency": 0.001191808,
+    "timestamp": 0.619621068
   },
   {
     "operation_index": 556,
     "operation_type": "read",
-    "latency": 0.0005215,
-    "timestamp": 0.368211
+    "latency": 0.000647452,
+    "timestamp": 0.620269111
   },
   {
     "operation_index": 557,
     "operation_type": "write",
-    "latency": 0.0010265,
-    "timestamp": 0.3692375
+    "latency": 0.001770747,
+    "timestamp": 0.622041226
   },
   {
     "operation_index": 558,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.3692375
+    "latency": 0.00057661,
+    "timestamp": 0.622618896
   },
   {
     "operation_index": 559,
     "operation_type": "read",
-    "latency": 0.0006568,
-    "timestamp": 0.3698943
+    "latency": 0.001225047,
+    "timestamp": 0.623845043
   },
   {
     "operation_index": 560,
     "operation_type": "read",
-    "latency": 0.0011231,
-    "timestamp": 0.3710174
+    "latency": 0.001904386,
+    "timestamp": 0.62575038
   },
   {
     "operation_index": 561,
     "operation_type": "write",
-    "latency": 0,
-    "timestamp": 0.3710174
+    "latency": 0.000674594,
+    "timestamp": 0.626426561
   },
   {
     "operation_index": 562,
     "operation_type": "read",
-    "latency": 0.0005128,
-    "timestamp": 0.3715302
+    "latency": 0.000652153,
+    "timestamp": 0.627079682
   },
   {
     "operation_index": 563,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.3715302
+    "latency": 0.000587405,
+    "timestamp": 0.627669554
   },
   {
     "operation_index": 564,
     "operation_type": "read",
-    "latency": 0.0005095,
-    "timestamp": 0.3720397
+    "latency": 0.000660175,
+    "timestamp": 0.628330218
   },
   {
     "operation_index": 565,
     "operation_type": "read",
-    "latency": 0.0005178,
-    "timestamp": 0.3725575
+    "latency": 0.000608803,
+    "timestamp": 0.628940781
   },
   {
     "operation_index": 566,
     "operation_type": "write",
-    "latency": 0.0005175,
-    "timestamp": 0.373075
+    "latency": 0.000609558,
+    "timestamp": 0.629551181
   },
   {
     "operation_index": 567,
     "operation_type": "read",
-    "latency": 0.0005186,
-    "timestamp": 0.3735936
+    "latency": 0.000783196,
+    "timestamp": 0.630335177
   },
   {
     "operation_index": 568,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.3735936
+    "latency": 0.001146543,
+    "timestamp": 0.631482916
   },
   {
     "operation_index": 569,
     "operation_type": "write",
-    "latency": 0.0005182,
-    "timestamp": 0.3741118
+    "latency": 0.000569306,
+    "timestamp": 0.632053215
   },
   {
     "operation_index": 570,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.3741118
+    "latency": 0.000550022,
+    "timestamp": 0.632605238
   },
   {
     "operation_index": 571,
     "operation_type": "write",
-    "latency": 0.0005168,
-    "timestamp": 0.3746286
+    "latency": 0.001153539,
+    "timestamp": 0.63376004
   },
   {
     "operation_index": 572,
     "operation_type": "read",
-    "latency": 0.0010327,
-    "timestamp": 0.3756613
+    "latency": 0.001151971,
+    "timestamp": 0.634913227
   },
   {
     "operation_index": 573,
     "operation_type": "read",
-    "latency": 0.0010426,
-    "timestamp": 0.3767039
+    "latency": 0.002308205,
+    "timestamp": 0.637221994
   },
   {
     "operation_index": 574,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.3767039
+    "latency": 0.001051681,
+    "timestamp": 0.638275202
   },
   {
     "operation_index": 575,
     "operation_type": "write",
-    "latency": 0.0010302,
-    "timestamp": 0.3777341
+    "latency": 0.005986446,
+    "timestamp": 0.644262476
   },
   {
     "operation_index": 576,
     "operation_type": "read",
-    "latency": 0.0005156,
-    "timestamp": 0.3782497
+    "latency": 0.000549575,
+    "timestamp": 0.644812754
   },
   {
     "operation_index": 577,
     "operation_type": "write",
-    "latency": 0.0005156,
-    "timestamp": 0.3787653
+    "latency": 0.000571424,
+    "timestamp": 0.645385105
   },
   {
     "operation_index": 578,
     "operation_type": "read",
-    "latency": 0.0005117,
-    "timestamp": 0.379277
+    "latency": 0.000562052,
+    "timestamp": 0.645948473
   },
   {
     "operation_index": 579,
     "operation_type": "read",
-    "latency": 0.000513,
-    "timestamp": 0.37979
+    "latency": 0.001662283,
+    "timestamp": 0.647612257
   },
   {
     "operation_index": 580,
     "operation_type": "read",
-    "latency": 0.0005149,
-    "timestamp": 0.3803049
+    "latency": 0.000529998,
+    "timestamp": 0.648143596
   },
   {
     "operation_index": 581,
     "operation_type": "read",
-    "latency": 0.0015492,
-    "timestamp": 0.3818541
+    "latency": 0.001657364,
+    "timestamp": 0.649802428
   },
   {
     "operation_index": 582,
     "operation_type": "read",
-    "latency": 0.0010604,
-    "timestamp": 0.3829145
+    "latency": 0.000539978,
+    "timestamp": 0.650342728
   },
   {
     "operation_index": 583,
     "operation_type": "write",
-    "latency": 0.0010861,
-    "timestamp": 0.3840006
+    "latency": 0.001068294,
+    "timestamp": 0.651412076
   },
   {
     "operation_index": 584,
     "operation_type": "write",
-    "latency": 0,
-    "timestamp": 0.3840006
+    "latency": 0.00059975,
+    "timestamp": 0.65201287
   },
   {
     "operation_index": 585,
     "operation_type": "read",
-    "latency": 0.0005189,
-    "timestamp": 0.3845195
+    "latency": 0.001602754,
+    "timestamp": 0.653617108
   },
   {
     "operation_index": 586,
     "operation_type": "read",
-    "latency": 0.0011717,
-    "timestamp": 0.3856912
+    "latency": 0.000561677,
+    "timestamp": 0.65417975
   },
   {
     "operation_index": 587,
     "operation_type": "read",
-    "latency": 0.0005357,
-    "timestamp": 0.3862269
+    "latency": 0.000560206,
+    "timestamp": 0.654741808
   },
   {
     "operation_index": 588,
     "operation_type": "read",
-    "latency": 0.0010432,
-    "timestamp": 0.3872701
+    "latency": 0.000519554,
+    "timestamp": 0.655262441
   },
   {
     "operation_index": 589,
     "operation_type": "read",
-    "latency": 0.0010375,
-    "timestamp": 0.3883076
+    "latency": 0.00052338,
+    "timestamp": 0.655787318
   },
   {
     "operation_index": 590,
     "operation_type": "read",
-    "latency": 0.0010338,
-    "timestamp": 0.3893414
+    "latency": 0.00161808,
+    "timestamp": 0.657406509
   },
   {
     "operation_index": 591,
     "operation_type": "read",
-    "latency": 0.0005149,
-    "timestamp": 0.3898563
+    "latency": 0.001164293,
+    "timestamp": 0.658571811
   },
   {
     "operation_index": 592,
     "operation_type": "read",
-    "latency": 0.0010276,
-    "timestamp": 0.3908839
+    "latency": 0.002408941,
+    "timestamp": 0.660982386
   },
   {
     "operation_index": 593,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.3908839
+    "latency": 0.001669748,
+    "timestamp": 0.662653678
   },
   {
     "operation_index": 594,
     "operation_type": "read",
-    "latency": 0.0005169,
-    "timestamp": 0.3914008
+    "latency": 0.001596088,
+    "timestamp": 0.664251303
   },
   {
     "operation_index": 595,
     "operation_type": "read",
-    "latency": 0.0010374,
-    "timestamp": 0.3924382
+    "latency": 0.001136272,
+    "timestamp": 0.665388934
   },
   {
     "operation_index": 596,
     "operation_type": "write",
-    "latency": 0.001057,
-    "timestamp": 0.3934952
+    "latency": 0.001189403,
+    "timestamp": 0.666579481
   },
   {
     "operation_index": 597,
     "operation_type": "read",
-    "latency": 0.0005175,
-    "timestamp": 0.3940127
+    "latency": 0.001797144,
+    "timestamp": 0.668377754
   },
   {
     "operation_index": 598,
     "operation_type": "read",
-    "latency": 0.0010409,
-    "timestamp": 0.3950536
+    "latency": 0.000563055,
+    "timestamp": 0.668941983
   },
   {
     "operation_index": 599,
     "operation_type": "read",
-    "latency": 0.0005357,
-    "timestamp": 0.3955893
+    "latency": 0.00170444,
+    "timestamp": 0.670647442
   },
   {
     "operation_index": 600,
     "operation_type": "read",
-    "latency": 0.0010382,
-    "timestamp": 0.3966275
+    "latency": 0.000511868,
+    "timestamp": 0.671160782
   },
   {
     "operation_index": 601,
     "operation_type": "read",
-    "latency": 0.0010402,
-    "timestamp": 0.3976677
+    "latency": 0.001097267,
+    "timestamp": 0.672259371
   },
   {
     "operation_index": 602,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.3976677
+    "latency": 0.0005341,
+    "timestamp": 0.672794526
   },
   {
     "operation_index": 603,
     "operation_type": "read",
-    "latency": 0.0010448,
-    "timestamp": 0.3987125
+    "latency": 0.000540689,
+    "timestamp": 0.6733368
   },
   {
     "operation_index": 604,
     "operation_type": "read",
-    "latency": 0.0010506,
-    "timestamp": 0.3997631
+    "latency": 0.001030877,
+    "timestamp": 0.67436879
   },
   {
     "operation_index": 605,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.3997631
+    "latency": 0.001622749,
+    "timestamp": 0.675992491
   },
   {
     "operation_index": 606,
     "operation_type": "read",
-    "latency": 0.0006927,
-    "timestamp": 0.4004558
+    "latency": 0.000594195,
+    "timestamp": 0.676587571
   },
   {
     "operation_index": 607,
     "operation_type": "read",
-    "latency": 0.0010322,
-    "timestamp": 0.401488
+    "latency": 0.00109376,
+    "timestamp": 0.677682467
   },
   {
     "operation_index": 608,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.401488
+    "latency": 0.001069671,
+    "timestamp": 0.678753107
   },
   {
     "operation_index": 609,
     "operation_type": "read",
-    "latency": 0.0010482,
-    "timestamp": 0.4025362
+    "latency": 0.001532179,
+    "timestamp": 0.680286529
   },
   {
     "operation_index": 610,
     "operation_type": "read",
-    "latency": 0.0005137,
-    "timestamp": 0.4030499
+    "latency": 0.001628451,
+    "timestamp": 0.681916068
   },
   {
     "operation_index": 611,
     "operation_type": "read",
-    "latency": 0.000513,
-    "timestamp": 0.4035629
+    "latency": 0.001101647,
+    "timestamp": 0.68301913
   },
   {
     "operation_index": 612,
     "operation_type": "write",
-    "latency": 0.000516,
-    "timestamp": 0.4040789
+    "latency": 0.001604434,
+    "timestamp": 0.684624827
   },
   {
     "operation_index": 613,
     "operation_type": "write",
-    "latency": 0.0005156,
-    "timestamp": 0.4045945
+    "latency": 0.000519647,
+    "timestamp": 0.685145922
   },
   {
     "operation_index": 614,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.4045945
+    "latency": 0.001034821,
+    "timestamp": 0.686181841
   },
   {
     "operation_index": 615,
     "operation_type": "read",
-    "latency": 0.0005193,
-    "timestamp": 0.4051138
+    "latency": 0.000533619,
+    "timestamp": 0.686716274
   },
   {
     "operation_index": 616,
     "operation_type": "read",
-    "latency": 0.0005213,
-    "timestamp": 0.4056351
+    "latency": 0.001562901,
+    "timestamp": 0.688300331
   },
   {
     "operation_index": 617,
     "operation_type": "read",
-    "latency": 0.0005185,
-    "timestamp": 0.4061536
+    "latency": 0.000877055,
+    "timestamp": 0.689178213
   },
   {
     "operation_index": 618,
     "operation_type": "read",
-    "latency": 0.0005182,
-    "timestamp": 0.4066718
+    "latency": 0.00148308,
+    "timestamp": 0.690661797
   },
   {
     "operation_index": 619,
     "operation_type": "read",
-    "latency": 0.0010498,
-    "timestamp": 0.4077216
+    "latency": 0.000588523,
+    "timestamp": 0.69125104
   },
   {
     "operation_index": 620,
     "operation_type": "read",
-    "latency": 0.0005251,
-    "timestamp": 0.4082467
+    "latency": 0.000565335,
+    "timestamp": 0.691817055
   },
   {
     "operation_index": 621,
     "operation_type": "read",
-    "latency": 0.0005412,
-    "timestamp": 0.4087879
+    "latency": 0.000520555,
+    "timestamp": 0.692338071
   },
   {
     "operation_index": 622,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.4087879
+    "latency": 0.000538648,
+    "timestamp": 0.692877787
   },
   {
     "operation_index": 623,
     "operation_type": "write",
-    "latency": 0.0010386,
-    "timestamp": 0.4098265
+    "latency": 0.000512433,
+    "timestamp": 0.693391329
   },
   {
     "operation_index": 624,
     "operation_type": "write",
-    "latency": 0.0005189,
-    "timestamp": 0.4103454
+    "latency": 0.000501342,
+    "timestamp": 0.693893866
   },
   {
     "operation_index": 625,
     "operation_type": "write",
-    "latency": 0.000528,
-    "timestamp": 0.4108734
+    "latency": 0.00055276,
+    "timestamp": 0.694447673
   },
   {
     "operation_index": 626,
     "operation_type": "read",
-    "latency": 0.0010402,
-    "timestamp": 0.4119136
+    "latency": 0.000512385,
+    "timestamp": 0.694961147
   },
   {
     "operation_index": 627,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.4119136
+    "latency": 0.010833133,
+    "timestamp": 0.70579515
   },
   {
     "operation_index": 628,
     "operation_type": "read",
-    "latency": 0.001041,
-    "timestamp": 0.4129546
+    "latency": 0.000548483,
+    "timestamp": 0.706344843
   },
   {
     "operation_index": 629,
     "operation_type": "read",
-    "latency": 0.0005156,
-    "timestamp": 0.4134702
+    "latency": 0.000551464,
+    "timestamp": 0.706897228
   },
   {
     "operation_index": 630,
     "operation_type": "read",
-    "latency": 0.0010381,
-    "timestamp": 0.4145083
+    "latency": 0.000662904,
+    "timestamp": 0.707561522
   },
   {
     "operation_index": 631,
     "operation_type": "read",
-    "latency": 0.0005216,
-    "timestamp": 0.4150299
+    "latency": 0.000556204,
+    "timestamp": 0.708118876
   },
   {
     "operation_index": 632,
     "operation_type": "read",
-    "latency": 0.0011495,
-    "timestamp": 0.4161794
+    "latency": 0.000566306,
+    "timestamp": 0.708686718
   },
   {
     "operation_index": 633,
     "operation_type": "read",
-    "latency": 0.0015622,
-    "timestamp": 0.4177416
+    "latency": 0.001645363,
+    "timestamp": 0.710333141
   },
   {
     "operation_index": 634,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.4177416
+    "latency": 0.001049781,
+    "timestamp": 0.711384732
   },
   {
     "operation_index": 635,
     "operation_type": "read",
-    "latency": 0.0005193,
-    "timestamp": 0.4182609
+    "latency": 0.000526784,
+    "timestamp": 0.711912777
   },
   {
     "operation_index": 636,
     "operation_type": "read",
-    "latency": 0.0005222,
-    "timestamp": 0.4187831
+    "latency": 0.000576552,
+    "timestamp": 0.712490323
   },
   {
     "operation_index": 637,
     "operation_type": "read",
-    "latency": 0.0010344,
-    "timestamp": 0.4198175
+    "latency": 0.001598331,
+    "timestamp": 0.714090005
   },
   {
     "operation_index": 638,
     "operation_type": "read",
-    "latency": 0.000517,
-    "timestamp": 0.4203345
+    "latency": 0.000547717,
+    "timestamp": 0.714639016
   },
   {
     "operation_index": 639,
     "operation_type": "read",
-    "latency": 0.0005106,
-    "timestamp": 0.4208451
+    "latency": 0.00106031,
+    "timestamp": 0.715700453
   },
   {
     "operation_index": 640,
     "operation_type": "write",
-    "latency": 0.0005179,
-    "timestamp": 0.421363
+    "latency": 0.001095847,
+    "timestamp": 0.716796925
   },
   {
     "operation_index": 641,
     "operation_type": "read",
-    "latency": 0.0010354,
-    "timestamp": 0.4223984
+    "latency": 0.000514103,
+    "timestamp": 0.717312122
   },
   {
     "operation_index": 642,
     "operation_type": "read",
-    "latency": 0.0005624,
-    "timestamp": 0.4229608
+    "latency": 0.00101085,
+    "timestamp": 0.718324233
   },
   {
     "operation_index": 643,
     "operation_type": "read",
-    "latency": 0.000517,
-    "timestamp": 0.4234778
+    "latency": 0.000539525,
+    "timestamp": 0.718864913
   },
   {
     "operation_index": 644,
     "operation_type": "write",
-    "latency": 0.0005195,
-    "timestamp": 0.4239973
+    "latency": 0.000541863,
+    "timestamp": 0.719408335
   },
   {
     "operation_index": 645,
     "operation_type": "read",
-    "latency": 0.0005237,
-    "timestamp": 0.424521
+    "latency": 0.000957265,
+    "timestamp": 0.720366605
   },
   {
     "operation_index": 646,
     "operation_type": "read",
-    "latency": 0.0010465,
-    "timestamp": 0.4255675
+    "latency": 0.001041426,
+    "timestamp": 0.721408968
   },
   {
     "operation_index": 647,
     "operation_type": "read",
-    "latency": 0.0005268,
-    "timestamp": 0.4260943
+    "latency": 0.000523975,
+    "timestamp": 0.721933741
   },
   {
     "operation_index": 648,
     "operation_type": "read",
-    "latency": 0.001044,
-    "timestamp": 0.4271383
+    "latency": 0.001613024,
+    "timestamp": 0.723547722
   },
   {
     "operation_index": 649,
     "operation_type": "read",
-    "latency": 0.0005273,
-    "timestamp": 0.4276656
+    "latency": 0.001539876,
+    "timestamp": 0.725088682
   },
   {
     "operation_index": 650,
     "operation_type": "write",
-    "latency": 0.0010768,
-    "timestamp": 0.4287424
+    "latency": 0.000515446,
+    "timestamp": 0.725605421
   },
   {
     "operation_index": 651,
     "operation_type": "read",
-    "latency": 0.0011366,
-    "timestamp": 0.429879
+    "latency": 0.001066029,
+    "timestamp": 0.726672736
   },
   {
     "operation_index": 652,
     "operation_type": "read",
-    "latency": 0.0012157,
-    "timestamp": 0.4310947
+    "latency": 0.001609784,
+    "timestamp": 0.728283831
   },
   {
     "operation_index": 653,
     "operation_type": "read",
-    "latency": 0.0010305,
-    "timestamp": 0.4321252
+    "latency": 0.001046185,
+    "timestamp": 0.729330613
   },
   {
     "operation_index": 654,
     "operation_type": "read",
-    "latency": 0.0010403,
-    "timestamp": 0.4331655
+    "latency": 0.000547714,
+    "timestamp": 0.72987906
   },
   {
     "operation_index": 655,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.4331655
+    "latency": 0.001195005,
+    "timestamp": 0.731074986
   },
   {
     "operation_index": 656,
     "operation_type": "read",
-    "latency": 0.0010327,
-    "timestamp": 0.4341982
+    "latency": 0.000542647,
+    "timestamp": 0.731618523
   },
   {
     "operation_index": 657,
     "operation_type": "read",
-    "latency": 0.0005177,
-    "timestamp": 0.4347159
+    "latency": 0.000563221,
+    "timestamp": 0.732183767
   },
   {
     "operation_index": 658,
     "operation_type": "write",
-    "latency": 0.0005837,
-    "timestamp": 0.4352996
+    "latency": 0.000568101,
+    "timestamp": 0.732752957
   },
   {
     "operation_index": 659,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.4352996
+    "latency": 0.000525189,
+    "timestamp": 0.733279065
   },
   {
     "operation_index": 660,
     "operation_type": "read",
-    "latency": 0.0010294,
-    "timestamp": 0.436329
+    "latency": 0.001562142,
+    "timestamp": 0.734842137
   },
   {
     "operation_index": 661,
     "operation_type": "write",
-    "latency": 0.0005208,
-    "timestamp": 0.4368498
+    "latency": 0.0005274,
+    "timestamp": 0.735370469
   },
   {
     "operation_index": 662,
     "operation_type": "write",
-    "latency": 0.0010411,
-    "timestamp": 0.4378909
+    "latency": 0.00103453,
+    "timestamp": 0.736405883
   },
   {
     "operation_index": 663,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.4378909
+    "latency": 0.001558681,
+    "timestamp": 0.737965574
   },
   {
     "operation_index": 664,
     "operation_type": "write",
-    "latency": 0.0010372,
-    "timestamp": 0.4389281
+    "latency": 0.001085243,
+    "timestamp": 0.739051707
   },
   {
     "operation_index": 665,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.4389281
+    "latency": 0.000511162,
+    "timestamp": 0.739564907
   },
   {
     "operation_index": 666,
     "operation_type": "read",
-    "latency": 0.0005182,
-    "timestamp": 0.4394463
+    "latency": 0.001000134,
+    "timestamp": 0.740565362
   },
   {
     "operation_index": 667,
     "operation_type": "write",
-    "latency": 0.0010243,
-    "timestamp": 0.4404706
+    "latency": 0.000474491,
+    "timestamp": 0.741041956
   },
   {
     "operation_index": 668,
     "operation_type": "read",
-    "latency": 0.0015841,
-    "timestamp": 0.4420547
+    "latency": 0.001118858,
+    "timestamp": 0.742161709
   },
   {
     "operation_index": 669,
     "operation_type": "read",
-    "latency": 0.0010492,
-    "timestamp": 0.4431039
+    "latency": 0.000514788,
+    "timestamp": 0.74267695
   },
   {
     "operation_index": 670,
     "operation_type": "read",
-    "latency": 0.0010352,
-    "timestamp": 0.4441391
+    "latency": 0.001043092,
+    "timestamp": 0.743720579
   },
   {
     "operation_index": 671,
     "operation_type": "write",
-    "latency": 0.0010385,
-    "timestamp": 0.4451776
+    "latency": 0.000526762,
+    "timestamp": 0.744248235
   },
   {
     "operation_index": 672,
     "operation_type": "read",
-    "latency": 0.0005307,
-    "timestamp": 0.4457083
+    "latency": 0.001555369,
+    "timestamp": 0.745804553
   },
   {
     "operation_index": 673,
     "operation_type": "write",
-    "latency": 0.0011818,
-    "timestamp": 0.4468901
+    "latency": 0.001595825,
+    "timestamp": 0.747401267
   },
   {
     "operation_index": 674,
     "operation_type": "read",
-    "latency": 0.0005242,
-    "timestamp": 0.4474143
+    "latency": 0.000483125,
+    "timestamp": 0.747885169
   },
   {
     "operation_index": 675,
     "operation_type": "write",
-    "latency": 0.0011153,
-    "timestamp": 0.4485296
+    "latency": 0.000499242,
+    "timestamp": 0.748385519
   },
   {
     "operation_index": 676,
     "operation_type": "read",
-    "latency": 0.0010419,
-    "timestamp": 0.4495715
+    "latency": 0.001671357,
+    "timestamp": 0.750058051
   },
   {
     "operation_index": 677,
     "operation_type": "read",
-    "latency": 0.0005089,
-    "timestamp": 0.4500804
+    "latency": 0.000549643,
+    "timestamp": 0.750608947
   },
   {
     "operation_index": 678,
     "operation_type": "read",
-    "latency": 0.0010429,
-    "timestamp": 0.4511233
+    "latency": 0.001026359,
+    "timestamp": 0.751636405
   },
   {
     "operation_index": 679,
     "operation_type": "read",
-    "latency": 0.0005151,
-    "timestamp": 0.4516384
+    "latency": 0.0015374,
+    "timestamp": 0.753174691
   },
   {
     "operation_index": 680,
     "operation_type": "write",
-    "latency": 0.0010411,
-    "timestamp": 0.4526795
+    "latency": 0.00182298,
+    "timestamp": 0.754998555
   },
   {
     "operation_index": 681,
     "operation_type": "read",
-    "latency": 0.0005177,
-    "timestamp": 0.4531972
+    "latency": 0.000569148,
+    "timestamp": 0.755568842
   },
   {
     "operation_index": 682,
     "operation_type": "read",
-    "latency": 0.001544,
-    "timestamp": 0.4547412
+    "latency": 0.000548829,
+    "timestamp": 0.756118616
   },
   {
     "operation_index": 683,
     "operation_type": "write",
-    "latency": 0,
-    "timestamp": 0.4547412
+    "latency": 0.001216842,
+    "timestamp": 0.757336658
   },
   {
     "operation_index": 684,
     "operation_type": "read",
-    "latency": 0.0005172,
-    "timestamp": 0.4552584
+    "latency": 0.000591311,
+    "timestamp": 0.757928904
   },
   {
     "operation_index": 685,
     "operation_type": "read",
-    "latency": 0.0005244,
-    "timestamp": 0.4557828
+    "latency": 0.001146434,
+    "timestamp": 0.759076247
   },
   {
     "operation_index": 686,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.4557828
+    "latency": 0.001105738,
+    "timestamp": 0.760183218
   },
   {
     "operation_index": 687,
     "operation_type": "read",
-    "latency": 0.0010371,
-    "timestamp": 0.4568199
+    "latency": 0.000879376,
+    "timestamp": 0.761063452
   },
   {
     "operation_index": 688,
     "operation_type": "write",
-    "latency": 0.0010383,
-    "timestamp": 0.4578582
+    "latency": 0.000567669,
+    "timestamp": 0.761631864
   },
   {
     "operation_index": 689,
     "operation_type": "read",
-    "latency": 0.0005217,
-    "timestamp": 0.4583799
+    "latency": 0.000568165,
+    "timestamp": 0.762200943
   },
   {
     "operation_index": 690,
     "operation_type": "read",
-    "latency": 0.000526,
-    "timestamp": 0.4589059
+    "latency": 0.000555971,
+    "timestamp": 0.762757802
   },
   {
     "operation_index": 691,
     "operation_type": "read",
-    "latency": 0.0010399,
-    "timestamp": 0.4599458
+    "latency": 0.001208158,
+    "timestamp": 0.763966798
   },
   {
     "operation_index": 692,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.4599458
+    "latency": 0.000525114,
+    "timestamp": 0.764492745
   },
   {
     "operation_index": 693,
     "operation_type": "write",
-    "latency": 0.0010382,
-    "timestamp": 0.460984
+    "latency": 0.001259039,
+    "timestamp": 0.765752707
   },
   {
     "operation_index": 694,
     "operation_type": "read",
-    "latency": 0.0006357,
-    "timestamp": 0.4616197
+    "latency": 0.000614456,
+    "timestamp": 0.766368429
   },
   {
     "operation_index": 695,
     "operation_type": "read",
-    "latency": 0.0010356,
-    "timestamp": 0.4626553
+    "latency": 0.000551358,
+    "timestamp": 0.766920937
   },
   {
     "operation_index": 696,
     "operation_type": "write",
-    "latency": 0.0015434,
-    "timestamp": 0.4641987
+    "latency": 0.001100389,
+    "timestamp": 0.76802259
   },
   {
     "operation_index": 697,
     "operation_type": "read",
-    "latency": 0.0005257,
-    "timestamp": 0.4647244
+    "latency": 0.001548715,
+    "timestamp": 0.769572256
   },
   {
     "operation_index": 698,
     "operation_type": "read",
-    "latency": 0.0005195,
-    "timestamp": 0.4652439
+    "latency": 0.000541314,
+    "timestamp": 0.770115509
   },
   {
     "operation_index": 699,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.4652439
+    "latency": 0.000543979,
+    "timestamp": 0.770660444
   },
   {
     "operation_index": 700,
     "operation_type": "read",
-    "latency": 0.0005157,
-    "timestamp": 0.4657596
+    "latency": 0.000551584,
+    "timestamp": 0.771213091
   },
   {
     "operation_index": 701,
     "operation_type": "read",
-    "latency": 0.0010376,
-    "timestamp": 0.4667972
+    "latency": 0.001541464,
+    "timestamp": 0.772755558
   },
   {
     "operation_index": 702,
     "operation_type": "read",
-    "latency": 0.000517,
-    "timestamp": 0.4673142
+    "latency": 0.001903405,
+    "timestamp": 0.774659981
   },
   {
     "operation_index": 703,
     "operation_type": "read",
-    "latency": 0.0010483,
-    "timestamp": 0.4683625
+    "latency": 0.001596565,
+    "timestamp": 0.776257499
   },
   {
     "operation_index": 704,
     "operation_type": "write",
-    "latency": 0.00053,
-    "timestamp": 0.4688925
+    "latency": 0.001545559,
+    "timestamp": 0.777803953
   },
   {
     "operation_index": 705,
     "operation_type": "write",
-    "latency": 0.0005168,
-    "timestamp": 0.4694093
+    "latency": 0.001524756,
+    "timestamp": 0.779329713
   },
   {
     "operation_index": 706,
     "operation_type": "read",
-    "latency": 0.0010463,
-    "timestamp": 0.4704556
+    "latency": 0.000604073,
+    "timestamp": 0.779934707
   },
   {
     "operation_index": 707,
     "operation_type": "read",
-    "latency": 0.0005245,
-    "timestamp": 0.4709801
+    "latency": 0.001136999,
+    "timestamp": 0.781072762
   },
   {
     "operation_index": 708,
     "operation_type": "read",
-    "latency": 0.0010373,
-    "timestamp": 0.4720174
+    "latency": 0.000575,
+    "timestamp": 0.781648732
   },
   {
     "operation_index": 709,
     "operation_type": "read",
-    "latency": 0.0005247,
-    "timestamp": 0.4725421
+    "latency": 0.00158785,
+    "timestamp": 0.783237684
   },
   {
     "operation_index": 710,
     "operation_type": "read",
-    "latency": 0.0005179,
-    "timestamp": 0.47306
+    "latency": 0.001050878,
+    "timestamp": 0.784289546
   },
   {
     "operation_index": 711,
     "operation_type": "read",
-    "latency": 0.0005169,
-    "timestamp": 0.4735769
+    "latency": 0.000511338,
+    "timestamp": 0.784801803
   },
   {
     "operation_index": 712,
     "operation_type": "read",
-    "latency": 0.0010381,
-    "timestamp": 0.474615
+    "latency": 0.001617368,
+    "timestamp": 0.78642111
   },
   {
     "operation_index": 713,
     "operation_type": "read",
-    "latency": 0.0005123,
-    "timestamp": 0.4751273
+    "latency": 0.002294237,
+    "timestamp": 0.788715806
   },
   {
     "operation_index": 714,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.4751273
+    "latency": 0.00110518,
+    "timestamp": 0.789821688
   },
   {
     "operation_index": 715,
     "operation_type": "read",
-    "latency": 0.0006219,
-    "timestamp": 0.4757492
+    "latency": 0.000564796,
+    "timestamp": 0.790387516
   },
   {
     "operation_index": 716,
     "operation_type": "read",
-    "latency": 0.001202,
-    "timestamp": 0.4769512
+    "latency": 0.001089401,
+    "timestamp": 0.791478052
   },
   {
     "operation_index": 717,
     "operation_type": "read",
-    "latency": 0.0005131,
-    "timestamp": 0.4774643
+    "latency": 0.00160368,
+    "timestamp": 0.793083142
   },
   {
     "operation_index": 718,
     "operation_type": "read",
-    "latency": 0.0005236,
-    "timestamp": 0.4779879
+    "latency": 0.000560793,
+    "timestamp": 0.793644948
   },
   {
     "operation_index": 719,
     "operation_type": "read",
-    "latency": 0.0005187,
-    "timestamp": 0.4785066
+    "latency": 0.001114,
+    "timestamp": 0.794759996
   },
   {
     "operation_index": 720,
     "operation_type": "read",
-    "latency": 0.0005186,
-    "timestamp": 0.4790252
+    "latency": 0.001596507,
+    "timestamp": 0.796357488
   },
   {
     "operation_index": 721,
     "operation_type": "write",
-    "latency": 0.000515,
-    "timestamp": 0.4795402
+    "latency": 0.001998791,
+    "timestamp": 0.798357251
   },
   {
     "operation_index": 722,
     "operation_type": "read",
-    "latency": 0.0010257,
-    "timestamp": 0.4805659
+    "latency": 0.001554742,
+    "timestamp": 0.799913044
   },
   {
     "operation_index": 723,
     "operation_type": "read",
-    "latency": 0.0005165,
-    "timestamp": 0.4810824
+    "latency": 0.001583349,
+    "timestamp": 0.801497301
   },
   {
     "operation_index": 724,
     "operation_type": "write",
-    "latency": 0.0010396,
-    "timestamp": 0.482122
+    "latency": 0.000545238,
+    "timestamp": 0.802043324
   },
   {
     "operation_index": 725,
     "operation_type": "read",
-    "latency": 0.001048,
-    "timestamp": 0.48317
+    "latency": 0.001147069,
+    "timestamp": 0.803191491
   },
   {
     "operation_index": 726,
     "operation_type": "read",
-    "latency": 0.000515,
-    "timestamp": 0.483685
+    "latency": 0.001629748,
+    "timestamp": 0.804822197
   },
   {
     "operation_index": 727,
     "operation_type": "read",
-    "latency": 0.0010459,
-    "timestamp": 0.4847309
+    "latency": 0.001081356,
+    "timestamp": 0.805904495
   },
   {
     "operation_index": 728,
     "operation_type": "read",
-    "latency": 0.0010256,
-    "timestamp": 0.4857565
+    "latency": 0.000558551,
+    "timestamp": 0.806465375
   },
   {
     "operation_index": 729,
     "operation_type": "write",
-    "latency": 0.0005622,
-    "timestamp": 0.4863187
+    "latency": 0.000565503,
+    "timestamp": 0.807031389
   },
   {
     "operation_index": 730,
     "operation_type": "read",
-    "latency": 0.0010262,
-    "timestamp": 0.4873449
+    "latency": 0.001063671,
+    "timestamp": 0.808095067
   },
   {
     "operation_index": 731,
     "operation_type": "read",
-    "latency": 0.0011242,
-    "timestamp": 0.4884691
+    "latency": 0.000545097,
+    "timestamp": 0.808642167
   },
   {
     "operation_index": 732,
     "operation_type": "read",
-    "latency": 0.0010969,
-    "timestamp": 0.489566
+    "latency": 0.000532246,
+    "timestamp": 0.809175266
   },
   {
     "operation_index": 733,
     "operation_type": "read",
-    "latency": 0.0005156,
-    "timestamp": 0.4900816
+    "latency": 0.00055407,
+    "timestamp": 0.8097299
   },
   {
     "operation_index": 734,
     "operation_type": "read",
-    "latency": 0.0010287,
-    "timestamp": 0.4911103
+    "latency": 0.000551714,
+    "timestamp": 0.810283192
   },
   {
     "operation_index": 735,
     "operation_type": "read",
-    "latency": 0.0011817,
-    "timestamp": 0.492292
+    "latency": 0.00051457,
+    "timestamp": 0.810798892
   },
   {
     "operation_index": 736,
     "operation_type": "read",
-    "latency": 0.001037,
-    "timestamp": 0.493329
+    "latency": 0.000557274,
+    "timestamp": 0.811357154
   },
   {
     "operation_index": 737,
     "operation_type": "read",
-    "latency": 0.0005184,
-    "timestamp": 0.4938474
+    "latency": 0.000522416,
+    "timestamp": 0.811881161
   },
   {
     "operation_index": 738,
     "operation_type": "read",
-    "latency": 0.000517,
-    "timestamp": 0.4943644
+    "latency": 0.000511058,
+    "timestamp": 0.812393803
   },
   {
     "operation_index": 739,
     "operation_type": "read",
-    "latency": 0.0005307,
-    "timestamp": 0.4948951
+    "latency": 0.000570648,
+    "timestamp": 0.812965548
   },
   {
     "operation_index": 740,
     "operation_type": "read",
-    "latency": 0.0005168,
-    "timestamp": 0.4954119
+    "latency": 0.000560508,
+    "timestamp": 0.813527016
   },
   {
     "operation_index": 741,
     "operation_type": "read",
-    "latency": 0.0005447,
-    "timestamp": 0.4959566
+    "latency": 0.000525733,
+    "timestamp": 0.814053617
   },
   {
     "operation_index": 742,
     "operation_type": "read",
-    "latency": 0.0010374,
-    "timestamp": 0.496994
+    "latency": 0.000544501,
+    "timestamp": 0.814598955
   },
   {
     "operation_index": 743,
     "operation_type": "write",
-    "latency": 0.0010371,
-    "timestamp": 0.4980311
+    "latency": 0.000548317,
+    "timestamp": 0.815148182
   },
   {
     "operation_index": 744,
     "operation_type": "write",
-    "latency": 0.0005117,
-    "timestamp": 0.4985428
+    "latency": 0.000550133,
+    "timestamp": 0.815699117
   },
   {
     "operation_index": 745,
     "operation_type": "read",
-    "latency": 0.0010414,
-    "timestamp": 0.4995842
+    "latency": 0.000559377,
+    "timestamp": 0.816259293
   },
   {
     "operation_index": 746,
     "operation_type": "write",
-    "latency": 0.0005177,
-    "timestamp": 0.5001019
+    "latency": 0.001614294,
+    "timestamp": 0.817874387
   },
   {
     "operation_index": 747,
     "operation_type": "read",
-    "latency": 0.0010293,
-    "timestamp": 0.5011312
+    "latency": 0.001666505,
+    "timestamp": 0.819541899
   },
   {
     "operation_index": 748,
     "operation_type": "write",
-    "latency": 0.0005264,
-    "timestamp": 0.5016576
+    "latency": 0.000574562,
+    "timestamp": 0.820117423
   },
   {
     "operation_index": 749,
     "operation_type": "read",
-    "latency": 0.0005285,
-    "timestamp": 0.5021861
+    "latency": 0.001557938,
+    "timestamp": 0.821676414
   },
   {
     "operation_index": 750,
     "operation_type": "read",
-    "latency": 0.0005161,
-    "timestamp": 0.5027022
+    "latency": 0.000566047,
+    "timestamp": 0.822243441
   },
   {
     "operation_index": 751,
     "operation_type": "read",
-    "latency": 0.0005174,
-    "timestamp": 0.5032196
+    "latency": 0.001068997,
+    "timestamp": 0.823313327
   },
   {
     "operation_index": 752,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.5032196
+    "latency": 0.001007014,
+    "timestamp": 0.824321574
   },
   {
     "operation_index": 753,
     "operation_type": "read",
-    "latency": 0.0010397,
-    "timestamp": 0.5042593
+    "latency": 0.001104771,
+    "timestamp": 0.825427167
   },
   {
     "operation_index": 754,
     "operation_type": "write",
-    "latency": 0.0005191,
-    "timestamp": 0.5047784
+    "latency": 0.001614832,
+    "timestamp": 0.827042944
   },
   {
     "operation_index": 755,
     "operation_type": "read",
-    "latency": 0.0005105,
-    "timestamp": 0.5052889
+    "latency": 0.001519857,
+    "timestamp": 0.828564355
   },
   {
     "operation_index": 756,
     "operation_type": "read",
-    "latency": 0.0005277,
-    "timestamp": 0.5058166
+    "latency": 0.000545763,
+    "timestamp": 0.829110576
   },
   {
     "operation_index": 757,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.5058166
+    "latency": 0.001213144,
+    "timestamp": 0.830324988
   },
   {
     "operation_index": 758,
     "operation_type": "read",
-    "latency": 0.0005233,
-    "timestamp": 0.5063399
+    "latency": 0.001585881,
+    "timestamp": 0.831912286
   },
   {
     "operation_index": 759,
     "operation_type": "read",
-    "latency": 0.0005199,
-    "timestamp": 0.5068598
+    "latency": 0.001159497,
+    "timestamp": 0.83307282
   },
   {
     "operation_index": 760,
     "operation_type": "read",
-    "latency": 0.0011942,
-    "timestamp": 0.508054
+    "latency": 0.00108922,
+    "timestamp": 0.834163173
   },
   {
     "operation_index": 761,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.508054
+    "latency": 0.00155811,
+    "timestamp": 0.83572225
   },
   {
     "operation_index": 762,
     "operation_type": "read",
-    "latency": 0.0010381,
-    "timestamp": 0.5090921
+    "latency": 0.000596057,
+    "timestamp": 0.836319381
   },
   {
     "operation_index": 763,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.5090921
+    "latency": 0.001129315,
+    "timestamp": 0.837449298
   },
   {
     "operation_index": 764,
     "operation_type": "read",
-    "latency": 0.0010303,
-    "timestamp": 0.5101224
+    "latency": 0.000527601,
+    "timestamp": 0.837978282
   },
   {
     "operation_index": 765,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.5101224
+    "latency": 0.001058643,
+    "timestamp": 0.839037441
   },
   {
     "operation_index": 766,
     "operation_type": "read",
-    "latency": 0.000516,
-    "timestamp": 0.5106384
+    "latency": 0.001600032,
+    "timestamp": 0.840638922
   },
   {
     "operation_index": 767,
     "operation_type": "read",
-    "latency": 0.0005872,
-    "timestamp": 0.5112256
+    "latency": 0.001053452,
+    "timestamp": 0.841693158
   },
   {
     "operation_index": 768,
     "operation_type": "read",
-    "latency": 0.0010368,
-    "timestamp": 0.5122624
+    "latency": 0.000554136,
+    "timestamp": 0.842248322
   },
   {
     "operation_index": 769,
     "operation_type": "read",
-    "latency": 0.0005161,
-    "timestamp": 0.5127785
+    "latency": 0.001082625,
+    "timestamp": 0.843332896
   },
   {
     "operation_index": 770,
     "operation_type": "read",
-    "latency": 0.0005212,
-    "timestamp": 0.5132997
+    "latency": 0.001550184,
+    "timestamp": 0.844884499
   },
   {
     "operation_index": 771,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.5132997
+    "latency": 0.001637456,
+    "timestamp": 0.846523089
   },
   {
     "operation_index": 772,
     "operation_type": "read",
-    "latency": 0.0005407,
-    "timestamp": 0.5138404
+    "latency": 0.001048073,
+    "timestamp": 0.847572053
   },
   {
     "operation_index": 773,
     "operation_type": "read",
-    "latency": 0.0005259,
-    "timestamp": 0.5143663
+    "latency": 0.001397683,
+    "timestamp": 0.848970506
   },
   {
     "operation_index": 774,
     "operation_type": "read",
-    "latency": 0.0005166,
-    "timestamp": 0.5148829
+    "latency": 0.007391965,
+    "timestamp": 0.856363546
   },
   {
     "operation_index": 775,
     "operation_type": "read",
-    "latency": 0.0005181,
-    "timestamp": 0.515401
+    "latency": 0.002403563,
+    "timestamp": 0.858767951
   },
   {
     "operation_index": 776,
     "operation_type": "write",
-    "latency": 0.0005093,
-    "timestamp": 0.5159103
+    "latency": 0.00056659,
+    "timestamp": 0.859335662
   },
   {
     "operation_index": 777,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.5159103
+    "latency": 0.000772475,
+    "timestamp": 0.860108902
   },
   {
     "operation_index": 778,
     "operation_type": "read",
-    "latency": 0.0010355,
-    "timestamp": 0.5169458
+    "latency": 0.000702407,
+    "timestamp": 0.860812325
   },
   {
     "operation_index": 779,
     "operation_type": "read",
-    "latency": 0.0005247,
-    "timestamp": 0.5174705
+    "latency": 0.000709589,
+    "timestamp": 0.861522812
   },
   {
     "operation_index": 780,
     "operation_type": "read",
-    "latency": 0.0010396,
-    "timestamp": 0.5185101
+    "latency": 0.000747185,
+    "timestamp": 0.862270876
   },
   {
     "operation_index": 781,
     "operation_type": "write",
-    "latency": 0.0010388,
-    "timestamp": 0.5195489
+    "latency": 0.000708284,
+    "timestamp": 0.862980024
   },
   {
     "operation_index": 782,
     "operation_type": "read",
-    "latency": 0.001058,
-    "timestamp": 0.5206069
+    "latency": 0.00068586,
+    "timestamp": 0.863666722
   },
   {
     "operation_index": 783,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.5206069
+    "latency": 0.001859262,
+    "timestamp": 0.865526954
   },
   {
     "operation_index": 784,
     "operation_type": "read",
-    "latency": 0.0005204,
-    "timestamp": 0.5211273
+    "latency": 0.001629731,
+    "timestamp": 0.867157753
   },
   {
     "operation_index": 785,
     "operation_type": "read",
-    "latency": 0.0010274,
-    "timestamp": 0.5221547
+    "latency": 0.000562097,
+    "timestamp": 0.867720818
   },
   {
     "operation_index": 786,
     "operation_type": "read",
-    "latency": 0.000867,
-    "timestamp": 0.5230217
+    "latency": 0.000557242,
+    "timestamp": 0.868279205
   },
   {
     "operation_index": 787,
     "operation_type": "read",
-    "latency": 0.0011159,
-    "timestamp": 0.5241376
+    "latency": 0.002268019,
+    "timestamp": 0.870548511
   },
   {
     "operation_index": 788,
     "operation_type": "read",
-    "latency": 0.0005144,
-    "timestamp": 0.524652
+    "latency": 0.00111458,
+    "timestamp": 0.871664891
   },
   {
     "operation_index": 789,
     "operation_type": "read",
-    "latency": 0.0010336,
-    "timestamp": 0.5256856
+    "latency": 0.001137898,
+    "timestamp": 0.872803754
   },
   {
     "operation_index": 790,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.5256856
+    "latency": 0.000532747,
+    "timestamp": 0.873336956
   },
   {
     "operation_index": 791,
     "operation_type": "write",
-    "latency": 0.0010374,
-    "timestamp": 0.526723
+    "latency": 0.000569684,
+    "timestamp": 0.87390781
   },
   {
     "operation_index": 792,
     "operation_type": "read",
-    "latency": 0.0005178,
-    "timestamp": 0.5272408
+    "latency": 0.001112923,
+    "timestamp": 0.875021684
   },
   {
     "operation_index": 793,
     "operation_type": "write",
-    "latency": 0.0010368,
-    "timestamp": 0.5282776
+    "latency": 0.001870956,
+    "timestamp": 0.876893621
   },
   {
     "operation_index": 794,
     "operation_type": "read",
-    "latency": 0.0010438,
-    "timestamp": 0.5293214
+    "latency": 0.001741968,
+    "timestamp": 0.878636917
   },
   {
     "operation_index": 795,
     "operation_type": "write",
-    "latency": 0.0005181,
-    "timestamp": 0.5298395
+    "latency": 0.000585439,
+    "timestamp": 0.879223355
   },
   {
     "operation_index": 796,
     "operation_type": "read",
-    "latency": 0.0005152,
-    "timestamp": 0.5303547
+    "latency": 0.000516433,
+    "timestamp": 0.879740828
   },
   {
     "operation_index": 797,
     "operation_type": "read",
-    "latency": 0.000518,
-    "timestamp": 0.5308727
+    "latency": 0.000553934,
+    "timestamp": 0.880295725
   },
   {
     "operation_index": 798,
     "operation_type": "write",
-    "latency": 0.0010407,
-    "timestamp": 0.5319134
+    "latency": 0.000520734,
+    "timestamp": 0.880817315
   },
   {
     "operation_index": 799,
     "operation_type": "read",
-    "latency": 0.000521,
-    "timestamp": 0.5324344
+    "latency": 0.000522813,
+    "timestamp": 0.881342178
   },
   {
     "operation_index": 800,
     "operation_type": "read",
-    "latency": 0.0010304,
-    "timestamp": 0.5334648
+    "latency": 0.001128685,
+    "timestamp": 0.88247191
   },
   {
     "operation_index": 801,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.5334648
+    "latency": 0.000590137,
+    "timestamp": 0.88306326
   },
   {
     "operation_index": 802,
     "operation_type": "read",
-    "latency": 0.0005179,
-    "timestamp": 0.5339827
+    "latency": 0.001653099,
+    "timestamp": 0.8847174
   },
   {
     "operation_index": 803,
     "operation_type": "write",
-    "latency": 0.0010502,
-    "timestamp": 0.5350329
+    "latency": 0.001672993,
+    "timestamp": 0.886391324
   },
   {
     "operation_index": 804,
     "operation_type": "read",
-    "latency": 0.0005689,
-    "timestamp": 0.5356018
+    "latency": 0.001659471,
+    "timestamp": 0.888051938
   },
   {
     "operation_index": 805,
     "operation_type": "read",
-    "latency": 0.0010335,
-    "timestamp": 0.5366353
+    "latency": 0.001617635,
+    "timestamp": 0.889670471
   },
   {
     "operation_index": 806,
     "operation_type": "read",
-    "latency": 0.0005276,
-    "timestamp": 0.5371629
+    "latency": 0.000529462,
+    "timestamp": 0.890200896
   },
   {
     "operation_index": 807,
     "operation_type": "write",
-    "latency": 0.000518,
-    "timestamp": 0.5376809
+    "latency": 0.001647759,
+    "timestamp": 0.891849354
   },
   {
     "operation_index": 808,
     "operation_type": "read",
-    "latency": 0.0006325,
-    "timestamp": 0.5383134
+    "latency": 0.000541836,
+    "timestamp": 0.892392116
   },
   {
     "operation_index": 809,
     "operation_type": "read",
-    "latency": 0.0010435,
-    "timestamp": 0.5393569
+    "latency": 0.000558639,
+    "timestamp": 0.892951428
   },
   {
     "operation_index": 810,
     "operation_type": "read",
-    "latency": 0.0010325,
-    "timestamp": 0.5403894
+    "latency": 0.000561688,
+    "timestamp": 0.893513357
   },
   {
     "operation_index": 811,
     "operation_type": "write",
-    "latency": 0.0005224,
-    "timestamp": 0.5409118
+    "latency": 0.001609005,
+    "timestamp": 0.895124469
   },
   {
     "operation_index": 812,
     "operation_type": "read",
-    "latency": 0.0005234,
-    "timestamp": 0.5414352
+    "latency": 0.000517324,
+    "timestamp": 0.895642966
   },
   {
     "operation_index": 813,
     "operation_type": "write",
-    "latency": 0.0010303,
-    "timestamp": 0.5424655
+    "latency": 0.000557586,
+    "timestamp": 0.896201739
   },
   {
     "operation_index": 814,
     "operation_type": "read",
-    "latency": 0.0010393,
-    "timestamp": 0.5435048
+    "latency": 0.001688162,
+    "timestamp": 0.897890913
   },
   {
     "operation_index": 815,
     "operation_type": "read",
-    "latency": 0.0010421,
-    "timestamp": 0.5445469
+    "latency": 0.000530689,
+    "timestamp": 0.898423326
   },
   {
     "operation_index": 816,
     "operation_type": "read",
-    "latency": 0.0010322,
-    "timestamp": 0.5455791
+    "latency": 0.000609666,
+    "timestamp": 0.899033572
   },
   {
     "operation_index": 817,
     "operation_type": "read",
-    "latency": 0.0005193,
-    "timestamp": 0.5460984
+    "latency": 0.00053069,
+    "timestamp": 0.899565146
   },
   {
     "operation_index": 818,
     "operation_type": "read",
-    "latency": 0.0010494,
-    "timestamp": 0.5471478
+    "latency": 0.00054319,
+    "timestamp": 0.900109524
   },
   {
     "operation_index": 819,
     "operation_type": "read",
-    "latency": 0.0005195,
-    "timestamp": 0.5476673
+    "latency": 0.000586888,
+    "timestamp": 0.900697299
   },
   {
     "operation_index": 820,
     "operation_type": "write",
-    "latency": 0.000517,
-    "timestamp": 0.5481843
+    "latency": 0.000513992,
+    "timestamp": 0.901212317
   },
   {
     "operation_index": 821,
     "operation_type": "write",
-    "latency": 0.0010361,
-    "timestamp": 0.5492204
+    "latency": 0.000580205,
+    "timestamp": 0.901793482
   },
   {
     "operation_index": 822,
     "operation_type": "read",
-    "latency": 0.0010408,
-    "timestamp": 0.5502612
+    "latency": 0.000558712,
+    "timestamp": 0.902353201
   },
   {
     "operation_index": 823,
     "operation_type": "write",
-    "latency": 0.0005204,
-    "timestamp": 0.5507816
+    "latency": 0.000557826,
+    "timestamp": 0.902911966
   },
   {
     "operation_index": 824,
     "operation_type": "read",
-    "latency": 0.0010449,
-    "timestamp": 0.5518265
+    "latency": 0.001647857,
+    "timestamp": 0.904561114
   },
   {
     "operation_index": 825,
     "operation_type": "read",
-    "latency": 0.0010361,
-    "timestamp": 0.5528626
+    "latency": 0.001559932,
+    "timestamp": 0.906122025
   },
   {
     "operation_index": 826,
     "operation_type": "write",
-    "latency": 0.0006372,
-    "timestamp": 0.5534998
+    "latency": 0.001094012,
+    "timestamp": 0.907216873
   },
   {
     "operation_index": 827,
     "operation_type": "write",
-    "latency": 0,
-    "timestamp": 0.5534998
+    "latency": 0.000522926,
+    "timestamp": 0.907740838
   },
   {
     "operation_index": 828,
     "operation_type": "read",
-    "latency": 0.0010365,
-    "timestamp": 0.5545363
+    "latency": 0.003638996,
+    "timestamp": 0.91138085
   },
   {
     "operation_index": 829,
     "operation_type": "read",
-    "latency": 0.0005185,
-    "timestamp": 0.5550548
+    "latency": 0.001046415,
+    "timestamp": 0.912428264
   },
   {
     "operation_index": 830,
     "operation_type": "read",
-    "latency": 0.001031,
-    "timestamp": 0.5560858
+    "latency": 0.00161621,
+    "timestamp": 0.914045239
   },
   {
     "operation_index": 831,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.5560858
+    "latency": 0.001091883,
+    "timestamp": 0.915138029
   },
   {
     "operation_index": 832,
     "operation_type": "read",
-    "latency": 0.0005113,
-    "timestamp": 0.5565971
+    "latency": 0.001025466,
+    "timestamp": 0.916164852
   },
   {
     "operation_index": 833,
     "operation_type": "read",
-    "latency": 0.0005139,
-    "timestamp": 0.557111
+    "latency": 0.000504327,
+    "timestamp": 0.916670205
   },
   {
     "operation_index": 834,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.557111
+    "latency": 0.000508887,
+    "timestamp": 0.917179967
   },
   {
     "operation_index": 835,
     "operation_type": "read",
-    "latency": 0.0005894,
-    "timestamp": 0.5577004
+    "latency": 0.001052154,
+    "timestamp": 0.918232924
   },
   {
     "operation_index": 836,
     "operation_type": "write",
-    "latency": 0.0005243,
-    "timestamp": 0.5582247
+    "latency": 0.001636155,
+    "timestamp": 0.91987001
   },
   {
     "operation_index": 837,
     "operation_type": "read",
-    "latency": 0.0005228,
-    "timestamp": 0.5587475
+    "latency": 0.000514856,
+    "timestamp": 0.920386186
   },
   {
     "operation_index": 838,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.5587475
+    "latency": 0.001635617,
+    "timestamp": 0.92202266
   },
   {
     "operation_index": 839,
     "operation_type": "write",
-    "latency": 0.0005261,
-    "timestamp": 0.5592736
+    "latency": 0.000507429,
+    "timestamp": 0.922530722
   },
   {
     "operation_index": 840,
     "operation_type": "read",
-    "latency": 0.0005315,
-    "timestamp": 0.5598051
+    "latency": 0.001654284,
+    "timestamp": 0.924185747
   },
   {
     "operation_index": 841,
     "operation_type": "read",
-    "latency": 0.0005165,
-    "timestamp": 0.5603216
+    "latency": 0.001099599,
+    "timestamp": 0.925287504
   },
   {
     "operation_index": 842,
     "operation_type": "write",
-    "latency": 0.0005196,
-    "timestamp": 0.5608412
+    "latency": 0.000529981,
+    "timestamp": 0.925818441
   },
   {
     "operation_index": 843,
     "operation_type": "write",
-    "latency": 0,
-    "timestamp": 0.5608412
+    "latency": 0.000526108,
+    "timestamp": 0.926346923
   },
   {
     "operation_index": 844,
     "operation_type": "read",
-    "latency": 0.0005237,
-    "timestamp": 0.5613649
+    "latency": 0.001070776,
+    "timestamp": 0.92741856
   },
   {
     "operation_index": 845,
     "operation_type": "read",
-    "latency": 0.0005165,
-    "timestamp": 0.5618814
+    "latency": 0.001646439,
+    "timestamp": 0.929065816
   },
   {
     "operation_index": 846,
     "operation_type": "read",
-    "latency": 0.0010481,
-    "timestamp": 0.5629295
+    "latency": 0.00054797,
+    "timestamp": 0.929614315
   },
   {
     "operation_index": 847,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.5629295
+    "latency": 0.001017341,
+    "timestamp": 0.930632436
   },
   {
     "operation_index": 848,
     "operation_type": "write",
-    "latency": 0.0005184,
-    "timestamp": 0.5634479
+    "latency": 0.001640559,
+    "timestamp": 0.932273486
   },
   {
     "operation_index": 849,
     "operation_type": "read",
-    "latency": 0.0010415,
-    "timestamp": 0.5644894
+    "latency": 0.000535657,
+    "timestamp": 0.932810817
   },
   {
     "operation_index": 850,
     "operation_type": "read",
-    "latency": 0.0015664,
-    "timestamp": 0.5660558
+    "latency": 0.001073647,
+    "timestamp": 0.933885274
   },
   {
     "operation_index": 851,
     "operation_type": "write",
-    "latency": 0.0011099,
-    "timestamp": 0.5671657
+    "latency": 0.001045863,
+    "timestamp": 0.934932183
   },
   {
     "operation_index": 852,
     "operation_type": "read",
-    "latency": 0.0018227,
-    "timestamp": 0.5689884
+    "latency": 0.001141834,
+    "timestamp": 0.936074919
   },
   {
     "operation_index": 853,
     "operation_type": "read",
-    "latency": 0.0010199,
-    "timestamp": 0.5700083
+    "latency": 0.000553317,
+    "timestamp": 0.936629233
   },
   {
     "operation_index": 854,
     "operation_type": "read",
-    "latency": 0.0005162,
-    "timestamp": 0.5705245
+    "latency": 0.000535561,
+    "timestamp": 0.937165912
   },
   {
     "operation_index": 855,
     "operation_type": "write",
-    "latency": 0.0005155,
-    "timestamp": 0.57104
+    "latency": 0.001085385,
+    "timestamp": 0.938252462
   },
   {
     "operation_index": 856,
     "operation_type": "read",
-    "latency": 0.0005195,
-    "timestamp": 0.5715595
+    "latency": 0.001627877,
+    "timestamp": 0.939881342
   },
   {
     "operation_index": 857,
     "operation_type": "read",
-    "latency": 0.0005194,
-    "timestamp": 0.5720789
+    "latency": 0.000533286,
+    "timestamp": 0.940416018
   },
   {
     "operation_index": 858,
     "operation_type": "write",
-    "latency": 0.0005179,
-    "timestamp": 0.5725968
+    "latency": 0.000546793,
+    "timestamp": 0.940963688
   },
   {
     "operation_index": 859,
     "operation_type": "write",
-    "latency": 0.0005185,
-    "timestamp": 0.5731153
+    "latency": 0.001659809,
+    "timestamp": 0.942624493
   },
   {
     "operation_index": 860,
     "operation_type": "read",
-    "latency": 0.000519,
-    "timestamp": 0.5736343
+    "latency": 0.001080117,
+    "timestamp": 0.943705641
   },
   {
     "operation_index": 861,
     "operation_type": "read",
-    "latency": 0.0010471,
-    "timestamp": 0.5746814
+    "latency": 0.001060717,
+    "timestamp": 0.944769121
   },
   {
     "operation_index": 862,
     "operation_type": "read",
-    "latency": 0.0005229,
-    "timestamp": 0.5752043
+    "latency": 0.001058142,
+    "timestamp": 0.945828235
   },
   {
     "operation_index": 863,
     "operation_type": "read",
-    "latency": 0.0010319,
-    "timestamp": 0.5762362
+    "latency": 0.000540485,
+    "timestamp": 0.9463692
   },
   {
     "operation_index": 864,
     "operation_type": "read",
-    "latency": 0.0005415,
-    "timestamp": 0.5767777
+    "latency": 0.001081576,
+    "timestamp": 0.947451539
   },
   {
     "operation_index": 865,
     "operation_type": "read",
-    "latency": 0.0005131,
-    "timestamp": 0.5772908
+    "latency": 0.001686075,
+    "timestamp": 0.949140637
   },
   {
     "operation_index": 866,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.5772908
+    "latency": 0.000561929,
+    "timestamp": 0.949702944
   },
   {
     "operation_index": 867,
     "operation_type": "read",
-    "latency": 0.0005147,
-    "timestamp": 0.5778055
+    "latency": 0.000531517,
+    "timestamp": 0.95023667
   },
   {
     "operation_index": 868,
     "operation_type": "read",
-    "latency": 0.0010239,
-    "timestamp": 0.5788294
+    "latency": 0.000547509,
+    "timestamp": 0.950785175
   },
   {
     "operation_index": 869,
     "operation_type": "read",
-    "latency": 0.0010274,
-    "timestamp": 0.5798568
+    "latency": 0.000543755,
+    "timestamp": 0.951330195
   },
   {
     "operation_index": 870,
     "operation_type": "read",
-    "latency": 0.0005102,
-    "timestamp": 0.580367
+    "latency": 0.000553981,
+    "timestamp": 0.951885308
   },
   {
     "operation_index": 871,
     "operation_type": "write",
-    "latency": 0.001038,
-    "timestamp": 0.581405
+    "latency": 0.00056786,
+    "timestamp": 0.952453963
   },
   {
     "operation_index": 872,
     "operation_type": "write",
-    "latency": 0.0005197,
-    "timestamp": 0.5819247
+    "latency": 0.000577238,
+    "timestamp": 0.953032228
   },
   {
     "operation_index": 873,
     "operation_type": "read",
-    "latency": 0.0005183,
-    "timestamp": 0.582443
+    "latency": 0.000545223,
+    "timestamp": 0.953578443
   },
   {
     "operation_index": 874,
     "operation_type": "read",
-    "latency": 0.001037,
-    "timestamp": 0.58348
+    "latency": 0.001641744,
+    "timestamp": 0.955221293
   },
   {
     "operation_index": 875,
     "operation_type": "read",
-    "latency": 0.0011555,
-    "timestamp": 0.5846355
+    "latency": 0.000541855,
+    "timestamp": 0.955764373
   },
   {
     "operation_index": 876,
     "operation_type": "read",
-    "latency": 0.0005185,
-    "timestamp": 0.585154
+    "latency": 0.001604397,
+    "timestamp": 0.957369936
   },
   {
     "operation_index": 877,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.585154
+    "latency": 0.000551651,
+    "timestamp": 0.957922522
   },
   {
     "operation_index": 878,
     "operation_type": "read",
-    "latency": 0.0010303,
-    "timestamp": 0.5861843
+    "latency": 0.001120618,
+    "timestamp": 0.959045088
   },
   {
     "operation_index": 879,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.5861843
+    "latency": 0.001115687,
+    "timestamp": 0.96016194
   },
   {
     "operation_index": 880,
     "operation_type": "write",
-    "latency": 0.0005165,
-    "timestamp": 0.5867008
+    "latency": 0.00055637,
+    "timestamp": 0.960719431
   },
   {
     "operation_index": 881,
     "operation_type": "read",
-    "latency": 0.0005141,
-    "timestamp": 0.5872149
+    "latency": 0.001082823,
+    "timestamp": 0.961802901
   },
   {
     "operation_index": 882,
     "operation_type": "read",
-    "latency": 0.0010417,
-    "timestamp": 0.5882566
+    "latency": 0.000689258,
+    "timestamp": 0.962492888
   },
   {
     "operation_index": 883,
     "operation_type": "read",
-    "latency": 0.0005107,
-    "timestamp": 0.5887673
+    "latency": 0.001601961,
+    "timestamp": 0.964097037
   },
   {
     "operation_index": 884,
     "operation_type": "read",
-    "latency": 0.0005112,
-    "timestamp": 0.5892785
+    "latency": 0.000589137,
+    "timestamp": 0.964687495
   },
   {
     "operation_index": 885,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.5892785
+    "latency": 0.000561982,
+    "timestamp": 0.965250613
   },
   {
     "operation_index": 886,
     "operation_type": "write",
-    "latency": 0.0005197,
-    "timestamp": 0.5897982
+    "latency": 0.000549852,
+    "timestamp": 0.965801472
   },
   {
     "operation_index": 887,
     "operation_type": "read",
-    "latency": 0.0005165,
-    "timestamp": 0.5903147
+    "latency": 0.000531133,
+    "timestamp": 0.966333466
   },
   {
     "operation_index": 888,
     "operation_type": "read",
-    "latency": 0.0005173,
-    "timestamp": 0.590832
+    "latency": 0.000524199,
+    "timestamp": 0.966858522
   },
   {
     "operation_index": 889,
     "operation_type": "write",
-    "latency": 0,
-    "timestamp": 0.590832
+    "latency": 0.000526297,
+    "timestamp": 0.967385388
   },
   {
     "operation_index": 890,
     "operation_type": "read",
-    "latency": 0.0005224,
-    "timestamp": 0.5913544
+    "latency": 0.000534376,
+    "timestamp": 0.967920667
   },
   {
     "operation_index": 891,
     "operation_type": "write",
-    "latency": 0.0005328,
-    "timestamp": 0.5918872
+    "latency": 0.000518547,
+    "timestamp": 0.968440047
   },
   {
     "operation_index": 892,
     "operation_type": "read",
-    "latency": 0.0005118,
-    "timestamp": 0.592399
+    "latency": 0.00055371,
+    "timestamp": 0.968994849
   },
   {
     "operation_index": 893,
     "operation_type": "write",
-    "latency": 0.0015754,
-    "timestamp": 0.5939744
+    "latency": 0.001707503,
+    "timestamp": 0.970703505
   },
   {
     "operation_index": 894,
     "operation_type": "read",
-    "latency": 0.0005203,
-    "timestamp": 0.5944947
+    "latency": 0.001693389,
+    "timestamp": 0.972398124
   },
   {
     "operation_index": 895,
     "operation_type": "read",
-    "latency": 0.0005174,
-    "timestamp": 0.5950121
+    "latency": 0.001371118,
+    "timestamp": 0.973771602
   },
   {
     "operation_index": 896,
     "operation_type": "read",
-    "latency": 0.0010345,
-    "timestamp": 0.5960466
+    "latency": 0.00105746,
+    "timestamp": 0.97482993
   },
   {
     "operation_index": 897,
     "operation_type": "read",
-    "latency": 0.0010286,
-    "timestamp": 0.5970752
+    "latency": 0.000522809,
+    "timestamp": 0.975353771
   },
   {
     "operation_index": 898,
     "operation_type": "read",
-    "latency": 0.00052,
-    "timestamp": 0.5975952
+    "latency": 0.001585283,
+    "timestamp": 0.976940057
   },
   {
     "operation_index": 899,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.5975952
+    "latency": 0.00056839,
+    "timestamp": 0.977509407
   },
   {
     "operation_index": 900,
     "operation_type": "read",
-    "latency": 0.0005196,
-    "timestamp": 0.5981148
+    "latency": 0.000534447,
+    "timestamp": 0.978044767
   },
   {
     "operation_index": 901,
     "operation_type": "read",
-    "latency": 0.0005183,
-    "timestamp": 0.5986331
+    "latency": 0.001610105,
+    "timestamp": 0.979655782
   },
   {
     "operation_index": 902,
     "operation_type": "write",
-    "latency": 0.0006493,
-    "timestamp": 0.5992824
+    "latency": 0.001544326,
+    "timestamp": 0.981201141
   },
   {
     "operation_index": 903,
     "operation_type": "read",
-    "latency": 0.0010442,
-    "timestamp": 0.6003266
+    "latency": 0.000552944,
+    "timestamp": 0.981754838
   },
   {
     "operation_index": 904,
     "operation_type": "read",
-    "latency": 0.0005258,
-    "timestamp": 0.6008524
+    "latency": 0.000516629,
+    "timestamp": 0.982272265
   },
   {
     "operation_index": 905,
     "operation_type": "read",
-    "latency": 0.0005168,
-    "timestamp": 0.6013692
+    "latency": 0.000533152,
+    "timestamp": 0.982806424
   },
   {
     "operation_index": 906,
     "operation_type": "read",
-    "latency": 0.0010399,
-    "timestamp": 0.6024091
+    "latency": 0.001791771,
+    "timestamp": 0.984599124
   },
   {
     "operation_index": 907,
     "operation_type": "read",
-    "latency": 0.001035,
-    "timestamp": 0.6034441
+    "latency": 0.001883676,
+    "timestamp": 0.986483798
   },
   {
     "operation_index": 908,
     "operation_type": "read",
-    "latency": 0.00051,
-    "timestamp": 0.6039541
+    "latency": 0.00168096,
+    "timestamp": 0.988165689
   },
   {
     "operation_index": 909,
     "operation_type": "read",
-    "latency": 0.0005182,
-    "timestamp": 0.6044723
+    "latency": 0.001056521,
+    "timestamp": 0.989223149
   },
   {
     "operation_index": 910,
     "operation_type": "read",
-    "latency": 0.0011329,
-    "timestamp": 0.6056052
+    "latency": 0.000544029,
+    "timestamp": 0.989768062
   },
   {
     "operation_index": 911,
     "operation_type": "write",
-    "latency": 0.0010402,
-    "timestamp": 0.6066454
+    "latency": 0.001030795,
+    "timestamp": 0.990799684
   },
   {
     "operation_index": 912,
     "operation_type": "read",
-    "latency": 0.0010383,
-    "timestamp": 0.6076837
+    "latency": 0.000534157,
+    "timestamp": 0.991334684
   },
   {
     "operation_index": 913,
     "operation_type": "read",
-    "latency": 0.000522,
-    "timestamp": 0.6082057
+    "latency": 0.001597541,
+    "timestamp": 0.992933162
   },
   {
     "operation_index": 914,
     "operation_type": "write",
-    "latency": 0.0010455,
-    "timestamp": 0.6092512
+    "latency": 0.001573363,
+    "timestamp": 0.994507416
   },
   {
     "operation_index": 915,
     "operation_type": "read",
-    "latency": 0.0010274,
-    "timestamp": 0.6102786
+    "latency": 0.000560163,
+    "timestamp": 0.995067907
   },
   {
     "operation_index": 916,
     "operation_type": "read",
-    "latency": 0.0005261,
-    "timestamp": 0.6108047
+    "latency": 0.000519465,
+    "timestamp": 0.995588345
   },
   {
     "operation_index": 917,
     "operation_type": "write",
-    "latency": 0.0010355,
-    "timestamp": 0.6118402
+    "latency": 0.001038042,
+    "timestamp": 0.996627304
   },
   {
     "operation_index": 918,
     "operation_type": "read",
-    "latency": 0.0010422,
-    "timestamp": 0.6128824
+    "latency": 0.000520336,
+    "timestamp": 0.997148624
   },
   {
     "operation_index": 919,
     "operation_type": "read",
-    "latency": 0.0005245,
-    "timestamp": 0.6134069
+    "latency": 0.001064994,
+    "timestamp": 0.99821474
   },
   {
     "operation_index": 920,
     "operation_type": "read",
-    "latency": 0.0005185,
-    "timestamp": 0.6139254
+    "latency": 0.001582401,
+    "timestamp": 0.999798526
   },
   {
     "operation_index": 921,
     "operation_type": "read",
-    "latency": 0.0012072,
-    "timestamp": 0.6151326
+    "latency": 0.001929757,
+    "timestamp": 1.001729276
   },
   {
     "operation_index": 922,
     "operation_type": "read",
-    "latency": 0.0010259,
-    "timestamp": 0.6161585
+    "latency": 0.000537653,
+    "timestamp": 1.002267942
   },
   {
     "operation_index": 923,
     "operation_type": "read",
-    "latency": 0.000601,
-    "timestamp": 0.6167595
+    "latency": 0.0011048,
+    "timestamp": 1.003373633
   },
   {
     "operation_index": 924,
     "operation_type": "read",
-    "latency": 0.0010486,
-    "timestamp": 0.6178081
+    "latency": 0.000546132,
+    "timestamp": 1.003920598
   },
   {
     "operation_index": 925,
     "operation_type": "write",
-    "latency": 0.0005255,
-    "timestamp": 0.6183336
+    "latency": 0.001647306,
+    "timestamp": 1.005568994
   },
   {
     "operation_index": 926,
     "operation_type": "read",
-    "latency": 0.0005182,
-    "timestamp": 0.6188518
+    "latency": 0.001096119,
+    "timestamp": 1.006666011
   },
   {
     "operation_index": 927,
     "operation_type": "read",
-    "latency": 0.0005211,
-    "timestamp": 0.6193729
+    "latency": 0.001350534,
+    "timestamp": 1.008017735
   },
   {
     "operation_index": 928,
     "operation_type": "read",
-    "latency": 0.0005212,
-    "timestamp": 0.6198941
+    "latency": 0.001069384,
+    "timestamp": 1.00908764
   },
   {
     "operation_index": 929,
     "operation_type": "read",
-    "latency": 0.0010269,
-    "timestamp": 0.620921
+    "latency": 0.001024982,
+    "timestamp": 1.010113191
   },
   {
     "operation_index": 930,
     "operation_type": "read",
-    "latency": 0.0005199,
-    "timestamp": 0.6214409
+    "latency": 0.001592545,
+    "timestamp": 1.011706782
   },
   {
     "operation_index": 931,
     "operation_type": "read",
-    "latency": 0.00052,
-    "timestamp": 0.6219609
+    "latency": 0.001564204,
+    "timestamp": 1.013271814
   },
   {
     "operation_index": 932,
     "operation_type": "read",
-    "latency": 0.0010436,
-    "timestamp": 0.6230045
+    "latency": 0.001035031,
+    "timestamp": 1.014307761
   },
   {
     "operation_index": 933,
     "operation_type": "write",
-    "latency": 0.000519,
-    "timestamp": 0.6235235
+    "latency": 0.001062971,
+    "timestamp": 1.015370812
   },
   {
     "operation_index": 934,
     "operation_type": "read",
-    "latency": 0.000527,
-    "timestamp": 0.6240505
+    "latency": 0.000591356,
+    "timestamp": 1.015962627
   },
   {
     "operation_index": 935,
     "operation_type": "write",
-    "latency": 0,
-    "timestamp": 0.6240505
+    "latency": 0.000561595,
+    "timestamp": 1.016525198
   },
   {
     "operation_index": 936,
     "operation_type": "read",
-    "latency": 0.0005224,
-    "timestamp": 0.6245729
+    "latency": 0.000549365,
+    "timestamp": 1.017075515
   },
   {
     "operation_index": 937,
     "operation_type": "read",
-    "latency": 0.0005217,
-    "timestamp": 0.6250946
+    "latency": 0.001101105,
+    "timestamp": 1.018177649
   },
   {
     "operation_index": 938,
     "operation_type": "write",
-    "latency": 0.0005214,
-    "timestamp": 0.625616
+    "latency": 0.001106272,
+    "timestamp": 1.01928486
   },
   {
     "operation_index": 939,
     "operation_type": "read",
-    "latency": 0.0005186,
-    "timestamp": 0.6261346
+    "latency": 0.001047379,
+    "timestamp": 1.020333197
   },
   {
     "operation_index": 940,
     "operation_type": "read",
-    "latency": 0.0005177,
-    "timestamp": 0.6266523
+    "latency": 0.001577093,
+    "timestamp": 1.021911281
   },
   {
     "operation_index": 941,
     "operation_type": "read",
-    "latency": 0.0010303,
-    "timestamp": 0.6276826
+    "latency": 0.001232923,
+    "timestamp": 1.023145537
   },
   {
     "operation_index": 942,
     "operation_type": "read",
-    "latency": 0.0006657,
-    "timestamp": 0.6283483
+    "latency": 0.000525902,
+    "timestamp": 1.023673258
   },
   {
     "operation_index": 943,
     "operation_type": "read",
-    "latency": 0.0010527,
-    "timestamp": 0.629401
+    "latency": 0.001238024,
+    "timestamp": 1.024912189
   },
   {
     "operation_index": 944,
     "operation_type": "read",
-    "latency": 0.0011481,
-    "timestamp": 0.6305491
+    "latency": 0.000572343,
+    "timestamp": 1.025485836
   },
   {
     "operation_index": 945,
     "operation_type": "read",
-    "latency": 0.0010521,
-    "timestamp": 0.6316012
+    "latency": 0.00159095,
+    "timestamp": 1.027078204
   },
   {
     "operation_index": 946,
     "operation_type": "read",
-    "latency": 0.0005176,
-    "timestamp": 0.6321188
+    "latency": 0.000521645,
+    "timestamp": 1.027600707
   },
   {
     "operation_index": 947,
     "operation_type": "write",
-    "latency": 0.0005283,
-    "timestamp": 0.6326471
+    "latency": 0.001787617,
+    "timestamp": 1.029389431
   },
   {
     "operation_index": 948,
     "operation_type": "read",
-    "latency": 0.0010459,
-    "timestamp": 0.633693
+    "latency": 0.001085597,
+    "timestamp": 1.030475996
   },
   {
     "operation_index": 949,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.633693
+    "latency": 0.000534104,
+    "timestamp": 1.031010936
   },
   {
     "operation_index": 950,
     "operation_type": "read",
-    "latency": 0.0010453,
-    "timestamp": 0.6347383
+    "latency": 0.000552538,
+    "timestamp": 1.031564413
   },
   {
     "operation_index": 951,
     "operation_type": "read",
-    "latency": 0.0010351,
-    "timestamp": 0.6357734
+    "latency": 0.001722604,
+    "timestamp": 1.033287846
   },
   {
     "operation_index": 952,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.6357734
+    "latency": 0.000741294,
+    "timestamp": 1.034030185
   },
   {
     "operation_index": 953,
     "operation_type": "read",
-    "latency": 0.0010348,
-    "timestamp": 0.6368082
+    "latency": 0.00054366,
+    "timestamp": 1.034574364
   },
   {
     "operation_index": 954,
     "operation_type": "read",
-    "latency": 0.00052,
-    "timestamp": 0.6373282
+    "latency": 0.000537482,
+    "timestamp": 1.03511216
   },
   {
     "operation_index": 955,
     "operation_type": "read",
-    "latency": 0.0010323,
-    "timestamp": 0.6383605
+    "latency": 0.00105508,
+    "timestamp": 1.036168218
   },
   {
     "operation_index": 956,
     "operation_type": "read",
-    "latency": 0.0005166,
-    "timestamp": 0.6388771
+    "latency": 0.000539988,
+    "timestamp": 1.036709082
   },
   {
     "operation_index": 957,
     "operation_type": "read",
-    "latency": 0.0005116,
-    "timestamp": 0.6393887
+    "latency": 0.001585006,
+    "timestamp": 1.038295151
   },
   {
     "operation_index": 958,
     "operation_type": "read",
-    "latency": 0.0005165,
-    "timestamp": 0.6399052
+    "latency": 0.001646543,
+    "timestamp": 1.039942557
   },
   {
     "operation_index": 959,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.6399052
+    "latency": 0.001038312,
+    "timestamp": 1.040981638
   },
   {
     "operation_index": 960,
     "operation_type": "write",
-    "latency": 0.0005456,
-    "timestamp": 0.6404508
+    "latency": 0.001054751,
+    "timestamp": 1.042037244
   },
   {
     "operation_index": 961,
     "operation_type": "read",
-    "latency": 0.0005193,
-    "timestamp": 0.6409701
+    "latency": 0.001088372,
+    "timestamp": 1.0431268
   },
   {
     "operation_index": 962,
     "operation_type": "write",
-    "latency": 0,
-    "timestamp": 0.6409701
+    "latency": 0.001584082,
+    "timestamp": 1.044712157
   },
   {
     "operation_index": 963,
     "operation_type": "read",
-    "latency": 0.0005212,
-    "timestamp": 0.6414913
+    "latency": 0.0015812,
+    "timestamp": 1.046294228
   },
   {
     "operation_index": 964,
     "operation_type": "read",
-    "latency": 0.0005168,
-    "timestamp": 0.6420081
+    "latency": 0.001611808,
+    "timestamp": 1.047906787
   },
   {
     "operation_index": 965,
     "operation_type": "write",
-    "latency": 0.0010425,
-    "timestamp": 0.6430506
+    "latency": 0.001603205,
+    "timestamp": 1.049511203
   },
   {
     "operation_index": 966,
     "operation_type": "read",
-    "latency": 0.0005261,
-    "timestamp": 0.6435767
+    "latency": 0.001581193,
+    "timestamp": 1.051093385
   },
   {
     "operation_index": 967,
     "operation_type": "read",
-    "latency": 0.0005189,
-    "timestamp": 0.6440956
+    "latency": 0.00632995,
+    "timestamp": 1.057424331
   },
   {
     "operation_index": 968,
     "operation_type": "read",
-    "latency": 0.0005171,
-    "timestamp": 0.6446127
+    "latency": 0.001705194,
+    "timestamp": 1.059130448
   },
   {
     "operation_index": 969,
     "operation_type": "write",
-    "latency": 0.0006428,
-    "timestamp": 0.6452555
+    "latency": 0.001571227,
+    "timestamp": 1.060702125
   },
   {
     "operation_index": 970,
     "operation_type": "read",
-    "latency": 0.000526,
-    "timestamp": 0.6457815
+    "latency": 0.001548405,
+    "timestamp": 1.062251673
   },
   {
     "operation_index": 971,
     "operation_type": "read",
-    "latency": 0.0005175,
-    "timestamp": 0.646299
+    "latency": 0.001591029,
+    "timestamp": 1.0638438080000001
   },
   {
     "operation_index": 972,
     "operation_type": "read",
-    "latency": 0.0010386,
-    "timestamp": 0.6473376
+    "latency": 0.000571097,
+    "timestamp": 1.064415736
   },
   {
     "operation_index": 973,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.6473376
+    "latency": 0.001072012,
+    "timestamp": 1.065489087
   },
   {
     "operation_index": 974,
     "operation_type": "read",
-    "latency": 0.0010421,
-    "timestamp": 0.6483797
+    "latency": 0.000543242,
+    "timestamp": 1.066033369
   },
   {
     "operation_index": 975,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.6483797
+    "latency": 0.001705628,
+    "timestamp": 1.067740102
   },
   {
     "operation_index": 976,
     "operation_type": "write",
-    "latency": 0.0010317,
-    "timestamp": 0.6494114
+    "latency": 0.000524075,
+    "timestamp": 1.068265319
   },
   {
     "operation_index": 977,
     "operation_type": "read",
-    "latency": 0.0010403,
-    "timestamp": 0.6504517
+    "latency": 0.001108772,
+    "timestamp": 1.069375103
   },
   {
     "operation_index": 978,
     "operation_type": "read",
-    "latency": 0.0005097,
-    "timestamp": 0.6509614
+    "latency": 0.00055207,
+    "timestamp": 1.069928267
   },
   {
     "operation_index": 979,
     "operation_type": "read",
-    "latency": 0.0011011,
-    "timestamp": 0.6520625
+    "latency": 0.001637089,
+    "timestamp": 1.071566416
   },
   {
     "operation_index": 980,
     "operation_type": "write",
-    "latency": 0.0005184,
-    "timestamp": 0.6525809
+    "latency": 0.000532042,
+    "timestamp": 1.07209943
   },
   {
     "operation_index": 981,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.6525809
+    "latency": 0.000526883,
+    "timestamp": 1.0726268
   },
   {
     "operation_index": 982,
     "operation_type": "read",
-    "latency": 0.0005268,
-    "timestamp": 0.6531077
+    "latency": 0.000567365,
+    "timestamp": 1.073194859
   },
   {
     "operation_index": 983,
     "operation_type": "write",
-    "latency": 0.0010402,
-    "timestamp": 0.6541479
+    "latency": 0.001048624,
+    "timestamp": 1.07424469
   },
   {
     "operation_index": 984,
     "operation_type": "write",
-    "latency": 0.0005174,
-    "timestamp": 0.6546653
+    "latency": 0.001666078,
+    "timestamp": 1.075911694
   },
   {
     "operation_index": 985,
     "operation_type": "read",
-    "latency": 0.0005188,
-    "timestamp": 0.6551841
+    "latency": 0.000517528,
+    "timestamp": 1.076430258
   },
   {
     "operation_index": 986,
     "operation_type": "read",
-    "latency": 0.0010467,
-    "timestamp": 0.6562308
+    "latency": 0.000543003,
+    "timestamp": 1.07697419
   },
   {
     "operation_index": 987,
     "operation_type": "read",
-    "latency": 0.001037,
-    "timestamp": 0.6572678
+    "latency": 0.000556489,
+    "timestamp": 1.0775315
   },
   {
     "operation_index": 988,
     "operation_type": "write",
-    "latency": 0.0005246,
-    "timestamp": 0.6577924
+    "latency": 0.000571495,
+    "timestamp": 1.0781033309999999
   },
   {
     "operation_index": 989,
     "operation_type": "read",
-    "latency": 0.0005105,
-    "timestamp": 0.6583029
+    "latency": 0.001560437,
+    "timestamp": 1.07966481
   },
   {
     "operation_index": 990,
     "operation_type": "read",
-    "latency": 0.0005172,
-    "timestamp": 0.6588201
+    "latency": 0.001581069,
+    "timestamp": 1.081246731
   },
   {
     "operation_index": 991,
     "operation_type": "read",
-    "latency": 0.0005227,
-    "timestamp": 0.6593428
+    "latency": 0.001077701,
+    "timestamp": 1.082325223
   },
   {
     "operation_index": 992,
     "operation_type": "read",
-    "latency": 0.000525,
-    "timestamp": 0.6598678
+    "latency": 0.001126199,
+    "timestamp": 1.083452568
   },
   {
     "operation_index": 993,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.6598678
+    "latency": 0.001049454,
+    "timestamp": 1.084503032
   },
   {
     "operation_index": 994,
     "operation_type": "write",
-    "latency": 0.0006118,
-    "timestamp": 0.6604796
+    "latency": 0.001648823,
+    "timestamp": 1.086152936
   },
   {
     "operation_index": 995,
     "operation_type": "read",
-    "latency": 0.0005197,
-    "timestamp": 0.6609993
+    "latency": 0.001103871,
+    "timestamp": 1.087257708
   },
   {
     "operation_index": 996,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.6609993
+    "latency": 0.001618836,
+    "timestamp": 1.088877528
   },
   {
     "operation_index": 997,
     "operation_type": "read",
-    "latency": 0.001038,
-    "timestamp": 0.6620373
+    "latency": 0.001617646,
+    "timestamp": 1.090496178
   },
   {
     "operation_index": 998,
     "operation_type": "read",
-    "latency": 0,
-    "timestamp": 0.6620373
+    "latency": 0.001238832,
+    "timestamp": 1.091736472
   },
   {
     "operation_index": 999,
     "operation_type": "read",
-    "latency": 0.0010279,
-    "timestamp": 0.6630652
+    "latency": 0.001602676,
+    "timestamp": 1.093340002
   },
   {
     "operation_index": 1000,
     "operation_type": "read",
-    "latency": 0.0005746,
-    "timestamp": 0.6636398
+    "latency": 0.001592003,
+    "timestamp": 1.094932904
   }
 ]
