@@ -9,6 +9,10 @@ import (
 	"strconv"
 	"time"
 
+	"gonum.org/v1/plot"
+	"gonum.org/v1/plot/plotter"
+	"gonum.org/v1/plot/vg"
+
 	"github.com/alanwang67/distributed_registers/session_semantics/client"
 	"github.com/alanwang67/distributed_registers/session_semantics/protocol"
 	"github.com/alanwang67/distributed_registers/session_semantics/server"
@@ -89,6 +93,7 @@ func main() {
 		metrics := runClientWithMetrics(id, servers, config.Workload)
 		saveMetrics(metrics, "metrics.json")
 		saveMetricsToCSV(metrics, "latency.csv", "throughput.csv")
+		plotMetrics(metrics, "latency_plot.png", "throughput_plot.png")
 
 	case "server":
 		if id >= uint64(len(servers)) {
@@ -139,16 +144,6 @@ func runClientWithMetrics(id uint64, servers []*protocol.Connection, workload []
 		if op.Delay > 0 {
 			time.Sleep(time.Duration(op.Delay) * time.Millisecond)
 		}
-	}
-
-	time.Sleep(500 * time.Millisecond)
-	for i := range c.Servers {
-		clientReq := server.ClientRequest{}
-
-		clientReply := server.ClientReply{}
-
-		protocol.Invoke(*c.Servers[i], "Server.PrintOperations", &clientReq, &clientReply)
-
 	}
 
 	log.Printf("[INFO] Client %d completed workload", id)
@@ -204,4 +199,51 @@ func saveMetricsToCSV(metrics []Metric, latencyFile, throughputFile string) {
 
 	log.Printf("[INFO] Latency data saved to %s", latencyFile)
 	log.Printf("[INFO] Throughput data saved to %s", throughputFile)
+}
+
+func plotMetrics(metrics []Metric, latencyPlotFile, throughputPlotFile string) {
+	// Plot latency
+	latencyPlot := plot.New()
+	latencyPlot.Title.Text = "Operation Latency"
+	latencyPlot.X.Label.Text = "Operation Index"
+	latencyPlot.Y.Label.Text = "Latency (s)"
+
+	pts := make(plotter.XYs, len(metrics))
+	for i, metric := range metrics {
+		pts[i].X = float64(metric.OperationIndex)
+		pts[i].Y = metric.Latency
+	}
+
+	line, err := plotter.NewLine(pts)
+	if err != nil {
+		log.Fatalf("[ERROR] Failed to create latency plot: %v", err)
+	}
+	latencyPlot.Add(line)
+	if err := latencyPlot.Save(8*vg.Inch, 4*vg.Inch, latencyPlotFile); err != nil {
+		log.Fatalf("[ERROR] Failed to save latency plot: %v", err)
+	}
+	log.Printf("[INFO] Latency plot saved to %s", latencyPlotFile)
+
+	// Plot throughput
+	throughputPlot := plot.New()
+	throughputPlot.Title.Text = "Throughput Over Time"
+	throughputPlot.X.Label.Text = "Time (s)"
+	throughputPlot.Y.Label.Text = "Throughput (ops/s)"
+
+	throughputPts := make(plotter.XYs, len(metrics))
+	for i, metric := range metrics {
+		throughput := float64(metric.OperationIndex) / metric.Timestamp
+		throughputPts[i].X = metric.Timestamp
+		throughputPts[i].Y = throughput
+	}
+
+	line, err = plotter.NewLine(throughputPts)
+	if err != nil {
+		log.Fatalf("[ERROR] Failed to create throughput plot: %v", err)
+	}
+	throughputPlot.Add(line)
+	if err := throughputPlot.Save(8*vg.Inch, 4*vg.Inch, throughputPlotFile); err != nil {
+		log.Fatalf("[ERROR] Failed to save throughput plot: %v", err)
+	}
+	log.Printf("[INFO] Throughput plot saved to %s", throughputPlotFile)
 }
